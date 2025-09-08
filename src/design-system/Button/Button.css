@@ -1,0 +1,372 @@
+.btn {
+    border: none;
+    outline: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-6);
+    cursor: pointer;
+
+    height: 3.6rem;
+    padding: 0 var(--space-16);
+    transition: all 0.3s;
+}
+
+.btn,
+.btn * {
+    font-size: var(--font-size-16);
+    font-family: inherit;
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-500);
+    line-height: var(--line-height-20);
+}
+
+.btn svg {
+    height: 2rem;
+    width: 2rem;
+}
+
+.btn-full-width {
+    width: 100%;
+}
+
+.btn:disabled {
+    pointer-events: none;
+}
+
+.btn-small {
+    height: 3.6rem;
+}
+
+.btn-medium {
+    height: 4rem;
+    padding: 0 var(--space-20);
+    gap: var(--space-8);
+}
+
+.btn-large {
+    height: 4.8rem;
+    padding: 0 var(--space-24);
+    gap: var(--space-8);
+}
+
+.btn-medium svg,
+.btn-large svg {
+    height: 2.4rem;
+    width: 2.4rem;
+}
+
+.btn-rounded {
+    border-radius: var(--border-radius-8);
+}
+
+.btn-circle {
+    border-radius: var(--border-radius-20);
+}
+
+.btn-large.btn-circle {
+    border-radius: var(--border-radius-24);
+}
+
+/* Primary Button */
+.btn-primary {
+    background-color: var(--violet-500);
+    color: var(--white);
+    box-shadow: var(--shadow-s);
+}
+
+.btn-primary svg {
+    fill: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: var(--violet-600);
+    box-shadow: var(--shadow-s-hover);
+}
+
+.btn-primary:disabled {
+    background-color: var(--violet-300);
+}
+
+.btn-primary:focus {
+    background-color: var(--violet-700);
+    box-shadow: var(--shadow-xs-hover);
+}
+
+.btn-primary.btn-outlined {
+    background-color: var(--white);
+    border: 0.15rem solid var(--violet-500);
+    color: var(--violet-500);
+}
+.btn-primary.btn-outlined svg {
+    fill: var(--violet-500);
+}
+
+.btn-primary.btn-outlined:hover {
+    background-color: var(--violet-25);
+}
+
+.btn-primary.btn-outlined:focus {
+    background-color: var(--violet-50);
+}
+
+.btn-primary.btn-outlined:disabled {
+    border: 0.15rem solid var(--jaguar-300);
+    color: var(--jaguar-300);
+}
+
+.btn-primary.btn-outlined:disabled svg {
+    fill: var(--jaguar-300);
+}
+
+.btn-primary.btn-text {
+    background-color: var(--transparent);
+    color: var(--violet-500);
+    box-shadow: none;
+}
+.btn-primary.btn-text svg {
+    fill: var(--violet-500);
+}
+
+.btn-primary.btn-text:hover {
+    background-color: var(--violet-25);
+}
+
+.btn-primary.btn-text:focus {
+    background-color: var(--violet-50);
+}
+
+.btn-primary.btn-text:disabled {
+    color: var(--jaguar-300);
+}
+.btn-primary.btn-text:disabled svg {
+    fill: var(--jaguar-300);
+}
+
+/* Secondary Button */
+.btn-secondary {
+    background-color: var(--jaguar-500);
+    color: var(--white);
+    box-shadow: var(--shadow-s);
+}
+
+.btn-secondary svg {
+    fill: var(--white);
+}
+
+.btn-secondary:hover {
+    background-color: var(--jaguar-600);
+    box-shadow: var(--shadow-s-hover);
+}
+
+.btn-secondary:disabled {
+    background-color: var(--jaguar-300);
+}
+
+.btn-secondary:focus {
+    background-color: var(--jaguar-700);
+    box-shadow: var(--shadow-xs-hover);
+}
+
+.btn-secondary.btn-outlined {
+    background-color: var(--white);
+    border: 0.15rem solid var(--jaguar-200);
+    color: var(--jaguar-500);
+}
+.btn-secondary.btn-outlined svg {
+    fill: var(--jaguar-500);
+}
+
+.btn-secondary.btn-outlined:hover {
+    background-color: var(--jaguar-12);
+}
+
+.btn-secondary.btn-outlined:focus {
+    background-color: var(--jaguar-25);
+}
+
+.btn-secondary.btn-outlined:disabled {
+    border: 0.15rem solid var(--jaguar-300);
+    color: var(--jaguar-300);
+}
+
+.btn-secondary.btn-outlined:disabled svg {
+    fill: var(--jaguar-300);
+}
+
+.btn-secondary.btn-text {
+    background-color: var(--transparent);
+    color: var(--jaguar-700);
+    box-shadow: none;
+}
+
+.btn-secondary.btn-text svg {
+    fill: var(--jaguar-700);
+}
+
+.btn-secondary.btn-text:hover {
+    background-color: var(--jaguar-50);
+}
+
+.btn-secondary.btn-text:focus {
+    background-color: var(--jaguar-100);
+}
+
+.btn-secondary.btn-text:disabled {
+    color: var(--jaguar-300);
+}
+
+.btn-secondary.btn-text:disabled svg {
+    fill: var(--jaguar-300);
+}
+
+/* Danger Button */
+.btn-danger {
+    background-color: var(--red-orange-500);
+    color: var(--white);
+    box-shadow: var(--shadow-s);
+}
+
+.btn-danger svg {
+    fill: var(--white);
+}
+
+.btn-danger:hover {
+    background-color: var(--red-orange-600);
+    box-shadow: var(--shadow-s-hover);
+}
+
+.btn-danger:disabled {
+    background-color: var(--red-orange-300);
+}
+
+.btn-danger:focus {
+    background-color: var(--red-orange-700);
+    box-shadow: var(--shadow-xs-hover);
+}
+
+.btn-danger.btn-outlined {
+    background-color: var(--white);
+    border: 0.15rem solid var(--red-orange-500);
+    color: var(--red-orange-500);
+}
+
+.btn-danger.btn-outlined svg {
+    fill: var(--red-orange-500);
+}
+
+.btn-danger.btn-outlined:hover {
+    background-color: var(--red-orange-25);
+}
+
+.btn-danger.btn-outlined:focus {
+    background-color: var(--red-orange-50);
+}
+
+.btn-danger.btn-outlined:disabled {
+    border: 0.15rem solid var(--red-orange-300);
+    color: var(--red-orange-300);
+}
+
+.btn-danger.btn-text {
+    background-color: var(--transparent);
+    color: var(--red-orange-500);
+    box-shadow: none;
+}
+
+.btn-danger.btn-text svg {
+    fill: var(--red-orange-500);
+}
+
+.btn-danger.btn-text:hover {
+    background-color: var(--red-orange-25);
+}
+
+.btn-danger.btn-text:focus {
+    background-color: var(--red-orange-50);
+}
+
+.btn-danger.btn-text:disabled {
+    color: var(--red-orange-300);
+}
+
+.btn-danger.btn-text:disabled svg {
+    fill: var(--red-orange-300);
+}
+
+/* Success Button */
+.btn-success {
+    background-color: var(--green-500);
+    color: var(--white);
+    box-shadow: var(--shadow-s);
+}
+.btn-success svg {
+    fill: var(--white);
+}
+
+.btn-success:hover {
+    background-color: var(--green-600);
+    box-shadow: var(--shadow-s-hover);
+}
+
+.btn-success:disabled {
+    background-color: var(--green-300);
+}
+
+.btn-success:focus {
+    background-color: var(--green-700);
+    box-shadow: var(--shadow-xs-hover);
+}
+
+.btn-success.btn-outlined {
+    background-color: var(--white);
+    border: 0.15rem solid var(--green-500);
+    color: var(--green-500);
+}
+
+.btn-success.btn-outlined svg {
+    fill: var(--green-500);
+}
+
+.btn-success.btn-outlined:hover {
+    background-color: var(--green-25);
+}
+
+.btn-success.btn-outlined:focus {
+    background-color: var(--green-50);
+}
+
+.btn-success.btn-outlined:disabled {
+    border: 0.15rem solid var(--green-300);
+    color: var(--green-300);
+}
+
+.btn-success.btn-outlined:disabled svg {
+    fill: var(--green-300);
+}
+
+.btn-success.btn-text {
+    background-color: var(--transparent);
+    color: var(--green-500);
+    box-shadow: none;
+}
+.btn-success.btn-text svg {
+    fill: var(--green-500);
+}
+
+.btn-success.btn-text:hover {
+    background-color: var(--green-25);
+}
+
+.btn-success.btn-text:focus {
+    background-color: var(--green-50);
+}
+
+.btn-success.btn-text:disabled {
+    color: var(--green-300);
+}
+
+.btn-success.btn-text:disabled svg {
+    fill: var(--green-300);
+}

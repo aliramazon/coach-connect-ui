@@ -1,0 +1,84 @@
+/* Hidden Checkbox input */
+
+.switch__hidden-input {
+    appearance: none;
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+/* Track */
+.switch__track {
+    display: block;
+    height: 2rem;
+    width: 3.8rem;
+    padding: var(--space-2);
+
+    background-color: var(--jaguar-100);
+
+    transition: all 0.2s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+/* Track Rounded */
+.switch-rounded.switch__track {
+    border-radius: var(--border-radius-4);
+}
+
+/* Track Circle */
+.switch-circle.switch__track {
+    border-radius: var(--border-radius-20);
+}
+
+/* Thumb */
+.switch__thumb {
+    height: 1.6rem;
+    width: 1.6rem;
+    background-color: var(--white);
+    transition: all 0.2s;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.switch-rounded .switch__thumb {
+    border-radius: var(--border-radius-2);
+}
+
+.switch-circle .switch__thumb {
+    border-radius: var(--border-radius-circle);
+}
+
+/* On State */
+
+.switch-on {
+    background-color: var(--violet-500);
+}
+
+.switch-on .switch__thumb {
+    margin-left: 1.8rem;
+}
+
+.switch__icon {
+    fill: var(--violet-500);
+    height: 1.4rem;
+    width: 1.4rem;
+}
+
+/* Label */
+.switch__label {
+    display: flex;
+    align-items: center;
+
+    gap: var(--space-16);
+    color: var(--jaguar-700);
+    cursor: pointer;
+
+    width: max-content;
+}
+
+.switch__label.switch__label--end .switch__track {
+    order: 1;
+}

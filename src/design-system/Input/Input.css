@@ -1,0 +1,191 @@
+/* Base */
+
+.input-control {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.input {
+    outline: none !important;
+    height: 3.6rem;
+    border: 0.15rem solid var(--jaguar-200);
+    padding: 0 var(--space-12);
+    font-family: inherit;
+    font-size: var(--font-size-16);
+    color: var(--jaguar-700);
+    width: 100%;
+    transition: all 0.3s;
+}
+
+input::placeholder,
+:-ms-input-placeholder {
+    color: var(--jaguar-400);
+}
+
+.input-base {
+    position: relative;
+}
+
+/* Sizes */
+
+.input-small {
+    height: 3.6rem;
+}
+
+.input-medium {
+    height: 4rem;
+}
+
+.input-large {
+    height: 4.8rem;
+}
+
+/* Shape */
+
+.input-rounded {
+    border-radius: var(--border-radius-8);
+}
+
+.input-circle {
+    border-radius: var(--border-radius-20);
+}
+
+.input-lg.input-circle {
+    border-radius: var(--border-radius-24);
+}
+
+/* Hover States */
+
+.input:hover:not(.input-error, :disabled) {
+    border: 0.15rem solid var(--violet-500);
+}
+
+.input:hover:not(.input-error, :disabled) + .input-clearIcon {
+    fill: var(--violet-500);
+}
+
+.input-base:hover .input:not(.input-error, :disabled) {
+    border: 0.15rem solid var(--violet-500);
+}
+
+.input-base:hover .input-clearIcon {
+    fill: var(--violet-500);
+}
+
+/* Focus States */
+
+.input:focus:not(.input-error) {
+    border: 0.15rem solid var(--violet-500);
+}
+
+.input:focus:not(.input-error) + .input-clearIcon {
+    fill: var(--violet-500);
+}
+
+.input.input-error {
+    border: 0.15rem solid var(--red-orange-500);
+}
+
+.input.input-error + .input-clearIcon {
+    fill: var(--red-orange-500);
+}
+/* Disabled State */
+
+.input:disabled {
+    border-color: var(--jaguar-100);
+    background-color: var(--white);
+    color: var(--jaguar-300);
+}
+
+.input:disabled + .input-clearIcon {
+    fill: var(--jaguar-100);
+    pointer-events: none;
+}
+
+.input:disabled::placeholder {
+    color: var(--jaguar-300);
+}
+
+/* Text Area */
+
+.input-textarea {
+    resize: none;
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-8);
+}
+
+.input-textarea.input-small {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-8);
+    /* height: 7.2rem; */
+}
+
+.input-textarea.input-medium {
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-12);
+    height: 12rem;
+}
+
+.input-textarea.input-large {
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-16);
+    height: 13.4rem;
+}
+
+/* Hint Message */
+
+.input-hintMessage {
+    font-size: var(--font-size-12);
+    line-height: var(--line-height-18);
+    color: var(--jaguar-500);
+    font-weight: var(--font-weight-400);
+}
+
+.input-hintMessage--error {
+    color: var(--red-orange-500);
+}
+
+.input-hintMessage--disabled {
+    color: var(--jaguar-300);
+}
+
+/* Clearable */
+
+.input.input-clearable {
+    padding-right: 4rem;
+}
+
+.input-clearIcon {
+    position: absolute;
+    right: var(--space-12);
+    top: 0.8rem;
+    fill: var(--jaguar-500);
+    height: 2rem;
+    width: 2rem;
+    cursor: pointer;
+}
+
+.input.input-small + .input-clearIcon {
+    top: 0.8rem;
+}
+
+.input.input-medium + .input-clearIcon {
+    top: 1rem;
+}
+
+.input.input-large + .input-clearIcon {
+    top: 1.4rem;
+}
+
+.input-textarea.input-small + .input-clearIcon {
+    top: 0.8rem;
+}
+
+.input-textarea.input-medium + .input-clearIcon {
+    top: 1.2rem;
+}
+
+.input-textarea.input-large + .input-clearIcon {
+    top: 1.6rem;
+}

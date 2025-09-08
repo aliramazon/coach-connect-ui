@@ -1,0 +1,125 @@
+/* Default */
+.linear-progress {
+    display: grid;
+    grid-template-columns: 1fr 3.5rem;
+    align-items: center;
+    gap: var(--space-12);
+}
+
+.linear-progress__max {
+    height: 0.4rem;
+    background-color: var(--jaguar-50);
+}
+
+.linear-progress__progress {
+    height: 0.4rem;
+    background-color: var(--jaguar-400);
+}
+
+.linear-progress__progress-indicator svg {
+    fill: var(--jaguar-400);
+    height: 2rem;
+    width: 2rem;
+}
+
+.linear-progress__progress-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Progress Colors */
+
+.linear-progress--orange .linear-progress__max {
+    background-color: var(--sunglow-50);
+}
+
+.linear-progress--violet .linear-progress__max {
+    background-color: var(--violet-50);
+}
+
+.linear-progress--red .linear-progress__max {
+    background-color: var(--red-orange-50);
+}
+
+.linear-progress--green .linear-progress__max {
+    background-color: var(--green-50);
+}
+
+.linear-progress--orange .linear-progress__progress {
+    background-color: var(--sunglow-700);
+}
+
+.linear-progress--violet .linear-progress__progress {
+    background-color: var(--violet-500);
+}
+
+.linear-progress--red .linear-progress__progress {
+    background-color: var(--red-orange-500);
+}
+
+.linear-progress--green .linear-progress__progress {
+    background-color: var(--green-500);
+}
+
+/* Icons */
+
+.linear-progress--orange .linear-progress__indicator-icon {
+    fill: var(--sunglow-700);
+}
+
+.linear-progress--violet .linear-progress__indicator-icon {
+    fill: var(--violet-500);
+}
+
+.linear-progress--red .linear-progress__indicator-icon {
+    fill: var(--red-orange-500);
+}
+
+.linear-progress--green .linear-progress__indicator-icon {
+    fill: var(--green-500);
+}
+
+/* Indicator Colors */
+
+.linear-progress--orange .linear-progress__indicator-text {
+    color: var(--sunglow-700);
+}
+
+.linear-progress--violet .linear-progress__indicator-text {
+    color: var(--violet-500);
+}
+
+.linear-progress--red .linear-progress__indicator-text {
+    color: var(--red-orange-500);
+}
+
+.linear-progress--green .linear-progress__indicator-text {
+    color: var(--green-500);
+}
+
+/* Shape */
+.linear-progress.linear-progress--rounded .linear-progress__max {
+    border-radius: var(--border-radius-8);
+}
+.linear-progress.linear-progress--rounded .linear-progress__progress {
+    border-radius: var(--border-radius-8);
+}
+
+/* Size */
+
+.linear-progress.linear-progress--md .linear-progress__max {
+    height: 0.8rem;
+}
+
+.linear-progress.linear-progress--md .linear-progress__progress {
+    height: 0.8rem;
+}
+
+.linear-progress.linear-progress--lg .linear-progress__max {
+    height: 1.2rem;
+}
+
+.linear-progress.linear-progress--lg .linear-progress__progress {
+    height: 1.2rem;
+}

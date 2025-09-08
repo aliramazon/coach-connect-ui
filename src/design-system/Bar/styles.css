@@ -1,0 +1,25 @@
+.bar {
+    height: 0.6rem;
+    width: 3.2rem;
+    border-radius: var(--border-radius-8);
+}
+
+.bar-gray {
+    background-color: var(--jaguar-400);
+}
+
+.bar-orange {
+    background-color: var(--sunglow-700);
+}
+
+.bar-green {
+    background-color: var(--green-500);
+}
+
+.bar-red {
+    background-color: var(--red-orange-500);
+}
+
+.bar-blue {
+    background-color: var(--dodger-blue-500);
+}

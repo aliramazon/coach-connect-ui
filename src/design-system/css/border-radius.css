@@ -1,0 +1,19 @@
+:root {
+    --border-radius-0: 0;
+    --border-radius-2: 0.2rem;
+    --border-radius-4: 0.4rem;
+    --border-radius-8: 0.8rem;
+    --border-radius-12: 1.2rem;
+    --border-radius-16: 1.6rem;
+    --border-radius-20: 2rem;
+    --border-radius-24: 2.4rem;
+    --border-radius-32: 3.2rem;
+    --border-radius-36: 3.6rem;
+    --border-radius-40: 4rem;
+    --border-radius-48: 4.8rem;
+    --border-radius-56: 5.6rem;
+    --border-radius-64: 6.4rem;
+    --border-radius-72: 7.2rem;
+    --border-radius-80: 8rem;
+    --border-radius-circle: 50%;
+}

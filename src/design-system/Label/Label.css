@@ -1,0 +1,14 @@
+.label {
+    font-size: var(--font-size-16);
+    line-height: var(--line-height-24);
+    color: var(--jaguar-500);
+    font-weight: var(--font-weight-400);
+}
+
+.label.label-error {
+    color: var(--red-orange-500);
+}
+
+.label.label-disabled {
+    color: var(--jaguar-300);
+}

@@ -1,0 +1,119 @@
+.baseCard {
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+/* Border Radius */
+.baseCard-xSmall {
+    border-radius: var(--border-radius-8);
+}
+.baseCard-small {
+    border-radius: var(--border-radius-16);
+}
+.baseCard-medium {
+    border-radius: var(--border-radius-24);
+}
+.baseCard-large {
+    border-radius: var(--border-radius-32);
+}
+.baseCard-xLarge {
+    border-radius: var(--border-radius-40);
+}
+
+/* Background Color */
+.baseCard-primary {
+    background-color: var(--violet-500);
+}
+.baseCard-primaryLight {
+    background-color: var(--violet-25);
+}
+.baseCard-primaryXLight {
+    background-color: var(--violet-12);
+}
+
+.baseCard-greenLight {
+    background-color: var(--green-25);
+}
+.baseCard-sunglowLight {
+    background-color: var(--sunglow-25);
+}
+.baseCard-redLight {
+    background-color: var(--red-orange-25);
+}
+.baseCard-blueLight {
+    background-color: var(--dodger-blue-25);
+}
+.baseCard-purpleLight {
+    background-color: var(--purple-25);
+}
+
+/*  Border Styles */
+.baseCard.baseCard-hasBorder {
+    border: 1px solid var(--jaguar-50);
+}
+
+.baseCard-primaryLight.baseCard-hasBorder {
+    border: 1px solid var(--violet-50);
+}
+
+.baseCard-primaryXLight.baseCard-hasBorder {
+    border: 1px solid var(--violet-25);
+}
+
+.baseCard-greenLight.baseCard-hasBorder {
+    border: 1px solid var(--green-50);
+}
+
+.baseCard-sunglowLight.baseCard-hasBorder {
+    border: 1px solid var(--sunglow-50);
+}
+
+.baseCard-redLight.baseCard-hasBorder {
+    border: 1px solid var(--red-orange-50);
+}
+
+.baseCard-blueLight.baseCard-hasBorder {
+    border: 1px solid var(--dodger-blue-50);
+}
+
+.baseCard-purpleLight.baseCard-hasBorder {
+    border: 1px solid var(--purple-50);
+}
+
+/* Shadow Styles */
+.baseCard.baseCard-hasShadow {
+    box-shadow: 0px 3px 6px 0px var(--jaguar-50);
+}
+.baseCard-primary.baseCard-hasShadow {
+    box-shadow: 0px 3px 6px 0px var(--violet-100);
+}
+
+.baseCard-primaryLight.baseCard-hasShadow {
+    box-shadow: 0px 3px 6px 0px var(--violet-50);
+}
+
+.baseCard-primaryXLight.baseCard-hasShadow {
+    box-shadow: 0px 3px 6px 0px var(--violet-50);
+}
+
+.baseCard-greenLight.baseCard-hasShadow {
+    box-shadow: 0px 3px 6px 0px var(--green-50);
+}
+
+.baseCard-sunglowLight.baseCard-hasShadow {
+    box-shadow: 0px 3px 6px 0px var(--sunglow-50);
+}
+
+.baseCard-redLight.baseCard-hasShadow {
+    box-shadow: 0px 3px 6px 0px var(--red-orange-50);
+}
+
+.baseCard-blueLight.baseCard-hasShadow {
+    box-shadow: 0px 3px 6px 0px var(--dodger-blue-50);
+}
+
+.baseCard-purpleLight.baseCard-hasShadow {
+    box-shadow: 0px 3px 6px 0px var(--purple-50);
+}

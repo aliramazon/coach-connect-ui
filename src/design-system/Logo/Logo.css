@@ -1,0 +1,50 @@
+.logo {
+    display: flex;
+    width: max-content;
+    align-content: center;
+}
+
+.logo.logo-small {
+    height: 4rem;
+}
+
+.logo__text {
+    color: var(--jaguar-700);
+    font-weight: var(--font-weight-700);
+}
+
+.logo-vertical {
+    flex-direction: column;
+    gap: var(--space-20);
+}
+
+.logo-horizontal {
+    flex-direction: row;
+    gap: var(--space-20);
+    align-items: center;
+}
+
+.logo-large img {
+    height: 6rem;
+    width: 6.3rem;
+    margin: 0 auto;
+}
+
+.logo-large .logo__text {
+    font-size: var(--font-size-32);
+    line-height: var(--line-heigh-40);
+}
+
+.logo-small img {
+    height: 4rem;
+    width: 4.2rem;
+}
+
+.logo-small .logo__text {
+    font-size: var(--font-size-24);
+    line-height: var(--line-heigh-28);
+    height: 4rem;
+
+    display: flex;
+    align-items: center;
+}

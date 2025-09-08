@@ -1,0 +1,157 @@
+.iconCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Card Sizes */
+.iconCard-small {
+    height: 6rem;
+    width: 6rem;
+}
+
+.iconCard-medium {
+    height: 8.4rem;
+    width: 8.4rem;
+}
+
+.iconCard-large {
+    height: 10.8rem;
+    width: 10.8rem;
+}
+
+/* Icon Sizes */
+
+.iconCard-small .iconCard-icon {
+    height: 2.4rem !important;
+}
+
+.iconCard-medium .iconCard-icon {
+    height: 3.6rem !important;
+}
+
+.iconCard-large .iconCard-icon {
+    height: 4.8rem !important;
+}
+
+/* Border Radius */
+.iconCard-circle {
+    border-radius: 50%;
+}
+
+.iconCard-rounded.iconCard-small {
+    border-radius: var(--border-radius-16);
+}
+
+.iconCard-rounded.iconCard-medium {
+    border-radius: var(--border-radius-24);
+}
+
+.iconCard-rounded.iconCard-large {
+    border-radius: var(--border-radius-32);
+}
+
+/* Card Colors */
+
+.iconCard-green {
+    background-color: var(--green-500);
+}
+
+.iconCard-greenLight {
+    background-color: var(--green-50);
+    border: 1px solid var(--green-100);
+}
+
+.iconCard-sunglow {
+    background-color: var(--sunglow-500);
+}
+
+.iconCard-sunglowLight {
+    background-color: var(--sunglow-50);
+    border: 1px solid var(--sunglow-100);
+}
+
+.iconCard-primary {
+    background-color: var(--violet-500);
+}
+
+.iconCard-primaryLight {
+    background-color: var(--violet-50);
+    border: 1px solid var(--violet-100);
+}
+
+.iconCard-purple {
+    background-color: var(--purple-500);
+}
+
+.iconCard-purpleLight {
+    background-color: var(--purple-50);
+    border: 1px solid var(--purple-100);
+}
+
+.iconCard-red {
+    background-color: var(--red-orange-500);
+}
+
+.iconCard-redLight {
+    background-color: var(--red-orange-50);
+    border: 1px solid var(--red-orange-100);
+}
+
+.iconCard-blue {
+    background-color: var(--dodger-blue-500);
+}
+
+.iconCard-blueLight {
+    background-color: var(--dodger-blue-50);
+    border: 1px solid var(--dodger-blue-100);
+}
+
+/* .iconCard-icon Colors */
+.iconCard-green .iconCard-icon {
+    fill: var(--white);
+}
+
+.iconCard-greenLight .iconCard-icon {
+    fill: var(--green-500);
+}
+
+.iconCard-sunglow .iconCard-icon {
+    fill: var(--white);
+}
+
+.iconCard-sunglowLight .iconCard-icon {
+    fill: var(--sunglow-500);
+}
+
+.iconCard-primary .iconCard-icon {
+    fill: var(--white);
+}
+
+.iconCard-primaryLight .iconCard-icon {
+    fill: var(--violet-500);
+}
+
+.iconCard-purple .iconCard-icon {
+    fill: var(--white);
+}
+
+.iconCard-purpleLight .iconCard-icon {
+    fill: var(--purple-500);
+}
+
+.iconCard-red .iconCard-icon {
+    fill: var(--white);
+}
+
+.iconCard-redLight .iconCard-icon {
+    fill: var(--red-orange-500);
+}
+
+.iconCard-blue .iconCard-icon {
+    fill: var(--white);
+}
+
+.iconCard-blueLight .iconCard-icon {
+    fill: var(--dodger-blue-500);
+}

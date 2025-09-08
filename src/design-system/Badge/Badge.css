@@ -1,0 +1,162 @@
+.badge {
+    height: 2.8rem;
+    width: max-content;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: calc(var(--space-2) + var(--space-4));
+}
+
+.badge-rounded {
+    border-radius: var(--border-radius-8);
+}
+
+.badge-circle {
+    border-radius: var(--border-radius-40);
+}
+
+.badge-outlined {
+    border-width: 1px;
+    border-style: solid;
+    padding: 0 var(--space-12);
+}
+
+.badge-contained {
+    padding: 0 var(--space-12);
+}
+
+.badge__text {
+    font-family: inherit;
+    font-size: var(--font-size-12);
+    font-weight: var(--font-weight-600);
+    line-height: var(--line-height-18);
+}
+
+.badge__status {
+    height: 6px;
+    width: 6px;
+}
+
+.badge-rounded .badge__status {
+    border-radius: var(--border-radius-2);
+}
+
+.badge-circle .badge__status {
+    border-radius: var(--border-radius-circle);
+}
+
+.badge svg,
+.badge img {
+    height: 1.8rem;
+    width: 1.8rem;
+}
+
+/* Gray Badge */
+.badge-gray.badge-contained {
+    background-color: var(--jaguar-50);
+}
+
+.badge-gray.badge-outlined {
+    background-color: var(--jaguar-25);
+    border-color: var(--jaguar-200);
+}
+
+.badge-gray .badge__text {
+    color: var(--jaguar-600);
+}
+
+.badge-gray svg {
+    fill: var(--jaguar-600);
+}
+.badge-gray .badge__status {
+    background-color: var(--jaguar-600);
+}
+
+/* primary Badge */
+
+.badge-primary.badge-contained {
+    background-color: var(--violet-50);
+}
+
+.badge-primary.badge-outlined {
+    background-color: var(--violet-25);
+    border-color: var(--violet-200);
+}
+
+.badge-primary .badge__text {
+    color: var(--violet-600);
+}
+
+.badge-primary svg {
+    fill: var(--violet-600);
+}
+
+.badge-primary .badge__status {
+    background-color: var(--violet-600);
+}
+
+/* Orange Badge */
+.badge-orange.badge-contained {
+    background-color: var(--sunglow-50);
+}
+
+.badge-orange.badge-outlined {
+    background-color: var(--sunglow-25);
+    border-color: var(--sunglow-200);
+}
+
+.badge-orange .badge__text {
+    color: var(--sunglow-600);
+}
+
+.badge-orange svg {
+    fill: var(--sunglow-600);
+}
+
+.badge-orange .badge__status {
+    background-color: var(--sunglow-600);
+}
+
+/* Red Badge */
+.badge-red.badge-contained {
+    background-color: var(--red-orange-50);
+}
+
+.badge-red.badge-outlined {
+    background-color: var(--red-orange-25);
+    border-color: var(--red-orange-200);
+}
+
+.badge-red .badge__text {
+    color: var(--red-orange-600);
+}
+
+.badge-red svg {
+    fill: var(--red-orange-600);
+}
+
+.badge-red .badge__status {
+    background-color: var(--red-orange-600);
+}
+
+/* Green Badge */
+.badge-green.badge-contained {
+    background-color: var(--green-50);
+}
+
+.badge-green.badge-outlined {
+    background-color: var(--green-25);
+    border-color: var(--green-200);
+}
+
+.badge-green .badge__text {
+    color: var(--green-600);
+}
+
+.badge-green svg {
+    fill: var(--green-600);
+}
+
+.badge-green .badge__status {
+    background-color: var(--green-600);
+}

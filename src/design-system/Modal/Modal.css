@@ -1,0 +1,36 @@
+.modal-overlay {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
+    background-color: var(--overlay-40);
+    display: flex;
+    z-index: 1;
+}
+
+.modal-overlay--center {
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-overlay--right {
+    justify-content: flex-end;
+}
+
+.modal {
+    background-color: var(--white);
+    box-shadow: var(--shadow-3xl);
+    transition: all 0.5s;
+}
+
+.modal-overlay--center .modal {
+    min-width: 37rem;
+    padding: var(--space-24);
+    border-radius: var(--border-radius-16);
+}
+
+.modal-overlay--right .modal {
+    border-radius: 0;
+    width: 40rem;
+}

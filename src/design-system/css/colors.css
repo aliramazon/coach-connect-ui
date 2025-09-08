@@ -1,0 +1,96 @@
+:root {
+    --violet-900: #00d;
+    --violet-800: #2c0ee3;
+    --violet-700: #4617e8;
+    --violet-600: #5b21f0;
+    --violet-500: #6826f7;
+    --violet-400: #844efa;
+    --violet-300: #9e70fb;
+    --violet-200: #bb9cfb;
+    --violet-100: #d7c4fc;
+    --violet-50: #f0e7fe;
+    --violet-25: #f7f3fe;
+    --violet-12: #fbf9ff;
+
+    --sunglow-900: #f96e16;
+    --sunglow-800: #fa8c18;
+    --sunglow-700: #fb9d19;
+    --sunglow-600: #fcaf1a;
+    --sunglow-500: #fcbd1f;
+    --sunglow-400: #fdc632;
+    --sunglow-300: #fed254;
+    --sunglow-200: #fede84;
+    --sunglow-100: #ffebb4;
+    --sunglow-50: #fff7e1;
+    --sunglow-25: #fffbf0;
+    --sunglow-12: #fffdf8;
+
+    --jaguar-900: #080317;
+    --jaguar-800: #2a2836;
+    --jaguar-700: #474555;
+    --jaguar-600: #5a5768;
+    --jaguar-500: #817d8f;
+    --jaguar-400: #a29fb2;
+    --jaguar-300: #c8c5d8;
+    --jaguar-200: #ddd9ed;
+    --jaguar-100: #ece8fc;
+    --jaguar-50: #f7f3ff;
+    --jaguar-25: #fbf9ff;
+    --jaguar-12: #fdfcff;
+
+    --dodger-blue-900: #2842c9;
+    --dodger-blue-800: #2165e8;
+    --dodger-blue-700: #1977fb;
+    --dodger-blue-600: #048bff;
+    --dodger-blue-500: #009aff;
+    --dodger-blue-400: #28a9ff;
+    --dodger-blue-300: #58baff;
+    --dodger-blue-200: #8dceff;
+    --dodger-blue-100: #bbe0ff;
+    --dodger-blue-50: #e3f3ff;
+    --dodger-blue-25: #f1f9ff;
+    --dodger-blue-12: #f8fcff;
+
+    --green-900: #006500;
+    --green-800: #008400;
+    --green-700: #00950e;
+    --green-600: #00a71e;
+    --green-500: #00b627;
+    --green-400: #46c24e;
+    --green-300: #6dcd6f;
+    --green-200: #9ada9a;
+    --green-100: #c2e9c1;
+    --green-50: #e6f6e6;
+    --green-25: #f2faf2;
+    --green-12: #f9fdf9;
+
+    --red-orange-900: #bf1817;
+    --red-orange-800: #cf2524;
+    --red-orange-700: #db2d2b;
+    --red-orange-600: #ee3831;
+    --red-orange-500: #fc4130;
+    --red-orange-400: #f7534d;
+    --red-orange-300: #ec7372;
+    --red-orange-200: #f59b99;
+    --red-orange-100: #ffcdd2;
+    --red-orange-50: #ffebee;
+    --red-orange-25: #fff5f6;
+    --red-orange-12: #fffafb;
+
+    --purple-900: #4c00df;
+    --purple-800: #8300ea;
+    --purple-700: #9b00ed;
+    --purple-600: #b600f1;
+    --purple-500: #c900f6;
+    --purple-400: #d400f9;
+    --purple-300: #dd56fb;
+    --purple-200: #e88dfb;
+    --purple-100: #f1bcfc;
+    --purple-50: #fae5fe;
+    --purple-25: #fcf2fe;
+    --purple-12: #fef9ff;
+
+    --white: #ffffff;
+    --transparent: transparent;
+    --overlay-40: rgba(0, 0, 0, 0.4);
+}
