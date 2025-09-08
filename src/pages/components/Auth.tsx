@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { type ReactNode } from "react";
-import { Logo, Toaster } from "../../design-system";
+import { BaseCard, Logo, Toaster } from "../../design-system";
 
 type AuthWrapperProps = {
     children: ReactNode;
@@ -15,23 +15,26 @@ const Wrapper = styled.main`
     height: 100vh;
 `;
 
-const AuthContent = styled.div`
+const AuthContent = styled(BaseCard)`
     display: flex;
     flex-direction: column;
     align-items: center;
+
     gap: var(--space-48);
-    flex-basis: 47rem;
+    flex-basis: 50rem;
+    flex-grow: unset;
+    padding: var(--space-24);
 `;
 
-const AuthWrapper: React.FC<AuthWrapperProps> = ({
-    pageTitle,
-
-    children,
-}) => {
+const AuthWrapper: React.FC<AuthWrapperProps> = ({ pageTitle, children }) => {
     return (
         <>
             <Wrapper>
-                <AuthContent>
+                <AuthContent
+                    hasBorder
+                    color="primary-x-light"
+                    borderRadius="small"
+                >
                     <Logo layout="vertical" size="lg" customText={pageTitle} />
                     {children}
                 </AuthContent>
