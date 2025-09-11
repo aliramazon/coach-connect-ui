@@ -1,14 +1,14 @@
+import type { LucideIcon } from "lucide-react";
 import { type To } from "react-router-dom";
-import { type IconName } from "../Icon";
 
-export type IconButtonSize = "sm" | "md" | "lg" | "xlg";
+export type IconButtonSize = "sm" | "md" | "lg" | "xl";
 export type IconButtonShape = "rounded" | "circle";
 export type IconButtonColor = "primary" | "secondary" | "danger" | "success";
 export type IconButtonVariant = "contained" | "outlined" | "borderless";
 export type RenderAsLink = boolean;
 
 interface IconButtonBaseProps {
-    iconName: IconName;
+    icon: LucideIcon;
     size?: IconButtonSize;
     shape?: IconButtonShape;
     color?: IconButtonColor;

@@ -2,7 +2,7 @@ export const sizeClassNames = {
     sm: "iconBtn-small",
     md: "iconBtn-medium",
     lg: "iconBtn-large",
-    xlg: "iconBtn-extra-large",
+    xl: "iconBtn-extra-large",
 };
 
 export const shapeClassNames = {

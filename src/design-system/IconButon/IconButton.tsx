@@ -1,6 +1,5 @@
 import { type FC, forwardRef } from "react";
 import { Link } from "react-router-dom";
-import { Icon } from "../Icon";
 import { trimWhiteSpaces } from "../utils";
 import {
     colorClassNames,
@@ -14,7 +13,7 @@ import { type IconButtonProps } from "./types";
 const IconButton: FC<IconButtonProps> = forwardRef(
     (props, ref: React.ForwardedRef<HTMLButtonElement>) => {
         const {
-            iconName,
+            icon: Icon,
             size,
             shape,
             color,
@@ -47,7 +46,7 @@ const IconButton: FC<IconButtonProps> = forwardRef(
             if (renderAsLink && navigateTo) {
                 return (
                     <Link className={finalClassNames} to={navigateTo}>
-                        <Icon iconName={iconName} />
+                        <Icon />
                     </Link>
                 );
             }
@@ -58,7 +57,7 @@ const IconButton: FC<IconButtonProps> = forwardRef(
                     onClick={onClick}
                     ref={ref}
                 >
-                    <Icon iconName={iconName} />
+                    <Icon />
                 </button>
             );
         };
