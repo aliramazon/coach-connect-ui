@@ -1,5 +1,4 @@
 import React from "react";
-import { Icon } from "../Icon";
 import { trimWhiteSpaces } from "../utils";
 import "./Badge.css";
 import { type BadgeProps } from "./types";
@@ -28,7 +27,7 @@ const Badge: React.FC<BadgeProps> = ({
     shape,
     variant,
     status,
-    iconName,
+    icon,
     className,
 }) => {
     const shapeClassName = shape !== undefined ? shapeClassNames[shape] : "";
@@ -44,8 +43,8 @@ const Badge: React.FC<BadgeProps> = ({
 
     return (
         <div className={trimWhiteSpaces(finalClassNames)}>
-            {!status && iconName ? <Icon iconName={iconName} /> : null}
-            {status && !iconName ? <div className="badge__status" /> : null}
+            {!status && icon ? icon : null}
+            {status && !icon ? <div className="badge__status" /> : null}
             <span className="badge__text">{label}</span>
         </div>
     );

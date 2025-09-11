@@ -66,7 +66,7 @@
 }
 
 .badge-gray svg {
-    fill: var(--jaguar-600);
+    stroke: var(--jaguar-600);
 }
 .badge-gray .badge__status {
     background-color: var(--jaguar-600);
@@ -88,7 +88,7 @@
 }
 
 .badge-primary svg {
-    fill: var(--violet-600);
+    stroke: var(--violet-600);
 }
 
 .badge-primary .badge__status {
@@ -110,7 +110,7 @@
 }
 
 .badge-orange svg {
-    fill: var(--sunglow-600);
+    stroke: var(--sunglow-600);
 }
 
 .badge-orange .badge__status {
@@ -132,7 +132,7 @@
 }
 
 .badge-red svg {
-    fill: var(--red-orange-600);
+    stroke: var(--red-orange-600);
 }
 
 .badge-red .badge__status {
@@ -154,7 +154,7 @@
 }
 
 .badge-green svg {
-    fill: var(--green-600);
+    stroke: var(--green-600);
 }
 
 .badge-green .badge__status {

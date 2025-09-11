@@ -1,5 +1,3 @@
-import { type IconName } from "../Icon";
-
 export type BadgeColors = "primary" | "orange" | "green" | "red" | "gray";
 
 type BadgeShape = "rounded" | "circle";
@@ -13,11 +11,11 @@ interface BadgePropsBase {
     variant?: BadgeVariant;
     status?: boolean;
     className?: string;
-    iconName?: IconName;
+    icon?: React.ReactNode;
 }
 
 type ExclusiveBadgeProps =
-    | { status?: BadgePropsBase["status"]; iconName?: never }
-    | { iconName?: BadgePropsBase["iconName"]; status?: never };
+    | { status?: BadgePropsBase["status"]; icon?: never }
+    | { icon?: BadgePropsBase["icon"]; status?: never };
 
 export type BadgeProps = BadgePropsBase & ExclusiveBadgeProps;
