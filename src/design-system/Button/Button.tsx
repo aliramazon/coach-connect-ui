@@ -1,6 +1,5 @@
 import { type FC, forwardRef } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { Icon, type IconName } from "../Icon";
 import { trimWhiteSpaces } from "../utils";
 import "./Button.css";
 import {
@@ -25,8 +24,8 @@ const Button: FC<ButtonProps> = forwardRef(
             onClick,
             renderAs,
             navigateTo,
-            endIcon,
-            startIcon,
+            endIcon: EndIcon,
+            startIcon: StartIcon,
         } = props;
 
         const sizeClassName = size !== undefined ? sizeClassNames[size] : "";
@@ -65,17 +64,9 @@ const Button: FC<ButtonProps> = forwardRef(
                     onClick={onClick}
                     ref={ref}
                 >
-                    {startIcon && typeof startIcon === "string" ? (
-                        <Icon iconName={startIcon as IconName} />
-                    ) : (
-                        startIcon
-                    )}
+                    {StartIcon ? <StartIcon /> : null}
                     {children}
-                    {endIcon && typeof endIcon === "string" ? (
-                        <Icon iconName={endIcon as IconName} />
-                    ) : (
-                        endIcon
-                    )}
+                    {EndIcon ? <EndIcon /> : null}
                 </button>
             );
         };

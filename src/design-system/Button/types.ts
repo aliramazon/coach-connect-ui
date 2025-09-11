@@ -1,6 +1,6 @@
+import type { LucideIcon } from "lucide-react";
 import React from "react";
 import { type To } from "react-router-dom";
-import { type IconName } from "../Icon";
 
 export type ButtonSize = "sm" | "md" | "lg";
 export type ButtonShape = "rounded" | "circle";
@@ -17,8 +17,8 @@ interface ButtonBaseProps {
     disabled?: boolean;
     className?: string;
     children: React.ReactNode;
-    startIcon?: React.ReactNode | IconName;
-    endIcon?: React.ReactNode | IconName;
+    startIcon?: LucideIcon;
+    endIcon?: LucideIcon;
     onClick?: () => void;
 }
 
