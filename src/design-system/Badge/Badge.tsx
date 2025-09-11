@@ -27,7 +27,7 @@ const Badge: React.FC<BadgeProps> = ({
     shape,
     variant,
     status,
-    icon,
+    icon: Icon,
     className,
 }) => {
     const shapeClassName = shape !== undefined ? shapeClassNames[shape] : "";
@@ -43,8 +43,8 @@ const Badge: React.FC<BadgeProps> = ({
 
     return (
         <div className={trimWhiteSpaces(finalClassNames)}>
-            {!status && icon ? icon : null}
-            {status && !icon ? <div className="badge__status" /> : null}
+            {!status && Icon ? <Icon /> : null}
+            {status && !Icon ? <div className="badge__status" /> : null}
             <span className="badge__text">{label}</span>
         </div>
     );

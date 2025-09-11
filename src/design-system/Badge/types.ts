@@ -1,3 +1,5 @@
+import type { LucideIcon } from "lucide-react";
+
 export type BadgeColors = "primary" | "orange" | "green" | "red" | "gray";
 
 type BadgeShape = "rounded" | "circle";
@@ -11,7 +13,7 @@ interface BadgePropsBase {
     variant?: BadgeVariant;
     status?: boolean;
     className?: string;
-    icon?: React.ReactNode;
+    icon?: LucideIcon;
 }
 
 type ExclusiveBadgeProps =
