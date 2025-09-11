@@ -1,42 +1,15 @@
+import { Check, Minus } from "lucide-react";
+
 import React from "react";
 import { Label } from "../Label";
-import { type CheckboxProps, type CheckboxShape } from "./types";
+import { type CheckboxProps } from "./types";
 
-import { Icon, type IconName } from "../Icon";
 import { trimWhiteSpaces } from "../utils";
 import "./Checkbox.css";
 
 const shapeClassNames = {
     rounded: "checkbox__custom--rounded",
     circle: "checkbox__custom--circle",
-};
-
-const iconNames: {
-    [Key in CheckboxShape]: { indeterminate: IconName; checked: IconName };
-} = {
-    rounded: {
-        indeterminate: "minus",
-        checked: "check",
-    },
-    circle: {
-        indeterminate: "minus",
-        checked: "check",
-    },
-};
-
-const getFinalIconName = (
-    shape: CheckboxShape | undefined,
-    indeterminate: boolean | undefined
-): IconName => {
-    if (shape) {
-        if (indeterminate) {
-            return iconNames[shape].indeterminate;
-        } else {
-            return iconNames[shape].checked;
-        }
-    }
-
-    return indeterminate ? "minus-sharp" : "check-sharp";
 };
 
 const Checkbox: React.FC<CheckboxProps> = ({
@@ -68,8 +41,6 @@ const Checkbox: React.FC<CheckboxProps> = ({
         position ? "checkbox__label--end" : ""
     }`;
 
-    const iconName = getFinalIconName(shape, indeterminate);
-
     return (
         <div className={checkboxWrapperClassName}>
             <Label htmlFor={id} className={labelClassName} disabled={disabled}>
@@ -82,9 +53,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
                     disabled={disabled}
                 />
                 <div className={customCheckboxClassName}>
-                    {checked && (
-                        <Icon iconName={iconName} className="checkbox__icon" />
-                    )}
+                    {checked ? indeterminate ? <Minus /> : <Check /> : null}
                 </div>
                 {label && <span>{label}</span>}
             </Label>
