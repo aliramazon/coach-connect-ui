@@ -1,9 +1,9 @@
-import { type IconName } from "../Icon";
+import type { LucideIcon } from "lucide-react";
 
 type SideBarLink = {
     linkText: string;
     linkTo: string;
-    iconName: IconName;
+    icon: LucideIcon;
 };
 
 export type SideBarLinksGroup = {

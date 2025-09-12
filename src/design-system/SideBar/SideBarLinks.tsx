@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import { Icon } from "../Icon";
+
+import { LogOutIcon } from "lucide-react";
 import { Typography } from "../Typography";
 import { type SideBarLinksProps } from "./types";
 
@@ -19,6 +20,7 @@ const SideBarLinks: React.FC<SideBarLinksProps> = ({ links, logOut }) => {
                         </Typography>
                         <ul className="side-bar__links">
                             {group.links.map((link, idx) => {
+                                const Icon = link.icon;
                                 return (
                                     <li
                                         className="side-bar__link-item"
@@ -28,10 +30,7 @@ const SideBarLinks: React.FC<SideBarLinksProps> = ({ links, logOut }) => {
                                             to={link.linkTo}
                                             className="side-bar__link"
                                         >
-                                            <Icon
-                                                iconName={link.iconName}
-                                                className="side-bar__link-icon"
-                                            />
+                                            <Icon className="side-bar__link-icon" />
                                             {link.linkText}
                                         </NavLink>
                                     </li>
@@ -43,7 +42,7 @@ const SideBarLinks: React.FC<SideBarLinksProps> = ({ links, logOut }) => {
             })}
 
             <div className="side-bar__log-out">
-                <Icon iconName="log-out" className="log-out-icon" />
+                <LogOutIcon className="log-out-icon" />
                 <Link to="" className="side-bar__log-out-link" onClick={logOut}>
                     Log Out
                 </Link>

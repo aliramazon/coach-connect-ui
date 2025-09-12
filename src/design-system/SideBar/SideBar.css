@@ -42,13 +42,13 @@
 }
 
 .side-bar__link-icon {
-    fill: var(--jaguar-500);
+    stroke: var(--jaguar-500);
     margin-left: var(--space-4);
 }
 
 .side-bar__link.active .side-bar__link-icon,
 .side-bar__link:hover .side-bar__link-icon {
-    fill: var(--violet-500);
+    stroke: var(--violet-500);
 }
 
 .side-bar__link-item .side-bar__link::before {
@@ -77,7 +77,7 @@
 }
 
 .log-out-icon {
-    fill: var(--red-orange-500);
+    stroke: var(--red-orange-500);
 }
 
 .side-bar__log-out-link {
