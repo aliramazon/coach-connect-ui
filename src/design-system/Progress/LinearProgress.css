@@ -17,7 +17,7 @@
 }
 
 .linear-progress__progress-indicator svg {
-    fill: var(--jaguar-400);
+    stroke: var(--jaguar-400);
     height: 2rem;
     width: 2rem;
 }
@@ -65,19 +65,19 @@
 /* Icons */
 
 .linear-progress--orange .linear-progress__indicator-icon {
-    fill: var(--sunglow-700);
+    stroke: var(--sunglow-700);
 }
 
 .linear-progress--violet .linear-progress__indicator-icon {
-    fill: var(--violet-500);
+    stroke: var(--violet-500);
 }
 
 .linear-progress--red .linear-progress__indicator-icon {
-    fill: var(--red-orange-500);
+    stroke: var(--red-orange-500);
 }
 
 .linear-progress--green .linear-progress__indicator-icon {
-    fill: var(--green-500);
+    stroke: var(--green-500);
 }
 
 /* Indicator Colors */

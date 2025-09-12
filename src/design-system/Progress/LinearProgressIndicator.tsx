@@ -3,21 +3,22 @@ import {
     type LinearProgressShape,
 } from "./types";
 
-import { type IconName, Icon } from "../Icon";
+import { CircleCheck, Info, type LucideIcon } from "lucide-react";
+import type { JSX } from "react";
 import { Typography } from "../Typography";
 
 const iconNames: {
     [key: string]: {
-        [key in LinearProgressShape]: IconName;
+        [key in LinearProgressShape]: LucideIcon;
     };
 } = {
     error: {
-        rounded: "info-in-circle-filled",
-        sharp: "info-in-circle-sharp-filled",
+        rounded: Info,
+        sharp: Info,
     },
     completed: {
-        rounded: "check-in-circle-filled",
-        sharp: "check-in-circle-sharp-filled",
+        rounded: CircleCheck,
+        sharp: CircleCheck,
     },
 };
 
@@ -39,12 +40,8 @@ export const LinearProgressIndicator: React.FC<
     }
 
     if (isCompleted || error) {
-        return (
-            <Icon
-                iconName={iconNames[status][finalShape]}
-                className="linear-progress__indicator-icon"
-            />
-        );
+        const Icon = iconNames[status][finalShape];
+        return <Icon className="linear-progress__indicator-icon" />;
     }
 
     return (
