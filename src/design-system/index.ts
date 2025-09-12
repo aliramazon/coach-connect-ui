@@ -6,7 +6,6 @@ export * from "./Button";
 export * from "./Checkbox";
 export * from "./DatePicker";
 export * from "./Flex/Flex";
-export * from "./Icon";
 export * from "./IconButon";
 export * from "./IconCard";
 export * from "./Input";
