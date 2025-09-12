@@ -3,6 +3,11 @@
     width: 100%;
 }
 
+.select .select__label {
+    display: block;
+    margin-bottom: 4px;
+}
+
 /* Header */
 .btn-secondary.select__header {
     background-color: var(--white);
@@ -27,13 +32,13 @@
 
 .btn-secondary.select__header:hover .select__icon,
 .btn-secondary.select__header:focus .select__icon {
-    fill: var(--violet-500);
+    stroke: var(--violet-500);
 }
 
 /* Header Icon */
 .select__icon {
     transition: 0.3s;
-    fill: var(--jaguar-500);
+    stroke: var(--jaguar-500);
 }
 
 .select__icon--expanded {
@@ -124,7 +129,7 @@
 }
 
 .select__selected-icon {
-    fill: var(--violet-500);
+    stroke: var(--violet-500);
 }
 
 /* Select Items */

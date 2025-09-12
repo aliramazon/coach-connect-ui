@@ -1,7 +1,7 @@
+import { Check, ChevronDown } from "lucide-react";
 import { useRef, useState } from "react";
 import { Button } from "../Button";
 import { useCloseWhenClickOutside } from "../hooks";
-import { Icon } from "../Icon";
 import { Input } from "../Input";
 import { Label } from "../Label";
 import { trimWhiteSpaces } from "../utils";
@@ -75,13 +75,13 @@ const Select: React.FC<SelectProps> = (props) => {
 
     const finalHeaderPlaceholder = value
         ? getOptionLabel(value)
-        : headerPlaceholder;
+        : headerPlaceholder || "Select";
 
     const filteredOptions = filterOptions();
 
     return (
         <div className={finalClassName} ref={selectRef}>
-            {label && <Label>{label}</Label>}
+            {label && <Label className="select__label">{label}</Label>}
             <Button
                 size={size}
                 shape={shape}
@@ -93,8 +93,7 @@ const Select: React.FC<SelectProps> = (props) => {
                 fullWidth
             >
                 {finalHeaderPlaceholder}
-                <Icon
-                    iconName="chevron-down"
+                <ChevronDown
                     className={`select__icon ${
                         expanded ? "select__icon--expanded" : ""
                     }`}
@@ -129,10 +128,7 @@ const Select: React.FC<SelectProps> = (props) => {
                                 >
                                     {option.label}
                                     {value === option.value && (
-                                        <Icon
-                                            iconName={
-                                                shape ? "check" : "check-sharp"
-                                            }
+                                        <Check
                                             className="select__selected-icon"
                                             size={20}
                                         />
