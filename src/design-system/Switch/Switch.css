@@ -62,7 +62,7 @@
 }
 
 .switch__icon {
-    fill: var(--violet-500);
+    stroke: var(--violet-500);
     height: 1.4rem;
     width: 1.4rem;
 }

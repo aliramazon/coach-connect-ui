@@ -1,8 +1,8 @@
+import { Check } from "lucide-react";
 import React from "react";
+import { Label } from "../Label";
 import { trimWhiteSpaces } from "../utils";
 import "./Switch.css";
-import { Icon } from "../Icon";
-import { Label } from "../Label";
 
 const shapeClassNames = {
     rounded: "switch-rounded",
@@ -58,12 +58,7 @@ const Switch: React.FC<ToggleProps> = ({
             />
             <div className={trackClassNames}>
                 <div className="switch__thumb">
-                    {checked && (
-                        <Icon
-                            iconName={!shape ? "check-sharp" : "check"}
-                            className="switch__icon"
-                        />
-                    )}
+                    {checked && <Check className="switch__icon" />}
                 </div>
             </div>
             {label && <span>{label}</span>}
