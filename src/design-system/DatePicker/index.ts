@@ -1,2 +1,2 @@
-export * from "./DatePickerV1";
+export * from "./DatePicker";
 export * from "./types";
