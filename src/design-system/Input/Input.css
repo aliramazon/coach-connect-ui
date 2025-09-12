@@ -62,7 +62,7 @@ input::placeholder,
 }
 
 .input:hover:not(.input-error, :disabled) + .input-clearIcon {
-    fill: var(--violet-500);
+    stroke: var(--violet-500);
 }
 
 .input-base:hover .input:not(.input-error, :disabled) {
@@ -70,7 +70,7 @@ input::placeholder,
 }
 
 .input-base:hover .input-clearIcon {
-    fill: var(--violet-500);
+    stroke: var(--violet-500);
 }
 
 /* Focus States */
@@ -80,7 +80,7 @@ input::placeholder,
 }
 
 .input:focus:not(.input-error) + .input-clearIcon {
-    fill: var(--violet-500);
+    stroke: var(--violet-500);
 }
 
 .input.input-error {
@@ -88,7 +88,7 @@ input::placeholder,
 }
 
 .input.input-error + .input-clearIcon {
-    fill: var(--red-orange-500);
+    stroke: var(--red-orange-500);
 }
 /* Disabled State */
 
@@ -99,7 +99,7 @@ input::placeholder,
 }
 
 .input:disabled + .input-clearIcon {
-    fill: var(--jaguar-100);
+    stroke: var(--jaguar-100);
     pointer-events: none;
 }
 
@@ -160,7 +160,7 @@ input::placeholder,
     position: absolute;
     right: var(--space-12);
     top: 0.8rem;
-    fill: var(--jaguar-500);
+    stroke: var(--jaguar-500);
     height: 2rem;
     width: 2rem;
     cursor: pointer;

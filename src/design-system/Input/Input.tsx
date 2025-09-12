@@ -1,5 +1,5 @@
+import { X } from "lucide-react";
 import React from "react";
-import { Icon } from "../Icon";
 import { Label } from "../Label";
 import { trimWhiteSpaces } from "../utils";
 import "./Input.css";
@@ -31,7 +31,6 @@ const Input: React.FC<InputProps> = (props) => {
         onChange,
         value,
         clearable,
-        iconName,
         autoFocus,
     } = props;
 
@@ -96,11 +95,7 @@ const Input: React.FC<InputProps> = (props) => {
                     />
                 )}
                 {clearable && value.length > 0 && (
-                    <Icon
-                        iconName="x-in-circle"
-                        className="input-clearIcon"
-                        onClick={clearInput}
-                    />
+                    <X className="input-clearIcon" onClick={clearInput} />
                 )}
             </div>
 
