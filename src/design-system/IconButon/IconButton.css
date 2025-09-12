@@ -13,8 +13,8 @@
 }
 
 .iconBtn svg {
-    height: 2rem;
-    width: 2rem;
+    height: 1.8rem;
+    width: 1.8rem;
 }
 
 .iconBtn:disabled {
@@ -36,10 +36,14 @@
     width: 8.4rem;
 }
 
-.iconBtn-medium svg,
+.iconBtn-medium svg {
+    height: 2rem;
+    width: 2rem;
+}
+
 .iconBtn-large svg {
-    height: 2.4rem;
-    width: 2.4rem;
+    height: 2.2rem;
+    width: 2.2rem;
 }
 .iconBtn-extra-large svg {
     height: 3.6rem;

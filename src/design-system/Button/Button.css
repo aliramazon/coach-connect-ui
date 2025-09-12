@@ -23,8 +23,8 @@
 }
 
 .btn svg {
-    height: 2rem;
-    width: 2rem;
+    height: 1.8rem;
+    width: 1.8rem;
 }
 
 .btn-full-width {
@@ -51,10 +51,14 @@
     gap: var(--space-8);
 }
 
-.btn-medium svg,
+.btn-medium svg {
+    height: 2rem;
+    width: 2rem;
+}
+
 .btn-large svg {
-    height: 2.4rem;
-    width: 2.4rem;
+    height: 2.2rem;
+    width: 2.2rem;
 }
 
 .btn-rounded {
