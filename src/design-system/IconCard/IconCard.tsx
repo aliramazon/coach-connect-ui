@@ -1,4 +1,4 @@
-import { Icon, type IconSize } from "../Icon";
+import { type IconSize } from "../Icon";
 import { trimWhiteSpaces } from "../utils";
 import { colorClassNames, shapeClassNames, sizeClassNames } from "./classnames";
 import { type IconCardProps } from "./types";
@@ -14,7 +14,7 @@ const IconCardIconSize = {
 const IconCard: React.FC<IconCardProps> = ({
     color,
     size,
-    iconName,
+    icon: Icon,
     shape,
     className,
 }) => {
@@ -31,11 +31,7 @@ const IconCard: React.FC<IconCardProps> = ({
 
     return (
         <div className={classNames}>
-            <Icon
-                iconName={iconName}
-                className="iconCard-icon"
-                size={iconSize as IconSize}
-            />
+            <Icon className="iconCard-icon" size={iconSize as IconSize} />
         </div>
     );
 };

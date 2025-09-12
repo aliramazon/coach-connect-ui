@@ -109,49 +109,49 @@
 
 /* .iconCard-icon Colors */
 .iconCard-green .iconCard-icon {
-    fill: var(--white);
+    stroke: var(--white);
 }
 
 .iconCard-greenLight .iconCard-icon {
-    fill: var(--green-500);
+    stroke: var(--green-500);
 }
 
 .iconCard-sunglow .iconCard-icon {
-    fill: var(--white);
+    stroke: var(--white);
 }
 
 .iconCard-sunglowLight .iconCard-icon {
-    fill: var(--sunglow-500);
+    stroke: var(--sunglow-500);
 }
 
 .iconCard-primary .iconCard-icon {
-    fill: var(--white);
+    stroke: var(--white);
 }
 
 .iconCard-primaryLight .iconCard-icon {
-    fill: var(--violet-500);
+    stroke: var(--violet-500);
 }
 
 .iconCard-purple .iconCard-icon {
-    fill: var(--white);
+    stroke: var(--white);
 }
 
 .iconCard-purpleLight .iconCard-icon {
-    fill: var(--purple-500);
+    stroke: var(--purple-500);
 }
 
 .iconCard-red .iconCard-icon {
-    fill: var(--white);
+    stroke: var(--white);
 }
 
 .iconCard-redLight .iconCard-icon {
-    fill: var(--red-orange-500);
+    stroke: var(--red-orange-500);
 }
 
 .iconCard-blue .iconCard-icon {
-    fill: var(--white);
+    stroke: var(--white);
 }
 
 .iconCard-blueLight .iconCard-icon {
-    fill: var(--dodger-blue-500);
+    stroke: var(--dodger-blue-500);
 }

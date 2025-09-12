@@ -1,4 +1,4 @@
-import { type IconName } from "../Icon/types";
+import type { LucideIcon } from "lucide-react";
 
 export type IconCardColor =
     | "green"
@@ -20,7 +20,7 @@ export type IconCardShape = "rounded" | "circle";
 export interface IconCardProps {
     color: IconCardColor;
     size: IconCardSize;
-    iconName: IconName;
+    icon: LucideIcon;
     shape: IconCardShape;
     className?: string;
 }
