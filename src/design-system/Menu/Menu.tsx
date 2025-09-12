@@ -1,6 +1,6 @@
+import { Ellipsis } from "lucide-react";
 import { useRef } from "react";
 import { useCloseWhenClickOutside } from "../hooks";
-import { Icon } from "../Icon";
 import { trimWhiteSpaces } from "../utils";
 import "./Menu.css";
 import { type MenuProps } from "./types";
@@ -34,14 +34,14 @@ const Menu: React.FC<MenuProps> = ({
 
     return (
         <div className={finalClassNames} ref={menuRef}>
-            <Icon
-                iconName="three-dots"
+            <Ellipsis
                 onClick={handleTriggerClick}
                 className="menu__default-trigger"
             />
             {show ? (
                 <ul className="menu__options">
                     {options.map((option) => {
+                        const Icon = option.icon;
                         return (
                             <li
                                 key={option.label}
@@ -54,9 +54,7 @@ const Menu: React.FC<MenuProps> = ({
                                 )}
                                 onClick={() => handleOnSelect(option.value)}
                             >
-                                {option.iconName ? (
-                                    <Icon iconName={option.iconName} />
-                                ) : null}
+                                {Icon ? <Icon /> : null}
                                 {option.label}
                             </li>
                         );

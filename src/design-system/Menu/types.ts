@@ -1,8 +1,8 @@
-import { type IconName } from "../Icon";
+import type { LucideIcon } from "lucide-react";
 
 export interface MenuOption {
     label: string;
-    iconName?: IconName;
+    icon?: LucideIcon;
     value: string;
     color?: "primary" | "danger";
 }

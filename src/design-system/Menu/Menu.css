@@ -1,10 +1,11 @@
 .menu {
     position: relative;
+    width: 2rem;
 }
 
 .menu__default-trigger {
     cursor: pointer;
-    fill: var(--jaguar-400);
+    stroke: var(--jaguar-400);
 }
 
 .menu__options {
@@ -34,7 +35,7 @@
 }
 
 .menu__option svg {
-    fill: var(--jaguar-600);
+    stroke: var(--jaguar-600);
     height: 2rem;
     width: 2rem;
 }
@@ -62,7 +63,7 @@
 }
 
 .menu__option.menu__option--danger svg {
-    fill: var(--red-orange-500);
+    stroke: var(--red-orange-500);
 }
 
 .menu__option.menu__option--violet {
@@ -70,5 +71,5 @@
 }
 
 .menu__option.menu__option--violet svg {
-    fill: var(--violet-500);
+    stroke: var(--violet-500);
 }
