@@ -26,6 +26,13 @@ const AuthContent = styled(BaseCard)`
     padding: var(--space-24);
 `;
 
+export const AuthForm = styled.form`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-20);
+`;
+
 const AuthWrapper: React.FC<AuthWrapperProps> = ({ pageTitle, children }) => {
     return (
         <>
