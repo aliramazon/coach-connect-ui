@@ -1,4 +1,4 @@
-import { type IconName } from "../Icon";
+import type { LucideIcon } from "lucide-react";
 
 export type InputType = "text" | "email" | "password" | "tel" | "textarea";
 export type InputShape = "rounded" | "circle";
@@ -15,7 +15,7 @@ export type BaseInputProps = {
     hintMessage?: string;
 
     clearable?: boolean;
-    iconName?: IconName;
+    icon?: LucideIcon;
 
     onChange: (value: string) => void;
     value: string;
