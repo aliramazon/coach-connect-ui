@@ -1,13 +1,12 @@
 import React from "react";
-import "./Avatar.css";
 import { trimWhiteSpaces } from "../utils";
+import "./Avatar.css";
 
 type AvatarProps = {
     firstName: string;
     lastName: string;
     shape?: "rounded" | "circle";
     size?: "sm" | "md" | "lg";
-    imageUrl?: string;
     className?: string;
     onClick?: () => void;
 };
@@ -28,7 +27,6 @@ const Avatar: React.FC<AvatarProps> = ({
     lastName,
     shape,
     size,
-    imageUrl,
     onClick,
     className,
 }) => {
@@ -40,13 +38,9 @@ const Avatar: React.FC<AvatarProps> = ({
 
     return (
         <button className={trimWhiteSpaces(finalClassNames)} onClick={onClick}>
-            {imageUrl ? (
-                <img src={imageUrl} alt={`${firstName} ${lastName}`} />
-            ) : (
-                `${firstName ? firstName[0].toUpperCase() : ""}${
-                    lastName ? lastName[0].toUpperCase() : ""
-                }`
-            )}
+            {`${firstName ? firstName[0].toUpperCase() : ""}${
+                lastName ? lastName[0].toUpperCase() : ""
+            }`}
         </button>
     );
 };
