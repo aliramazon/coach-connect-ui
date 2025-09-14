@@ -1,55 +1,46 @@
-import { useState } from "react";
-import { useNavigate } from "react-router";
-
-import styled from "@emotion/styled";
+import { Calendar } from "lucide-react";
 import { Button, Input } from "../../design-system";
-import { AuthWrapper } from "../components/Auth";
-
-const Form = styled.form`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-20);
-`;
+import { AuthForm, AuthWrapper } from "../components/Auth";
+import { useLogin } from "./hooks/useLogin";
 
 export const Login = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [isFormSubmitting, setIsFormSubmitting] = useState(false);
-    const navigate = useNavigate();
-
-    const handleOnChangeEmail = (value: string) => {
-        setEmail(value);
-    };
-
-    const handleOnChangePassword = (value: string) => {
-        setPassword(value);
-    };
-
-    const signIn = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-    };
+    const {
+        email,
+        password,
+        isFormSubmitting,
+        handleOnChangeEmail,
+        handleOnChangePassword,
+        loginUser,
+    } = useLogin();
 
     return (
         <AuthWrapper pageTitle="Sign In">
-            <Form onSubmit={signIn}>
+            <AuthForm onSubmit={loginUser}>
                 <Input
+                    label="Email"
+                    id="email"
                     type="email"
                     placeholder="Email"
-                    value={email}
+                    value={email.value}
                     onChange={handleOnChangeEmail}
                     shape="rounded"
                     size="lg"
                     disabled={isFormSubmitting}
+                    error={!!email.error}
+                    hintMessage={email.error}
                 />
                 <Input
+                    label="Password"
+                    id="password"
                     type="password"
                     placeholder="Password"
-                    value={password}
+                    value={password.value}
                     onChange={handleOnChangePassword}
                     shape="rounded"
                     size="lg"
                     disabled={isFormSubmitting}
+                    error={!!password.error}
+                    hintMessage={password.error}
                 />
 
                 <Button
@@ -57,10 +48,11 @@ export const Login = () => {
                     size="lg"
                     shape="rounded"
                     disabled={isFormSubmitting}
+                    endIcon={Calendar}
                 >
                     Sign In
                 </Button>
-            </Form>
+            </AuthForm>
         </AuthWrapper>
     );
 };

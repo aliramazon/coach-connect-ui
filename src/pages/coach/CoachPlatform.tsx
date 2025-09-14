@@ -14,14 +14,14 @@ const links: SideBarLinksGroup[] = [
         title: "Manage",
         links: [
             {
-                linkText: "Availability",
-                linkTo: "availability",
-                icon: CalendarDays,
-            },
-            {
                 linkText: "Bookings",
                 linkTo: "bookings",
                 icon: CalendarClock,
+            },
+            {
+                linkText: "Availability",
+                linkTo: "availability",
+                icon: CalendarDays,
             },
         ],
     },
