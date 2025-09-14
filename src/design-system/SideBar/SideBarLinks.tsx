@@ -26,13 +26,23 @@ const SideBarLinks: React.FC<SideBarLinksProps> = ({ links, logOut }) => {
                                         className="side-bar__link-item"
                                         key={idx}
                                     >
-                                        <NavLink
-                                            to={link.linkTo}
-                                            className="side-bar__link"
-                                        >
-                                            <Icon className="side-bar__link-icon" />
-                                            {link.linkText}
-                                        </NavLink>
+                                        {link.linkTo ? (
+                                            <NavLink
+                                                to={link.linkTo}
+                                                className="side-bar__link"
+                                            >
+                                                <Icon className="side-bar__link-icon" />
+                                                {link.linkText}
+                                            </NavLink>
+                                        ) : (
+                                            <Typography
+                                                variant="paragraph-sm"
+                                                className="side-bar__link"
+                                            >
+                                                <Icon className="side-bar__link-icon" />
+                                                {link.linkText}
+                                            </Typography>
+                                        )}
                                     </li>
                                 );
                             })}
