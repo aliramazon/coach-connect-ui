@@ -61,7 +61,7 @@ const Button: FC<ButtonProps> = forwardRef(
                 <button
                     className={finalClassNames}
                     disabled={disabled}
-                    onClick={onClick}
+                    onClick={onClick ? onClick : () => {}}
                     ref={ref}
                 >
                     {StartIcon ? <StartIcon /> : null}
