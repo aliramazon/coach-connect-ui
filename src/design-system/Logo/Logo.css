@@ -20,7 +20,7 @@
 
 .logo-horizontal {
     flex-direction: row;
-    gap: var(--space-20);
+    gap: var(--space-12);
     align-items: center;
 }
 
