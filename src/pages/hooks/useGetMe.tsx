@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { userService } from "../../services/user";
-import { useUser } from "../store/useUser";
+import { useUserStore } from "../store/useUserStore";
 
 export const useGetMe = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const { user, setUser, setCsrfToken } = useUser();
+    const { user, setUser, setCsrfToken } = useUserStore();
 
     useEffect(() => {
         setIsLoading(true);

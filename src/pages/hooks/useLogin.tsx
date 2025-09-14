@@ -2,13 +2,13 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { userService } from "../../services/user";
-import { useUser } from "../store/useUser";
+import { useUserStore } from "../store/useUserStore";
 
 export const useLogin = () => {
     const [email, setEmail] = useState({ value: "", error: "" });
     const [password, setPassword] = useState({ value: "", error: "" });
     const [isFormSubmitting, setIsFormSubmitting] = useState(false);
-    const { setCsrfToken } = useUser();
+    const { setCsrfToken } = useUserStore();
     const navigate = useNavigate();
 
     const handleOnChangeEmail = (value: string) => {
@@ -52,7 +52,6 @@ export const useLogin = () => {
                 navigate(`/${response.data.role.toLowerCase()}`);
             })
             .catch((error) => {
-                console.log(error);
                 toast.error(error.message);
             })
             .finally(() => {

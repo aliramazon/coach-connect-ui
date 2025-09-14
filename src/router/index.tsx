@@ -15,6 +15,7 @@ import { Coaches as StudentCoaches } from "../pages/student/Coaches";
 import { StudentPlatform } from "../pages/student/StudentPlatform";
 
 import { AdminPlatform } from "../pages/admin/AdminPlatform";
+import { Bookings as AdminBookings } from "../pages/admin/Bookings";
 import { Coaches as AdminCoaches } from "../pages/admin/Coaches";
 import { Students as AdminStudents } from "../pages/admin/Students";
 
@@ -38,7 +39,7 @@ export const router = createBrowserRouter(
             <Route path="admin" element={<AdminPlatform />}>
                 <Route index element={<Navigate to="bookings" />} />
                 <Route path="coaches" element={<AdminCoaches />} />
-                <Route path="bookings" element={<CoachBookings />} />
+                <Route path="bookings" element={<AdminBookings />} />
                 <Route path="students" element={<AdminStudents />} />
             </Route>
         </>

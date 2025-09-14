@@ -3,7 +3,7 @@ import type { User } from "../../types/user";
 
 export interface UserStore {
     user: User | null;
-    impersonatedUser?: User;
+    impersonatedUser: User | null;
     csrfToken: string | null;
     setUser: (user: User) => void;
     setImpersonatedUser: (user: User) => void;
@@ -12,9 +12,9 @@ export interface UserStore {
     logout: () => void;
 }
 
-export const useUser = create<UserStore>((set) => ({
+export const useUserStore = create<UserStore>((set) => ({
     user: null,
-    impersonatedUser: undefined,
+    impersonatedUser: null,
     csrfToken: null,
 
     setUser: (user) => set({ user }),
@@ -25,7 +25,7 @@ export const useUser = create<UserStore>((set) => ({
     logout: () =>
         set({
             user: null,
-            impersonatedUser: undefined,
+            impersonatedUser: null,
             csrfToken: null,
         }),
 }));

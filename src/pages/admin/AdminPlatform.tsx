@@ -10,6 +10,7 @@ import {
 import { AppLayout, AppPage } from "../components/Layout";
 import { SideBarUser } from "../components/SidebarUser";
 import { useGetMe } from "../hooks/useGetMe";
+import { useLogout } from "../hooks/useLogout";
 
 const links: SideBarLinksGroup[] = [
     {
@@ -35,15 +36,8 @@ const links: SideBarLinksGroup[] = [
 ];
 
 export const AdminPlatform: React.FC = () => {
-    const { isLoading, error, user } = useGetMe();
-
-    const logOut = () => {
-        console.log("Log out");
-    };
-
-    // if (error) {
-    //     return <div>Error</div>;
-    // }
+    const { isLoading, user } = useGetMe();
+    const { logout } = useLogout();
 
     if (isLoading) {
         return null;
@@ -60,7 +54,7 @@ export const AdminPlatform: React.FC = () => {
                             email: user?.email || "",
                         }}
                     />
-                    <SideBarLinks links={links} logOut={logOut} />
+                    <SideBarLinks links={links} logOut={logout} />
                 </SideBar>
                 <AppPage>
                     <Outlet />
