@@ -49,7 +49,6 @@ export const useLogin = () => {
             .login(email.value, password.value)
             .then((response) => {
                 setCsrfToken(response.csrfToken);
-                console.log(response.data);
                 navigate(`/${response.data.role.toLowerCase()}`);
             })
             .catch((error) => {

@@ -1,4 +1,4 @@
-import { CalendarClock, CalendarCog } from "lucide-react";
+import { CalendarClock, GraduationCap, Users } from "lucide-react";
 import React from "react";
 import { Outlet } from "react-router-dom";
 import {
@@ -21,15 +21,20 @@ const links: SideBarLinksGroup[] = [
                 icon: CalendarClock,
             },
             {
-                linkText: "Availability",
-                linkTo: "availability",
-                icon: CalendarCog,
+                linkText: "Students",
+                linkTo: "students",
+                icon: GraduationCap,
+            },
+            {
+                linkText: "Coaches",
+                linkTo: "coaches",
+                icon: Users,
             },
         ],
     },
 ];
 
-export const CoachPlatform: React.FC = () => {
+export const AdminPlatform: React.FC = () => {
     const { isLoading, error, user } = useGetMe();
 
     const logOut = () => {
