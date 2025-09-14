@@ -1,3 +1,5 @@
+import { PageHeader } from "../components/PageHeader";
+
 export const Bookings = () => {
-    return <h1>Bookings</h1>;
+    return <PageHeader pageTitle="Bookings" />;
 };

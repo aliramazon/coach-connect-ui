@@ -1,3 +1,5 @@
+import { PageHeader } from "../components/PageHeader";
+
 export const Students = () => {
-    return <h1>Students</h1>;
+    return <PageHeader pageTitle="Students" actionButtonText="Add Student" />;
 };

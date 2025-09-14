@@ -1,3 +1,5 @@
+import { PageHeader } from "../components/PageHeader";
+
 export const Availability = () => {
-    return <h1>Calander View</h1>;
+    return <PageHeader pageTitle="Availability" />;
 };

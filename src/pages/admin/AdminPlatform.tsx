@@ -1,4 +1,4 @@
-import { CalendarClock, GraduationCap, Users } from "lucide-react";
+import { CalendarClock, GraduationCap, UserCog, Users } from "lucide-react";
 import React from "react";
 import { Outlet } from "react-router-dom";
 import {
@@ -30,6 +30,15 @@ const links: SideBarLinksGroup[] = [
                 linkText: "Coaches",
                 linkTo: "coaches",
                 icon: Users,
+            },
+        ],
+    },
+    {
+        title: "Settings",
+        links: [
+            {
+                linkText: "Login As",
+                icon: UserCog,
             },
         ],
     },
