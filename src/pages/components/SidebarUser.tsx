@@ -5,12 +5,10 @@ import { ChevronRight } from "lucide-react";
 import { Avatar, Typography } from "../../design-system";
 
 const UserBase = styled.div`
-    width: calc(100% - 1.6rem);
-    margin: 0 auto;
+    margin: 0 var(--space-12);
     background-color: var(--jaguar-25);
     border-radius: var(--border-radius-16);
     padding: var(--space-12) var(--space-12) var(--space-12) var(--space-8);
-
     display: flex;
     align-items: center;
     gap: var(--space-12);
@@ -18,6 +16,7 @@ const UserBase = styled.div`
 
     svg {
         stroke: var(--jaguar-500);
+        flex-shrink: 0;
     }
 `;
 
