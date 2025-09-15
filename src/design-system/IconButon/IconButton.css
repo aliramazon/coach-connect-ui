@@ -6,9 +6,8 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-
-    height: 3.6rem;
-    width: 3.6rem;
+    height: 2.4rem;
+    width: 2.4rem;
     transition: all 0.3s;
 }
 
@@ -19,6 +18,11 @@
 
 .iconBtn:disabled {
     pointer-events: none;
+}
+
+.iconBtn-x-small {
+    height: 3.6rem;
+    width: 3.6rem;
 }
 
 .iconBtn-medium {

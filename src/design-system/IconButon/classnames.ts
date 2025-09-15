@@ -1,4 +1,5 @@
 export const sizeClassNames = {
+    xs: "iconBtn-extra-small",
     sm: "iconBtn-small",
     md: "iconBtn-medium",
     lg: "iconBtn-large",
