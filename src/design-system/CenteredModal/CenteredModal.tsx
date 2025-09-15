@@ -16,7 +16,7 @@ export interface CenteredModalProps {
     show: boolean;
     primaryActionButton: CenteredModalActionButton;
     secondaryActionButton?: CenteredModalActionButton;
-    onClickCloseIcon?: () => void;
+    onClose?: () => void;
     title?: string;
     subtitle?: string;
     showCloseIcon: boolean;
@@ -27,7 +27,7 @@ const CenteredModal = ({
     show,
     primaryActionButton,
     secondaryActionButton,
-    onClickCloseIcon,
+    onClose,
     title,
     subtitle,
     showCloseIcon,
@@ -58,7 +58,7 @@ const CenteredModal = ({
                         size="sm"
                         color="secondary"
                         icon={X}
-                        onClick={onClickCloseIcon}
+                        onClick={onClose}
                         shape="rounded"
                         className="modal__closeIcon"
                         variant="outlined"
