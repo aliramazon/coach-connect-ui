@@ -71,11 +71,10 @@ const CenteredModal = ({
                 {secondaryActionButton && (
                     <Button
                         variant="outlined"
-                        color={secondaryActionButton.color}
+                        color={secondaryActionButton.color || "secondary"}
                         size="lg"
                         shape="rounded"
                         onClick={secondaryActionButton.onClick}
-                        fullWidth
                     >
                         {secondaryActionButton.text}
                     </Button>
@@ -87,7 +86,6 @@ const CenteredModal = ({
                     size="lg"
                     shape="rounded"
                     onClick={primaryActionButton.onClick}
-                    fullWidth
                 >
                     {primaryActionButton.text}
                 </Button>
