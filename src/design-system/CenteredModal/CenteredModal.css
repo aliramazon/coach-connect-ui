@@ -1,0 +1,27 @@
+.modal__actions {
+    display: flex;
+    gap: var(--space-12);
+}
+
+.modal__title,
+.modal__subtitle {
+    /* margin-right: var(--space-72); */
+    width: 90%;
+}
+
+.modal__title {
+    margin-bottom: var(--space-12);
+}
+
+.modal__subtitle {
+    margin-bottom: var(--space-24);
+}
+
+.modal__header {
+    position: relative;
+}
+.modal__closeIcon {
+    position: absolute;
+    top: 0;
+    right: 0;
+}

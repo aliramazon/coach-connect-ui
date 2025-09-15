@@ -1,0 +1,99 @@
+import { X } from "lucide-react";
+import type React from "react";
+import { BaseModal } from "../BaseModal";
+import { Button, type ButtonColor } from "../Button";
+import { IconButton } from "../IconButon";
+import { Typography } from "../Typography";
+import "./CenteredModal.css";
+
+interface CenteredModalActionButton {
+    text: string;
+    onClick: () => void;
+    color?: ButtonColor;
+}
+
+export interface CenteredModalProps {
+    show: boolean;
+    primaryActionButton: CenteredModalActionButton;
+    secondaryActionButton?: CenteredModalActionButton;
+    onClickCloseIcon?: () => void;
+    title?: string;
+    subtitle?: string;
+    showCloseIcon: boolean;
+    children?: React.ReactNode;
+}
+
+const CenteredModal = ({
+    show,
+    primaryActionButton,
+    secondaryActionButton,
+    onClickCloseIcon,
+    title,
+    subtitle,
+    showCloseIcon,
+    children,
+}: CenteredModalProps) => {
+    return (
+        <BaseModal position="center" show={show}>
+            <div className="modal__header">
+                {title && (
+                    <Typography
+                        variant="paragraph-lg"
+                        weight="medium"
+                        className="modal__title"
+                    >
+                        {title}
+                    </Typography>
+                )}
+                {subtitle && (
+                    <Typography
+                        variant="paragraph-sm"
+                        className="modal__subtitle"
+                    >
+                        {subtitle}
+                    </Typography>
+                )}
+                {showCloseIcon && (
+                    <IconButton
+                        size="sm"
+                        color="secondary"
+                        icon={X}
+                        onClick={onClickCloseIcon}
+                        shape="rounded"
+                        className="modal__closeIcon"
+                        variant="outlined"
+                    />
+                )}
+            </div>
+            {children && <div className="modal__body">{children}</div>}
+
+            <div className="modal__actions">
+                {secondaryActionButton && (
+                    <Button
+                        variant="outlined"
+                        color={secondaryActionButton.color}
+                        size="lg"
+                        shape="rounded"
+                        onClick={secondaryActionButton.onClick}
+                        fullWidth
+                    >
+                        {secondaryActionButton.text}
+                    </Button>
+                )}
+
+                <Button
+                    variant="contained"
+                    color={primaryActionButton.color || "primary"}
+                    size="lg"
+                    shape="rounded"
+                    onClick={primaryActionButton.onClick}
+                    fullWidth
+                >
+                    {primaryActionButton.text}
+                </Button>
+            </div>
+        </BaseModal>
+    );
+};
+
+export { CenteredModal };
