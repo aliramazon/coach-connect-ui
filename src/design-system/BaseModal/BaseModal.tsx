@@ -1,16 +1,16 @@
 import React from "react";
-import { positionClassNames } from "./classnames";
-import "./Modal.css";
 import { trimWhiteSpaces } from "../utils";
+import "./BaseModal.css";
+import { positionClassNames } from "./classnames";
 
-interface ModalProps {
+interface BaseModalProps {
     show: boolean;
     position: "center" | "right";
     children: React.ReactNode;
     className?: string;
 }
 
-const Modal: React.FC<ModalProps> = ({
+const BaseModal: React.FC<BaseModalProps> = ({
     show,
     position,
     className,
@@ -32,4 +32,4 @@ const Modal: React.FC<ModalProps> = ({
     );
 };
 
-export { Modal };
+export { BaseModal };
