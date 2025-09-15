@@ -6,7 +6,7 @@ import { Input } from "../Input";
 import { Label } from "../Label";
 import { trimWhiteSpaces } from "../utils";
 import "./Select.css";
-import type { Option, OptionValue, SelectProps } from "./types";
+import type { Option, SelectProps } from "./types";
 
 const sizeClassNames = {
     md: "select-medium",
@@ -42,7 +42,7 @@ const Select: React.FC<SelectProps> = (props) => {
 
     const filterOptions = () => {
         return options.filter((option) =>
-            option.value.toString().includes(searchText)
+            String(option.value).includes(searchText)
         );
     };
 
@@ -67,15 +67,20 @@ const Select: React.FC<SelectProps> = (props) => {
         setExpanded(false);
     };
 
-    const getOptionLabel = (value: OptionValue) => {
+    const getOptionLabel = (value: unknown) => {
         const option = options.find((option) => option.value === value);
+        console.log(option);
 
         return option?.label;
     };
 
-    const finalHeaderPlaceholder = value
-        ? getOptionLabel(value)
-        : headerPlaceholder || "Select";
+    const selectedLabel =
+        value !== null && value !== undefined
+            ? getOptionLabel(value)
+            : undefined;
+
+    const finalHeaderPlaceholder =
+        selectedLabel || headerPlaceholder || "Select";
 
     const filteredOptions = filterOptions();
 
@@ -116,7 +121,7 @@ const Select: React.FC<SelectProps> = (props) => {
                         {filteredOptions.map((option) => {
                             return (
                                 <li
-                                    key={option.value}
+                                    key={String(option.value)}
                                     className={trimWhiteSpaces(
                                         `select__item ${
                                             value === option.value

@@ -1,7 +1,5 @@
-export type OptionValue = string | number;
-
 export interface Option {
-    value: OptionValue;
+    value: unknown;
     label: string;
 }
 
@@ -10,13 +8,13 @@ export type SelectShape = "rounded" | "circle";
 
 export interface SelectProps {
     options: Option[];
-    value?: OptionValue;
+    value?: unknown;
     onSelect: (value: Option) => void;
     label?: string;
     headerPlaceholder?: string;
     size?: SelectSize;
     shape?: SelectShape;
-    disabled?: true;
+    disabled?: boolean;
     error?: boolean;
     hintMessage?: string;
     searchable?: true;
