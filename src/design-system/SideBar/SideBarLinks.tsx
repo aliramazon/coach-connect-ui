@@ -35,13 +35,13 @@ const SideBarLinks: React.FC<SideBarLinksProps> = ({ links, logOut }) => {
                                                 {link.linkText}
                                             </NavLink>
                                         ) : (
-                                            <Typography
-                                                variant="paragraph-sm"
+                                            <a
                                                 className="side-bar__link"
+                                                onClick={link.onClick}
                                             >
                                                 <Icon className="side-bar__link-icon" />
                                                 {link.linkText}
-                                            </Typography>
+                                            </a>
                                         )}
                                     </li>
                                 );
