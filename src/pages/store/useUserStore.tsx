@@ -10,16 +10,20 @@ export interface UserStore {
     clearImpersonatedUser: () => void;
     setCsrfToken: (token: string) => void;
     logout: () => void;
+    isImpersonating: boolean;
 }
 
 export const useUserStore = create<UserStore>((set) => ({
     user: null,
     impersonatedUser: null,
     csrfToken: null,
+    isImpersonating: false,
 
     setUser: (user) => set({ user }),
-    setImpersonatedUser: (user) => set({ impersonatedUser: user }),
-    clearImpersonatedUser: () => set({ impersonatedUser: undefined }),
+    setImpersonatedUser: (user) =>
+        set({ impersonatedUser: user, isImpersonating: true }),
+    clearImpersonatedUser: () =>
+        set({ impersonatedUser: null, isImpersonating: false }),
     setCsrfToken: (token) => set({ csrfToken: token }),
 
     logout: () =>
@@ -27,5 +31,6 @@ export const useUserStore = create<UserStore>((set) => ({
             user: null,
             impersonatedUser: null,
             csrfToken: null,
+            isImpersonating: false,
         }),
 }));

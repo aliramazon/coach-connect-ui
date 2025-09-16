@@ -1,5 +1,6 @@
+import React from "react";
 import { Platform } from "../components/Platform";
 
-export const StudentPlatform: React.FC = () => {
+export const AdminPlatform: React.FC = () => {
     return <Platform />;
 };

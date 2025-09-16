@@ -6,7 +6,7 @@ import { useUserStore } from "../store/useUserStore";
 export const useGetMe = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const { user, setUser, setCsrfToken } = useUserStore();
+    const { setUser, setCsrfToken, setImpersonatedUser } = useUserStore();
 
     useEffect(() => {
         setIsLoading(true);
@@ -15,7 +15,12 @@ export const useGetMe = () => {
         userService
             .getMe()
             .then((response) => {
-                setUser(response.data);
+                if (response.isImpersonating) {
+                    setImpersonatedUser(response.data);
+                } else {
+                    setUser(response.data);
+                }
+
                 setCsrfToken(response.csrfToken);
 
                 localStorage.setItem(
@@ -37,7 +42,6 @@ export const useGetMe = () => {
     }, []);
 
     return {
-        user,
         isLoading,
         error,
     };

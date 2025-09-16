@@ -5,7 +5,7 @@ import { config } from "../config";
 export interface ImpersonateSuccessResponse {
     success: true;
     message: string;
-    data: Pick<User, "role">;
+    data: { user: User };
 }
 
 export interface ImpersonateErrorResponse {

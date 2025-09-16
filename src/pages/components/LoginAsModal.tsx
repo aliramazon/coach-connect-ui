@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
-import { CenteredModal, Select } from "../../../../design-system";
-import { UserRole } from "../../../../types/roles";
-import { useGetUsers } from "../../../hooks/useGetUsers";
-import { useImpersonate } from "../../../hooks/useImpersonate";
+import { useEffect, useState } from "react";
+import { CenteredModal, Select } from "../../design-system";
+import { UserRole } from "../../types/roles";
+import { useGetUsers } from "../hooks/useGetUsers";
+import { useImpersonate } from "../hooks/useImpersonate";
 
 type LoginAsModalProps = {
     show: boolean;
@@ -21,7 +21,7 @@ export const LoginAsModal = ({ show, onClose }: LoginAsModalProps) => {
     const [role, setRole] = useState<UserRole>();
     const [selectedUserId, setSelectedUserId] = useState<string | undefined>();
     const { users } = useGetUsers({ enabled: show });
-    const { submit } = useImpersonate();
+    const { submit, isSubmitting } = useImpersonate(onClose);
 
     const filteredUsers = users.filter((user) => user.role === role);
     const usersDropdownOptions = filteredUsers.map((user) => {
@@ -33,6 +33,11 @@ export const LoginAsModal = ({ show, onClose }: LoginAsModalProps) => {
         await submit(selectedUserId);
     };
 
+    useEffect(() => {
+        setRole(undefined);
+        setSelectedUserId(undefined);
+    }, [show]);
+
     return (
         <CenteredModal
             show={show}
@@ -43,6 +48,7 @@ export const LoginAsModal = ({ show, onClose }: LoginAsModalProps) => {
             primaryActionButton={{
                 text: "Login",
                 onClick: impersonate,
+                disabled: isSubmitting,
             }}
         >
             <Inputs>

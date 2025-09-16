@@ -14,7 +14,7 @@ import { Bookings as StudentBookings } from "../pages/student/Bookings";
 import { Coaches as StudentCoaches } from "../pages/student/Coaches";
 import { StudentPlatform } from "../pages/student/StudentPlatform";
 
-import { AdminPlatform } from "../pages/admin/admin-platform/AdminPlatform";
+import { AdminPlatform } from "../pages/admin";
 import { Bookings as AdminBookings } from "../pages/admin/Bookings";
 import { Coaches as AdminCoaches } from "../pages/admin/Coaches";
 import { Students as AdminStudents } from "../pages/admin/Students";
