@@ -11,6 +11,7 @@ const PageHeaderBase = styled.header`
     justify-content: space-between;
     align-items: center;
     margin-bottom: var(--space-32);
+    height: 4rem;
 `;
 
 const PageHeader: React.FC<PageHeaderProps> = ({

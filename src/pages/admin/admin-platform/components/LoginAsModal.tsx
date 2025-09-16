@@ -3,6 +3,7 @@ import { useState } from "react";
 import { CenteredModal, Select } from "../../../../design-system";
 import { UserRole } from "../../../../types/roles";
 import { useGetUsers } from "../../../hooks/useGetUsers";
+import { useImpersonate } from "../../../hooks/useImpersonate";
 
 type LoginAsModalProps = {
     show: boolean;
@@ -20,11 +21,17 @@ export const LoginAsModal = ({ show, onClose }: LoginAsModalProps) => {
     const [role, setRole] = useState<UserRole>();
     const [selectedUserId, setSelectedUserId] = useState<string | undefined>();
     const { users } = useGetUsers({ enabled: show });
+    const { submit } = useImpersonate();
 
     const filteredUsers = users.filter((user) => user.role === role);
     const usersDropdownOptions = filteredUsers.map((user) => {
         return { value: user.id, label: `${user.firstName} ${user.lastName}` };
     });
+
+    const impersonate = async () => {
+        if (!selectedUserId) return;
+        await submit(selectedUserId);
+    };
 
     return (
         <CenteredModal
@@ -35,7 +42,7 @@ export const LoginAsModal = ({ show, onClose }: LoginAsModalProps) => {
             subtitle="Impersonate a user by selecting their role and account"
             primaryActionButton={{
                 text: "Login",
-                onClick: onClose,
+                onClick: impersonate,
             }}
         >
             <Inputs>
