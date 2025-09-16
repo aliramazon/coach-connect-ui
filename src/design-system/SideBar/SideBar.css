@@ -1,5 +1,6 @@
 .side-bar {
     height: 100vh;
+    flex: 0 0 35rem;
     display: flex;
     flex-direction: column;
     gap: var(--space-32);

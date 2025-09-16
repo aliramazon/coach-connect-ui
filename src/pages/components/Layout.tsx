@@ -6,7 +6,7 @@ const AppLayout = styled.main`
 
 const AppPage = styled.section`
     height: 100vh;
-    width: 100%;
+    flex: 1;
     background-color: var(--jaguar-12);
     padding: var(--space-32);
 `;
