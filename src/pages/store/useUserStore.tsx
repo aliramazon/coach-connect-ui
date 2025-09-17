@@ -6,7 +6,7 @@ export interface UserStore {
     impersonatedUser: User | null;
     csrfToken: string | null;
     setUser: (user: User) => void;
-    setImpersonatedUser: (user: User) => void;
+    setImpersonatedUser: (user: User | null) => void;
     clearImpersonatedUser: () => void;
     setCsrfToken: (token: string) => void;
     logout: () => void;

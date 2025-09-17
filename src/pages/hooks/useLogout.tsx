@@ -18,14 +18,11 @@ export const useLogout = () => {
             .logout()
             .then(() => {
                 clearUserStore();
-
-                localStorage.removeItem("userSession");
                 navigate("/login");
             })
             .catch((error: Error) => {
                 setError(error.message);
                 clearUserStore();
-                localStorage.removeItem("userSession");
                 navigate("/login");
             })
             .finally(() => {

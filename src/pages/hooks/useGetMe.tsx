@@ -15,22 +15,17 @@ export const useGetMe = () => {
         userService
             .getMe()
             .then((response) => {
-                if (response.isImpersonating) {
-                    setImpersonatedUser(response.data);
+                if (
+                    response.isImpersonating &&
+                    response.data.impersonatedUser
+                ) {
+                    setImpersonatedUser(response.data.impersonatedUser);
+                    setUser(response.data.user);
                 } else {
-                    setUser(response.data);
+                    setUser(response.data.user);
                 }
 
                 setCsrfToken(response.csrfToken);
-
-                localStorage.setItem(
-                    "userSession",
-                    JSON.stringify({
-                        role: response.data.role,
-                        userId: response.data.id,
-                        isImpersonating: response.isImpersonating,
-                    })
-                );
             })
             .catch((error: Error) => {
                 toast.error(error.message);

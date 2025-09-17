@@ -2,18 +2,30 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { userService } from "../../services/user";
+import { UserRole } from "../../types/roles";
 import { useUserStore } from "../store/useUserStore";
 
-export const useImpersonate = (onSuccess: () => void) => {
-    const [error, setError] = useState("");
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const { setImpersonatedUser, impersonatedUser } = useUserStore();
+interface UseImpersonateProps {
+    onSuccessImpersonation?: () => void;
+    onSuccessStop?: () => void;
+}
+
+export const useImpersonate = ({
+    onSuccessImpersonation,
+    onSuccessStop,
+}: UseImpersonateProps = {}) => {
+    const [impersonationError, setImpersonationError] = useState("");
+    const [isImpersonating, setIsImpersonating] = useState(false);
+    const [isStoppingImpersonation, setIsStoppingImpersonation] =
+        useState(false);
+    const { setImpersonatedUser, clearImpersonatedUser, impersonatedUser } =
+        useUserStore();
 
     const navigate = useNavigate();
 
-    const submit = async (userId: string) => {
+    const startImpersonation = async (userId: string) => {
         if (!userId.trim()) {
-            setError("User ID is required");
+            setImpersonationError("User ID is required");
             return;
         }
 
@@ -21,7 +33,8 @@ export const useImpersonate = (onSuccess: () => void) => {
             return;
         }
 
-        setIsSubmitting(true);
+        setIsImpersonating(true);
+        setImpersonationError("");
 
         userService
             .impersonateUser(userId)
@@ -31,19 +44,47 @@ export const useImpersonate = (onSuccess: () => void) => {
                 if (response.data.user.role !== impersonatedUser?.role) {
                     navigate(`/${response.data.user.role.toLowerCase()}`);
                 }
-                onSuccess();
+
+                toast.success(
+                    `Now impersonating ${response.data.user.firstName} ${response.data.user.lastName}`
+                );
+                onSuccessImpersonation?.();
+            })
+            .catch((error) => {
+                toast.error(error.message);
+                setImpersonationError(error.message);
+            })
+            .finally(() => {
+                setIsImpersonating(false);
+            });
+    };
+
+    const stopImpersonation = async () => {
+        setIsStoppingImpersonation(true);
+
+        userService
+            .stopImpersonation()
+            .then((response) => {
+                clearImpersonatedUser();
+                navigate(`/${UserRole.ADMIN.toLowerCase()}`);
+
+                toast.success(response.message);
+                onSuccessStop?.();
             })
             .catch((error) => {
                 toast.error(error.message);
             })
             .finally(() => {
-                setIsSubmitting(false);
+                setIsStoppingImpersonation(false);
             });
     };
 
     return {
-        error,
-        isSubmitting,
-        submit,
+        impersonationError,
+        isImpersonating,
+        isStoppingImpersonation,
+
+        startImpersonation,
+        stopImpersonation,
     };
 };

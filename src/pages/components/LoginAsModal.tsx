@@ -21,7 +21,9 @@ export const LoginAsModal = ({ show, onClose }: LoginAsModalProps) => {
     const [role, setRole] = useState<UserRole>();
     const [selectedUserId, setSelectedUserId] = useState<string | undefined>();
     const { users } = useGetUsers({ enabled: show });
-    const { submit, isSubmitting } = useImpersonate(onClose);
+    const { startImpersonation, isImpersonating } = useImpersonate({
+        onSuccessImpersonation: onClose,
+    });
 
     const filteredUsers = users.filter((user) => user.role === role);
     const usersDropdownOptions = filteredUsers.map((user) => {
@@ -30,7 +32,7 @@ export const LoginAsModal = ({ show, onClose }: LoginAsModalProps) => {
 
     const impersonate = async () => {
         if (!selectedUserId) return;
-        await submit(selectedUserId);
+        await startImpersonation(selectedUserId);
     };
 
     useEffect(() => {
@@ -48,7 +50,7 @@ export const LoginAsModal = ({ show, onClose }: LoginAsModalProps) => {
             primaryActionButton={{
                 text: "Login",
                 onClick: impersonate,
-                disabled: isSubmitting,
+                disabled: isImpersonating,
             }}
         >
             <Inputs>

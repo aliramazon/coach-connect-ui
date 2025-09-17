@@ -3,7 +3,7 @@ import { config } from "../config";
 
 export interface GetMeSuccessResponse {
     success: true;
-    data: User;
+    data: { user: User; impersonatedUser?: User };
     csrfToken: string;
     isImpersonating: boolean;
 }

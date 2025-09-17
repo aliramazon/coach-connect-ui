@@ -4,6 +4,7 @@ import {
     GraduationCap,
     UserCog,
     Users,
+    UserX,
 } from "lucide-react";
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
@@ -19,6 +20,7 @@ import { SideBarUser } from "../components/SidebarUser";
 import { useLogout } from "../hooks/useLogout";
 import { useUserStore } from "../store/useUserStore";
 import { LoginAsModal } from "./LoginAsModal";
+import { StopLoginAsModal } from "./StopLoginAsModal";
 
 const roleLinks: Record<string, SideBarLinksGroup[]> = {
     admin: [
@@ -75,6 +77,10 @@ export const Platform: React.FC<{ role: UserRole }> = ({ role }) => {
     const { user, impersonatedUser, isImpersonating } = useUserStore();
     const { logout } = useLogout();
     const [isLoginAsModalOpen, setIsLoginAsModalOpen] = useState(false);
+    const [
+        isStopLoginAsConfirmationModalOpen,
+        setIsStopLoginAsConfirmationModalOpen,
+    ] = useState(false);
 
     const effectiveUser = impersonatedUser || user;
 
@@ -98,6 +104,14 @@ export const Platform: React.FC<{ role: UserRole }> = ({ role }) => {
         ];
     }
 
+    if (isImpersonating) {
+        links[1].links.push({
+            linkText: "Stop Login As",
+            icon: UserX,
+            onClick: () => setIsStopLoginAsConfirmationModalOpen(true),
+        });
+    }
+
     return (
         <>
             <AppLayout>
@@ -119,9 +133,14 @@ export const Platform: React.FC<{ role: UserRole }> = ({ role }) => {
                 <LoginAsModal
                     show={isLoginAsModalOpen}
                     onClose={() => {
-                        console.log("Close");
                         setIsLoginAsModalOpen(false);
                     }}
+                />
+            )}
+            {canImpersonate && (
+                <StopLoginAsModal
+                    show={isStopLoginAsConfirmationModalOpen}
+                    onClose={() => setIsStopLoginAsConfirmationModalOpen(false)}
                 />
             )}
             <Toaster />
