@@ -16,7 +16,6 @@ import {
 import { UserRole } from "../../types/roles";
 import { AppLayout, AppPage } from "../components/Layout";
 import { SideBarUser } from "../components/SidebarUser";
-import { useGetMe } from "../hooks/useGetMe";
 import { useLogout } from "../hooks/useLogout";
 import { useUserStore } from "../store/useUserStore";
 import { LoginAsModal } from "./LoginAsModal";
@@ -73,17 +72,15 @@ const roleLinks: Record<string, SideBarLinksGroup[]> = {
 };
 
 export const Platform: React.FC<{ role: UserRole }> = ({ role }) => {
-    const { isLoading } = useGetMe();
     const { user, impersonatedUser, isImpersonating } = useUserStore();
     const { logout } = useLogout();
     const [isLoginAsModalOpen, setIsLoginAsModalOpen] = useState(false);
 
-    if (isLoading) return null;
+    const effectiveUser = impersonatedUser || user;
 
     let links: SideBarLinksGroup[] = roleLinks[role.toLowerCase()];
 
     const canImpersonate = role === UserRole.ADMIN || isImpersonating;
-    const effectiveUser = impersonatedUser || user;
 
     if (canImpersonate) {
         links = [

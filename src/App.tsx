@@ -1,7 +1,12 @@
+import { Outlet } from "react-router-dom";
+import { useGetMe } from "./pages/hooks/useGetMe";
+
 export const App = () => {
-    return (
-        <>
-            <h2>Testing</h2>
-        </>
-    );
+    const { isLoading } = useGetMe();
+
+    if (isLoading) {
+        return null;
+    }
+
+    return <Outlet />;
 };
