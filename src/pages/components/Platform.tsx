@@ -21,7 +21,6 @@ import { useLogout } from "../hooks/useLogout";
 import { useUserStore } from "../store/useUserStore";
 import { LoginAsModal } from "./LoginAsModal";
 
-// central map of links per role
 const roleLinks: Record<string, SideBarLinksGroup[]> = {
     admin: [
         {
@@ -73,22 +72,18 @@ const roleLinks: Record<string, SideBarLinksGroup[]> = {
     ],
 };
 
-export const Platform: React.FC = () => {
+export const Platform: React.FC<{ role: UserRole }> = ({ role }) => {
     const { isLoading } = useGetMe();
     const { user, impersonatedUser, isImpersonating } = useUserStore();
     const { logout } = useLogout();
     const [isLoginAsModalOpen, setIsLoginAsModalOpen] = useState(false);
 
-    const effectiveUser = impersonatedUser || user;
-
     if (isLoading) return null;
 
-    let links: SideBarLinksGroup[] = [];
-    if (effectiveUser) {
-        links = roleLinks[effectiveUser.role.toLowerCase()];
-    }
+    let links: SideBarLinksGroup[] = roleLinks[role.toLowerCase()];
 
-    const canImpersonate = user?.role === UserRole.ADMIN || isImpersonating;
+    const canImpersonate = role === UserRole.ADMIN || isImpersonating;
+    const effectiveUser = impersonatedUser || user;
 
     if (canImpersonate) {
         links = [
