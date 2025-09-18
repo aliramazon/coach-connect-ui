@@ -8,7 +8,7 @@ export const useLogin = () => {
     const [email, setEmail] = useState({ value: "", error: "" });
     const [password, setPassword] = useState({ value: "", error: "" });
     const [isFormSubmitting, setIsFormSubmitting] = useState(false);
-    const { setCsrfToken } = useUserStore();
+    const { setCsrfToken, setUser } = useUserStore();
     const navigate = useNavigate();
 
     const handleOnChangeEmail = (value: string) => {
@@ -49,7 +49,8 @@ export const useLogin = () => {
             .login(email.value, password.value)
             .then((response) => {
                 setCsrfToken(response.csrfToken);
-                navigate(`/${response.data.role.toLowerCase()}`);
+                setUser(response.data.user);
+                navigate(`/${response.data.user.role.toLowerCase()}`);
             })
             .catch((error) => {
                 toast.error(error.message);

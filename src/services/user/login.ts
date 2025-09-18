@@ -6,7 +6,7 @@ export interface LoginSuccessResponse {
     success: true;
     message: string;
     csrfToken: string;
-    data: Pick<User, "role">;
+    data: { user: User };
 }
 
 export interface LoginErrorResponse {

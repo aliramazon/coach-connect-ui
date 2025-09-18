@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { useLocation } from "react-router-dom"; // <-- import this
 import { userService } from "../../services/user";
+import { ApiError } from "../../services/user/get-me";
 import { useUserStore } from "../store/useUserStore";
+
+const PUBLIC_ROUTES = ["/login", "/signup", "/forgot-password"];
 
 export const useGetMe = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const { setUser, setCsrfToken, setImpersonatedUser } = useUserStore();
+    const { setUser, setCsrfToken, setImpersonatedUser, logout } =
+        useUserStore();
+
+    const location = useLocation();
 
     useEffect(() => {
         setIsLoading(true);
@@ -27,9 +34,28 @@ export const useGetMe = () => {
 
                 setCsrfToken(response.csrfToken);
             })
-            .catch((error: Error) => {
-                toast.error(error.message);
-                setError(error.message);
+            .catch((err: unknown) => {
+                if (err instanceof ApiError) {
+                    if (err.clientErrorType === "AUTHENTICATION_ERROR") {
+                        logout();
+
+                        const isPublicRoute = PUBLIC_ROUTES.includes(
+                            location.pathname
+                        );
+
+                        if (!isPublicRoute) {
+                            toast.error(
+                                "Session expired, please log in again."
+                            );
+                        }
+                    } else {
+                        toast.error(err.message);
+                        setError(err.message);
+                    }
+                } else if (err instanceof Error) {
+                    toast.error(err.message);
+                    setError(err.message);
+                }
             })
             .finally(() => {
                 setIsLoading(false);
