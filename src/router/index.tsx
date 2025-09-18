@@ -6,21 +6,21 @@ import {
 } from "react-router-dom";
 import { App } from "../App";
 
-import { Availability } from "../pages/coach/Availability";
-import { Bookings as CoachBookings } from "../pages/coach/Bookings";
-import { CoachPlatform } from "../pages/coach/CoachPlatform";
+import { Availability } from "../app/pages/coach/Availability";
+import { Bookings as CoachBookings } from "../app/pages/coach/Bookings";
+import { CoachPlatform } from "../app/pages/coach/CoachPlatform";
 
-import { Bookings as StudentBookings } from "../pages/student/Bookings";
-import { Coaches as StudentCoaches } from "../pages/student/Coaches";
-import { StudentPlatform } from "../pages/student/StudentPlatform";
+import { Bookings as StudentBookings } from "../app/pages/student/Bookings";
+import { Coaches as StudentCoaches } from "../app/pages/student/Coaches";
+import { StudentPlatform } from "../app/pages/student/StudentPlatform";
 
-import { AdminPlatform } from "../pages/admin";
-import { Bookings as AdminBookings } from "../pages/admin/Bookings";
-import { Coaches as AdminCoaches } from "../pages/admin/Coaches";
-import { Students as AdminStudents } from "../pages/admin/Students";
+import { AdminPlatform } from "../app/pages/admin";
+import { Bookings as AdminBookings } from "../app/pages/admin/Bookings";
+import { Coaches as AdminCoaches } from "../app/pages/admin/Coaches";
+import { Students as AdminStudents } from "../app/pages/admin/Students";
 
-import { Login } from "../pages/auth/Login";
-import { UserRole } from "../types/roles";
+import { Login } from "../app/pages/auth/Login";
+import { UserRole } from "../app/types/roles";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { PublicRoute } from "./PublicRoute";
 

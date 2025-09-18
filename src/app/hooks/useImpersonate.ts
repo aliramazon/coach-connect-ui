@@ -1,9 +1,10 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { userService } from "../../services/user";
-import { UserRole } from "../../types/roles";
+
+import { userService } from "../services/user";
 import { useUserStore } from "../store/useUserStore";
+import { UserRole } from "../types/roles";
 
 interface UseImpersonateProps {
     onSuccessImpersonation?: () => void;

@@ -1,5 +1,5 @@
-import type { User } from "../../app/types/user";
-import { useUserStore } from "../../pages/store/useUserStore";
+import { useUserStore } from "../../store/useUserStore";
+import type { User } from "../../types/user";
 import { config } from "../config";
 
 export interface ImpersonateSuccessResponse {

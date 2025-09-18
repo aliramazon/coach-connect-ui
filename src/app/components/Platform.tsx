@@ -14,12 +14,12 @@ import {
     Toaster,
     type SideBarLinksGroup,
 } from "../../design-system";
-import { UserRole } from "../../types/roles";
-import { AppLayout, AppPage } from "../components/Layout";
-import { SideBarUser } from "../components/SidebarUser";
 import { useLogout } from "../hooks/useLogout";
 import { useUserStore } from "../store/useUserStore";
+import { UserRole } from "../types/roles";
+import { AppLayout, AppPage } from "./Layout";
 import { LoginAsModal } from "./LoginAsModal";
+import { SideBarUser } from "./SidebarUser";
 import { StopLoginAsModal } from "./StopLoginAsModal";
 
 const roleLinks: Record<string, SideBarLinksGroup[]> = {

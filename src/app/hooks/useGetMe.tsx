@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useLocation } from "react-router-dom"; // <-- import this
-import { userService } from "../../services/user";
-import { ApiError } from "../../services/user/get-me";
+import { useLocation } from "react-router-dom";
+
+import { userService } from "../services/user";
+import { ApiError } from "../services/user/get-me";
 import { useUserStore } from "../store/useUserStore";
 
 const PUBLIC_ROUTES = ["/login", "/signup", "/forgot-password"];

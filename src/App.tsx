@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { useGetMe } from "./pages/hooks/useGetMe";
+import { useGetMe } from "./app/hooks/useGetMe";
 
 export const App = () => {
     const { isLoading } = useGetMe();

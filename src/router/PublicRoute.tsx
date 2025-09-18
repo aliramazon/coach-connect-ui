@@ -1,8 +1,8 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 
-import { useUserStore } from "../pages/store/useUserStore";
-import { UserRole } from "../types/roles";
+import { useUserStore } from "../app/store/useUserStore";
+import { UserRole } from "../app/types/roles";
 
 interface PublicRouteProps {
     children: React.ReactNode;

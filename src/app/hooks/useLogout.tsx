@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { userService } from "../../services/user";
+
+import { userService } from "../services/user";
 import { useUserStore } from "../store/useUserStore";
 
 export const useLogout = () => {

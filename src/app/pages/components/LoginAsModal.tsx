@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
-import { UserRole } from "../../app/types/roles";
-import { CenteredModal, Select } from "../../design-system";
-import { useGetUsers } from "../hooks/useGetUsers";
-import { useImpersonate } from "../hooks/useImpersonate";
+import { CenteredModal, Select } from "../../../design-system";
+import { useGetUsers } from "../../hooks/useGetUsers";
+import { useImpersonate } from "../../hooks/useImpersonate";
+import { UserRole } from "../../types/roles";
 
 type LoginAsModalProps = {
     show: boolean;
