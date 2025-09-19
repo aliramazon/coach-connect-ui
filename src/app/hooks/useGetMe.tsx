@@ -3,8 +3,9 @@ import toast from "react-hot-toast";
 import { useLocation } from "react-router-dom";
 
 import { userService } from "../services/user";
-import { ApiError } from "../services/user/get-me";
+
 import { useUserStore } from "../store/useUserStore";
+import { ApiError } from "../utils/api-error";
 
 const PUBLIC_ROUTES = ["/login", "/signup", "/forgot-password"];
 
@@ -37,7 +38,7 @@ export const useGetMe = () => {
             })
             .catch((err: unknown) => {
                 if (err instanceof ApiError) {
-                    if (err.clientErrorType === "AUTHENTICATION_ERROR") {
+                    if (err.errorCode === "AUTHENTICATION_ERROR") {
                         logout();
 
                         const isPublicRoute = PUBLIC_ROUTES.includes(

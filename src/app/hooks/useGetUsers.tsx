@@ -16,13 +16,13 @@ export const useGetUsers = (options: UseGetUsersOptions) => {
     const { csrfToken } = useUserStore();
 
     useEffect(() => {
-        if (!csrfToken || !options.enabled) return;
+        if (!options.enabled) return;
 
         setIsLoading(true);
         setError(null);
 
         userService
-            .getUsers(csrfToken)
+            .getUsers()
             .then((response) => {
                 setUsers(response.data);
             })
