@@ -28,8 +28,6 @@ const Select: React.FC<SelectProps> = (props) => {
         size,
         shape,
         disabled,
-        error,
-        hintMessage,
         searchable,
         className,
     } = props;
