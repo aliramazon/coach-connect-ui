@@ -36,6 +36,7 @@ export const httpRequest = async <T>(
 
         return (await res.json()) as T;
     } catch (error) {
+        console.clear();
         if (error instanceof ApiError) throw error;
         if (error instanceof Error) {
             throw new ApiError(error.message, 500, "INTERNAL_ERROR", false);
