@@ -1,10 +1,12 @@
 import styled from "@emotion/styled";
 import { Button, Typography } from "design-system";
+import type { LucideIcon } from "lucide-react";
 
 type PageHeaderProps = {
     pageTitle: string;
     actionButtonText?: string;
     actionButtonOnClick?: () => void;
+    actionButtonIcon?: LucideIcon;
 };
 const PageHeaderBase = styled.header`
     display: flex;
@@ -18,6 +20,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
     pageTitle,
     actionButtonText,
     actionButtonOnClick,
+    actionButtonIcon: Icon,
 }) => {
     return (
         <PageHeaderBase>
@@ -31,6 +34,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
                     size="md"
                     shape="rounded"
                     onClick={actionButtonOnClick}
+                    startIcon={Icon}
                 >
                     {actionButtonText}
                 </Button>
