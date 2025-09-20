@@ -12,8 +12,13 @@ const PUBLIC_ROUTES = ["/login", "/signup", "/forgot-password"];
 export const useGetMe = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const { setUser, setCsrfToken, setImpersonatedUser, logout } =
-        useUserStore();
+    const {
+        setUser,
+        setCsrfToken,
+        setImpersonatedUser,
+        logout,
+        setIsProfileLoading,
+    } = useUserStore();
 
     const location = useLocation();
 
@@ -61,6 +66,7 @@ export const useGetMe = () => {
             })
             .finally(() => {
                 setIsLoading(false);
+                setIsProfileLoading(false);
             });
     }, []);
 

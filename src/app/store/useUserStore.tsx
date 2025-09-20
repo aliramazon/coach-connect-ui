@@ -5,12 +5,14 @@ export interface UserStore {
     user: User | null;
     impersonatedUser: User | null;
     csrfToken: string | null;
+    isImpersonating: boolean;
+    isProfileLoading: boolean;
     setUser: (user: User) => void;
     setImpersonatedUser: (user: User | null) => void;
     clearImpersonatedUser: () => void;
     setCsrfToken: (token: string) => void;
+    setIsProfileLoading: (value: boolean) => void;
     logout: () => void;
-    isImpersonating: boolean;
 }
 
 export const useUserStore = create<UserStore>((set) => ({
@@ -18,6 +20,7 @@ export const useUserStore = create<UserStore>((set) => ({
     impersonatedUser: null,
     csrfToken: null,
     isImpersonating: false,
+    isProfileLoading: true,
 
     setUser: (user) => set({ user }),
     setImpersonatedUser: (user) =>
@@ -25,6 +28,7 @@ export const useUserStore = create<UserStore>((set) => ({
     clearImpersonatedUser: () =>
         set({ impersonatedUser: null, isImpersonating: false }),
     setCsrfToken: (token) => set({ csrfToken: token }),
+    setIsProfileLoading: (value) => set({ isProfileLoading: value }),
 
     logout: () =>
         set({
@@ -32,5 +36,6 @@ export const useUserStore = create<UserStore>((set) => ({
             impersonatedUser: null,
             csrfToken: null,
             isImpersonating: false,
+            isProfileLoading: false,
         }),
 }));
