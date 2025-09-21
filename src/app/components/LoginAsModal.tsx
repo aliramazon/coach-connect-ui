@@ -14,7 +14,6 @@ const Inputs = styled.div`
     display: flex;
     flex-direction: column;
     gap: var(--space-16);
-    margin-bottom: var(--space-24);
 `;
 
 export const LoginAsModal = ({ show, onClose }: LoginAsModalProps) => {
