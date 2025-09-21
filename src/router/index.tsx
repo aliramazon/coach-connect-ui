@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import { App } from "../App";
 
-import { Availability } from "../app/pages/coach/Availability";
+import { Availability } from "../app/pages/coach/availability/Availability";
 import { Bookings as CoachBookings } from "../app/pages/coach/Bookings";
 import { CoachPlatform } from "../app/pages/coach/CoachPlatform";
 
