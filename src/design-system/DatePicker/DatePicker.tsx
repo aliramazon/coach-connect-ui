@@ -3,8 +3,9 @@ import React from "react";
 import ReactDatePicker from "react-datepicker";
 import { trimWhiteSpaces } from "../utils";
 
-import { Calendar } from "lucide-react";
+import { CalendarClock, CalendarDays, Clock } from "lucide-react";
 import "react-datepicker/dist/react-datepicker.css";
+import { Label } from "../Label";
 import "./DatePicker.css";
 import type { CustomizedDatePickerProps } from "./types";
 
@@ -19,6 +20,7 @@ const calendarIconClassNames = {
     md: "customized-date-picker__calendar-icon--md",
     lg: "customized-date-picker__calendar-icon--lg",
 };
+
 const shapeClassNames = {
     input: {
         rounded: "input-rounded",
@@ -33,6 +35,11 @@ const shapeClassNames = {
 const DatePicker: React.FC<CustomizedDatePickerProps> = ({
     inputSize,
     shape,
+    label,
+    id,
+    showTimeSelectOnly,
+    showTimeSelect,
+    timeCaption,
     ...rest
 }) => {
     const customizeDay = (_: Date) => "customized-date-picker__day-wrapper";
@@ -64,7 +71,14 @@ const DatePicker: React.FC<CustomizedDatePickerProps> = ({
         `customized-date-picker__calendar-icon ${calendarIconClassName}`
     );
 
-    return (
+    let Icon = CalendarDays;
+    if (showTimeSelectOnly && showTimeSelect) {
+        Icon = Clock;
+    } else if (showTimeSelect) {
+        Icon = CalendarClock;
+    }
+
+    const datePicker = (
         <ReactDatePicker
             {...rest}
             className={finalInputClassNames}
@@ -72,9 +86,22 @@ const DatePicker: React.FC<CustomizedDatePickerProps> = ({
             renderDayContents={renderDayContents}
             calendarClassName={finalCalendarClassNames}
             showIcon
-            icon={<Calendar className={finalCalendarIconClassNames} />}
+            icon={<Icon className={finalCalendarIconClassNames} />}
             toggleCalendarOnIconClick
+            showTimeSelectOnly={showTimeSelectOnly}
+            showTimeSelect={showTimeSelect}
+            id={id}
+            timeCaption={timeCaption}
         />
+    );
+
+    return label ? (
+        <div className="input-control">
+            <Label htmlFor={id}>{label}</Label>
+            {datePicker}
+        </div>
+    ) : (
+        datePicker
     );
 };
 
