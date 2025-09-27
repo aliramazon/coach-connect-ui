@@ -1,7 +1,7 @@
 import { Calendar } from "lucide-react";
 import { Button, Input } from "../../../design-system";
 import { AuthForm, AuthWrapper } from "../../components/Auth";
-import { useLogin } from "../../hooks/useLogin";
+import { useLogin } from "../../hooks/auth/useLogin";
 
 export const Login = () => {
     const {

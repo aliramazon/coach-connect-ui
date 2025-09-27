@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
-import { CenteredModal, Select } from "../../design-system";
-import { useImpersonate } from "../hooks/auth/useImpersonate";
-import { useGetUsers } from "../hooks/user/useGetUsers";
-import { UserRole } from "../types/roles";
+import { CenteredModal, Select } from "../../../design-system";
+import { useImpersonate } from "../../hooks/auth/useImpersonate";
+import { useGetUsers } from "../../hooks/user/useGetUsers";
+import { UserRole } from "../../types/roles";
 
 type LoginAsModalProps = {
     show: boolean;
@@ -14,6 +14,7 @@ const Inputs = styled.div`
     display: flex;
     flex-direction: column;
     gap: var(--space-16);
+    margin-bottom: var(--space-24);
 `;
 
 export const LoginAsModal = ({ show, onClose }: LoginAsModalProps) => {

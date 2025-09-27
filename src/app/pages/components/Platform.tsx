@@ -8,19 +8,20 @@ import {
 } from "lucide-react";
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
+
 import {
     SideBar,
     SideBarLinks,
     Toaster,
     type SideBarLinksGroup,
-} from "../../design-system";
-import { useLogout } from "../hooks/auth/useLogout";
-import { useUserStore } from "../store/useUserStore";
-import { UserRole } from "../types/roles";
-import { AppLayout, AppPage } from "./Layout";
+} from "../../../design-system";
+import { AppLayout, AppPage } from "../../components/Layout";
+import { SideBarUser } from "../../components/SidebarUser";
+import { StopLoginAsModal } from "../../components/StopLoginAsModal";
+import { useLogout } from "../../hooks/auth/useLogout";
+import { useUserStore } from "../../store/useUserStore";
+import { UserRole } from "../../types/roles";
 import { LoginAsModal } from "./LoginAsModal";
-import { SideBarUser } from "./SidebarUser";
-import { StopLoginAsModal } from "./StopLoginAsModal";
 
 const roleLinks: Record<string, SideBarLinksGroup[]> = {
     admin: [

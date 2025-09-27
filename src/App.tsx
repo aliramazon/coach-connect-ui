@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { LoadingScreen } from "./app/components/LoadingScreen";
-import { useGetMe } from "./app/hooks/useGetMe";
+import { useGetMe } from "./app/hooks/user/useGetMe";
 
 export const App = () => {
     const { isLoading } = useGetMe();

@@ -1,5 +1,5 @@
 import { CenteredModal } from "../../design-system";
-import { useImpersonate } from "../hooks/useImpersonate";
+import { useImpersonate } from "../hooks/auth/useImpersonate";
 import { useUserStore } from "../store/useUserStore";
 
 type LoginAsModalProps = {

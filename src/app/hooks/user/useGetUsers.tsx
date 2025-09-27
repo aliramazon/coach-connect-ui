@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-import { userService } from "../services/user";
-import { useUserStore } from "../store/useUserStore";
-import type { User } from "../types/user";
+import { userService } from "../../services/user";
+import { useUserStore } from "../../store/useUserStore";
+import type { User } from "../../types/user";
 
 type UseGetUsersOptions = {
     enabled?: boolean;

@@ -2,8 +2,8 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-import { userService } from "../services/user";
-import { useUserStore } from "../store/useUserStore";
+import { userService } from "../../services/user";
+import { useUserStore } from "../../store/useUserStore";
 
 export const useLogin = () => {
     const [email, setEmail] = useState({ value: "", error: "" });

@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useLocation } from "react-router-dom";
 
-import { userService } from "../services/user";
+import { userService } from "../../services/user";
 
-import { useUserStore } from "../store/useUserStore";
-import { ApiError } from "../utils/api-error";
+import { useUserStore } from "../../store/useUserStore";
+import { ApiError } from "../../utils/api-error";
 
 const PUBLIC_ROUTES = ["/login", "/signup", "/forgot-password"];
 
