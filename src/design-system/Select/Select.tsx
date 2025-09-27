@@ -67,7 +67,6 @@ const Select: React.FC<SelectProps> = (props) => {
 
     const getOptionLabel = (value: unknown) => {
         const option = options.find((option) => option.value === value);
-        console.log(option);
 
         return option?.label;
     };

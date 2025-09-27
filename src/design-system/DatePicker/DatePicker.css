@@ -166,6 +166,10 @@
     width: 1.8rem;
 }
 
+.customized-date-picker__calendar-icon.customized-date-picker__calendar-icon--error.react-datepicker__calendar-icon {
+    stroke: var(--red-orange-500);
+}
+
 .customized-date-picker__calendar-icon.customized-date-picker__calendar-icon--md.react-datepicker__calendar-icon {
     height: 2rem;
     width: 2rem;
@@ -176,13 +180,22 @@
     width: 2.2rem;
 }
 
-.customized-date-picker__calendar-icon.react-datepicker__calendar-icon:hover
+.customized-date-picker__calendar-icon.react-datepicker__calendar-icon:hover:not(
+        .customized-date-picker__calendar-icon--error
+    )
     + input {
     border-color: var(--violet-500) !important;
 }
 
 .react-datepicker__input-container.react-datepicker__view-calendar-icon:hover
-    svg {
+    svg:not(.customized-date-picker__calendar-icon--error) {
+    stroke: var(--violet-500);
+}
+
+.react-datepicker__input-container.react-datepicker__view-calendar-icon
+    svg.customized-date-picker__calendar-icon--focus:not(
+        .customized-date-picker__calendar-icon--error
+    ) {
     stroke: var(--violet-500);
 }
 

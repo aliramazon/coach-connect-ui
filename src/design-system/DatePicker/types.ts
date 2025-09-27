@@ -6,4 +6,7 @@ export type CustomizedDatePickerProps = DatePickerProps & {
     shape?: InputShape;
     label?: string;
     id?: string;
+    error?: boolean;
+    hintMessage?: string;
+    disabled?: boolean;
 };

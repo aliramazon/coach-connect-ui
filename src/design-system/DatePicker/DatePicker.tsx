@@ -1,5 +1,5 @@
 import { getDate } from "date-fns";
-import React from "react";
+import React, { useState } from "react";
 import ReactDatePicker from "react-datepicker";
 import { trimWhiteSpaces } from "../utils";
 
@@ -40,8 +40,12 @@ const DatePicker: React.FC<CustomizedDatePickerProps> = ({
     showTimeSelectOnly,
     showTimeSelect,
     timeCaption,
+    hintMessage,
+    disabled,
+    error,
     ...rest
 }) => {
+    const [focused, setFocused] = useState(false);
     const customizeDay = (_: Date) => "customized-date-picker__day-wrapper";
 
     const renderDayContents = (_: number, date: Date) => (
@@ -56,9 +60,9 @@ const DatePicker: React.FC<CustomizedDatePickerProps> = ({
     const calendarIconClassName = inputSize
         ? calendarIconClassNames[inputSize]
         : "";
-
+    const errorClassName = error ? "input-error" : "";
     const finalInputClassNames = trimWhiteSpaces(
-        `customized-date-picker__input input ${inputSizeClassName} ${inputShapeClassName}`
+        `customized-date-picker__input input ${errorClassName} ${inputSizeClassName} ${inputShapeClassName}`
     );
 
     const finalCalendarClassNames = trimWhiteSpaces(
@@ -68,8 +72,22 @@ const DatePicker: React.FC<CustomizedDatePickerProps> = ({
     );
 
     const finalCalendarIconClassNames = trimWhiteSpaces(
-        `customized-date-picker__calendar-icon ${calendarIconClassName}`
+        `customized-date-picker__calendar-icon ${calendarIconClassName} ${
+            error ? "customized-date-picker__calendar-icon--error" : ""
+        } ${focused ? "customized-date-picker__calendar-icon--focus" : ""}`
     );
+    const hintMessageClass = trimWhiteSpaces(
+        `input-hintMessage ${error ? "input-hintMessage--error" : ""} ${
+            disabled ? "input-hintMessage--disabled" : ""
+        }`
+    );
+
+    const onFocus = () => {
+        setFocused(true);
+    };
+    const onBlur = () => {
+        setFocused(false);
+    };
 
     let Icon = CalendarDays;
     if (showTimeSelectOnly && showTimeSelect) {
@@ -92,6 +110,10 @@ const DatePicker: React.FC<CustomizedDatePickerProps> = ({
             showTimeSelect={showTimeSelect}
             id={id}
             timeCaption={timeCaption}
+            fixedHeight
+            disabled={disabled}
+            onFocus={onFocus}
+            onBlur={onBlur}
         />
     );
 
@@ -99,6 +121,10 @@ const DatePicker: React.FC<CustomizedDatePickerProps> = ({
         <div className="input-control">
             <Label htmlFor={id}>{label}</Label>
             {datePicker}
+
+            {hintMessage ? (
+                <span className={hintMessageClass}>{hintMessage}</span>
+            ) : null}
         </div>
     ) : (
         datePicker
