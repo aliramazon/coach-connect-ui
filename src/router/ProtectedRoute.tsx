@@ -19,7 +19,6 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
     const { user, impersonatedUser, isProfileLoading } = useUserStore();
 
     const effectiveUser = impersonatedUser || user;
-    console.log(isProfileLoading);
     if (isProfileLoading) return <LoadingScreen />;
 
     if (!effectiveUser) {

@@ -43,6 +43,7 @@ const DatePicker: React.FC<CustomizedDatePickerProps> = ({
     hintMessage,
     disabled,
     error,
+    onBlur,
     ...rest
 }) => {
     const [focused, setFocused] = useState(false);
@@ -85,8 +86,11 @@ const DatePicker: React.FC<CustomizedDatePickerProps> = ({
     const onFocus = () => {
         setFocused(true);
     };
-    const onBlur = () => {
+    const handleOnBlur: React.FocusEventHandler<HTMLElement> = (e) => {
         setFocused(false);
+        if (onBlur) {
+            onBlur(e);
+        }
     };
 
     let Icon = CalendarDays;
@@ -113,7 +117,7 @@ const DatePicker: React.FC<CustomizedDatePickerProps> = ({
             fixedHeight
             disabled={disabled}
             onFocus={onFocus}
-            onBlur={onBlur}
+            onBlur={handleOnBlur}
         />
     );
 
