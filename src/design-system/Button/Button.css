@@ -374,3 +374,15 @@
 .btn-success.btn-text:disabled svg {
     stroke: var(--green-300);
 }
+
+/* Animateion */
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.btn .animate-spin {
+    animation: spin 1s linear infinite;
+}

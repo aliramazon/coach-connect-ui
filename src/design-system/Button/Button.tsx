@@ -1,3 +1,4 @@
+import { LoaderCircle } from "lucide-react";
 import { type FC, forwardRef } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { trimWhiteSpaces } from "../utils";
@@ -26,6 +27,7 @@ const Button: FC<ButtonProps> = forwardRef(
             navigateTo,
             endIcon: EndIcon,
             startIcon: StartIcon,
+            loading,
         } = props;
 
         const sizeClassName = size !== undefined ? sizeClassNames[size] : "";
@@ -60,13 +62,19 @@ const Button: FC<ButtonProps> = forwardRef(
             return (
                 <button
                     className={finalClassNames}
-                    disabled={disabled}
-                    onClick={onClick ? onClick : () => {}}
+                    disabled={disabled || loading}
+                    onClick={onClick ?? (() => {})}
                     ref={ref}
                 >
-                    {StartIcon ? <StartIcon /> : null}
+                    {loading ? (
+                        <LoaderCircle className="animate-spin" />
+                    ) : StartIcon ? (
+                        <StartIcon className="mr-2" />
+                    ) : null}
+
                     {children}
-                    {EndIcon ? <EndIcon /> : null}
+
+                    {!loading && EndIcon ? <EndIcon className="ml-2" /> : null}
                 </button>
             );
         };

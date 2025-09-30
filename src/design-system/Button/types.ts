@@ -20,6 +20,7 @@ interface ButtonBaseProps {
     startIcon?: LucideIcon;
     endIcon?: LucideIcon;
     onClick?: () => void;
+    loading?: boolean;
 }
 
 export type ButtonProps =

@@ -88,6 +88,7 @@ const CenteredModal = ({
                     shape="rounded"
                     onClick={primaryActionButton.onClick}
                     disabled={primaryActionButton.disabled}
+                    loading={primaryActionButton.disabled}
                 >
                     {primaryActionButton.text}
                 </Button>
