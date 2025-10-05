@@ -43,11 +43,12 @@ const DatePicker: React.FC<CustomizedDatePickerProps> = ({
     hintMessage,
     disabled,
     error,
+    inlineSize,
     onBlur,
     ...rest
 }) => {
     const [focused, setFocused] = useState(false);
-    const customizeDay = (_: Date) => "customized-date-picker__day-wrapper";
+    const customizeDay = () => "customized-date-picker__day-wrapper";
 
     const renderDayContents = (_: number, date: Date) => (
         <div className="customized-date-picker__day">{getDate(date)}</div>
@@ -66,10 +67,14 @@ const DatePicker: React.FC<CustomizedDatePickerProps> = ({
         `customized-date-picker__input input ${errorClassName} ${inputSizeClassName} ${inputShapeClassName}`
     );
 
+    const inlineSizeClassName = inlineSize
+        ? `customized-date-picker--inline-${inlineSize}`
+        : "";
+
     const finalCalendarClassNames = trimWhiteSpaces(
         `customized-date-picker ${calendarShapeClassName} ${
             inputSize === "lg" ? "customized-date-picker--lg" : ""
-        }`
+        } ${inlineSizeClassName}`
     );
 
     const finalCalendarIconClassNames = trimWhiteSpaces(

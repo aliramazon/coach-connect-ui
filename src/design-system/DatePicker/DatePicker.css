@@ -111,7 +111,7 @@
 
 .customized-date-picker .react-datepicker__current-month {
     color: var(--jaguar-700);
-    font-size: var(--font-size-20);
+    font-size: var(--font-size-18);
     font-weight: var(--font-weight-400);
 
     height: 76px;
@@ -261,4 +261,74 @@
 
 .react-datepicker__header.react-datepicker__header--time.react-datepicker__header--time--only {
     display: none;
+}
+
+/* Inline size variants - Remove transform scale approach */
+
+/* Adjust day wrapper sizes for inline variants */
+.customized-date-picker--inline-md
+    .react-datepicker__day.customized-date-picker__day-wrapper {
+    height: 5.4rem; /* 3.6rem * 1.5 */
+    width: 5.4rem; /* 3.6rem * 1.5 */
+}
+
+.customized-date-picker--inline-lg
+    .react-datepicker__day.customized-date-picker__day-wrapper {
+    height: 6.12rem; /* 3.6rem * 1.7 */
+    width: 6.12rem; /* 3.6rem * 1.7 */
+}
+
+/* Adjust day name sizes for inline variants */
+.customized-date-picker--inline-md .react-datepicker__day-name {
+    height: 5.4rem; /* 3.6rem * 1.5 */
+    width: 5.4rem; /* 3.6rem * 1.5 */
+    font-size: var(--font-size-18);
+}
+
+.customized-date-picker--inline-lg .react-datepicker__day-name {
+    height: 6.12rem; /* 3.6rem * 1.7 */
+    width: 6.12rem; /* 3.6rem * 1.7 */
+    font-size: var(--font-size-18);
+}
+
+/* Adjust font sizes for inline variants */
+.customized-date-picker--inline-md .customized-date-picker__day {
+    font-size: var(--font-size-18);
+}
+
+.customized-date-picker--inline-lg .customized-date-picker__day {
+    font-size: var(--font-size-20);
+}
+
+/* Adjust current month font size for inline variants */
+.customized-date-picker--inline-md .react-datepicker__current-month {
+    font-size: var(--font-size-24);
+}
+
+.customized-date-picker--inline-lg .react-datepicker__current-month {
+    font-size: var(--font-size-24);
+}
+
+/* Adjust header height for inline variants */
+.customized-date-picker--inline-md .react-datepicker__current-month {
+    height: 57px; /* 76px * 1.5 / 2 */
+}
+
+.customized-date-picker--inline-lg .react-datepicker__current-month {
+    height: 64.6px; /* 76px * 1.7 / 2 */
+}
+
+/* Fix chevron positions for inline variants */
+.customized-date-picker--inline-md
+    .react-datepicker__navigation.react-datepicker__navigation--previous,
+.customized-date-picker--inline-md
+    .react-datepicker__navigation.react-datepicker__navigation--next {
+    top: 24px; /* 32px * 1.5 / 2 */
+}
+
+.customized-date-picker--inline-lg
+    .react-datepicker__navigation.react-datepicker__navigation--previous,
+.customized-date-picker--inline-lg
+    .react-datepicker__navigation.react-datepicker__navigation--next {
+    top: 27.2px; /* 32px * 1.7 / 2 */
 }

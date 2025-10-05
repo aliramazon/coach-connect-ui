@@ -9,4 +9,5 @@ export type CustomizedDatePickerProps = DatePickerProps & {
     error?: boolean;
     hintMessage?: string;
     disabled?: boolean;
+    inlineSize?: "md" | "lg";
 };
