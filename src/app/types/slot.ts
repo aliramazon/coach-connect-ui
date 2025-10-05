@@ -12,6 +12,7 @@ export interface Slot {
     status: SlotStatus;
     createdAt: string;
     updatedAt?: Date;
+    coachId: string;
 }
 
 export interface CreateSlotRequest {
