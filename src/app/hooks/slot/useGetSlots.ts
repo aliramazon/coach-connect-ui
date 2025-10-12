@@ -1,21 +1,26 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { slotService } from "../../services/slot";
-import type { Slot } from "../../types/slot";
+import { useSlotStore } from "../../store/useSlotStore";
 
 export const useGetSlots = (selectedDate?: Date | null) => {
-    const [slots, setSlots] = useState<Slot[]>([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
+    const {
+        getSortedSlots,
+        isLoading,
+        error,
+        setSlots,
+        setIsLoading,
+        setError,
+    } = useSlotStore();
 
-    const fetchSlots = useCallback(() => {
+    useEffect(() => {
         setIsLoading(true);
         setError(null);
 
         slotService
             .getAll(selectedDate)
             .then((response) => {
-                setSlots(response.data.slots);
+                setSlots(response.data.slots, selectedDate);
             })
             .catch((err) => {
                 setError(err.message);
@@ -24,16 +29,11 @@ export const useGetSlots = (selectedDate?: Date | null) => {
             .finally(() => {
                 setIsLoading(false);
             });
-    }, [selectedDate]);
-
-    useEffect(() => {
-        fetchSlots();
-    }, [fetchSlots]);
+    }, [selectedDate, setSlots, setIsLoading, setError]);
 
     return {
-        slots,
+        slots: getSortedSlots(),
         isLoading,
         error,
-        refetch: fetchSlots,
     };
 };

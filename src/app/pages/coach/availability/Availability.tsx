@@ -1,3 +1,4 @@
+import styled from "@emotion/styled";
 import { PlusIcon } from "lucide-react";
 import { useState } from "react";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -7,15 +8,21 @@ import { PageHeader } from "../../../components/PageHeader";
 import { useGetSlots } from "../../../hooks/slot/useGetSlots";
 import { AddAvailabilityModal } from "./AddAvailabilityModal";
 
+const SlotsGrid = styled.div`
+    display: grid;
+    grid-template-columns: max-content max-content;
+    gap: var(--space-16);
+    width: 100%;
+    align-content: start;
+`;
+
 export const Availability = () => {
     const [showAvailability, setShowAvailability] = useState(false);
-    const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+    const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
     const { slots } = useGetSlots(selectedDate);
 
     const handleDateChange = (date: Date | null) => {
         setSelectedDate(date);
-        console.log(date?.toISOString());
-        console.log("Selected date:", date);
     };
 
     const formatTimeRange = (start: string, end: string) => {
@@ -49,11 +56,7 @@ export const Availability = () => {
                 />
 
                 {slots.length > 0 && (
-                    <Flex
-                        $flexWrap="wrap"
-                        $gap="var(--space-16)"
-                        $alignContent="flex-start"
-                    >
+                    <SlotsGrid>
                         {slots.map((slot) => (
                             <Button
                                 key={slot.id}
@@ -65,7 +68,7 @@ export const Availability = () => {
                                 {formatTimeRange(slot.startTime, slot.endTime)}
                             </Button>
                         ))}
-                    </Flex>
+                    </SlotsGrid>
                 )}
             </Flex>
 

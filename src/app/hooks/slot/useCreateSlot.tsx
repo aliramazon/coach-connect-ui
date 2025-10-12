@@ -1,7 +1,7 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { slotService } from "../../services/slot";
-import type { Slot } from "../../types/slot";
+import { useSlotStore } from "../../store/useSlotStore";
 import { combineDateAndTime } from "../../utils/combine-date-and-time";
 import {
     hasFieldValue,
@@ -34,6 +34,7 @@ const validateSlotForm = (form: CreateSlotForm) => {
 };
 
 export const useCreateSlot = () => {
+    const { addSlot } = useSlotStore();
     const [form, setForm] = useState<CreateSlotForm>({
         date: { value: null, error: "" },
         startTime: { value: null, error: "" },
@@ -41,7 +42,6 @@ export const useCreateSlot = () => {
     });
 
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [createdSlot, setCreatedSlot] = useState<Slot | null>(null);
     const [error, setError] = useState<string | null>(null);
 
     const onChangeField = (value: Date | null, field: keyof CreateSlotForm) => {
@@ -111,7 +111,7 @@ export const useCreateSlot = () => {
         slotService
             .create(start.toISOString(), end.toISOString())
             .then((response) => {
-                setCreatedSlot(response.data.slot);
+                addSlot(response.data.slot);
                 setForm({
                     date: { value: null, error: "" },
                     startTime: { value: null, error: "" },
@@ -120,6 +120,7 @@ export const useCreateSlot = () => {
                 toast.success("Slot created successfully. Create a new one");
             })
             .catch((err) => {
+                console.log(err);
                 setError(err.message);
                 toast.error(err.message);
             })
@@ -131,7 +132,6 @@ export const useCreateSlot = () => {
     return {
         form,
         isSubmitting,
-        createdSlot,
         error,
         onChangeField,
         onBlurField,
