@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { PlusIcon } from "lucide-react";
 import { useState } from "react";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import { Button, Flex } from "../../../../design-system";
+import { Button, Flex, Typography } from "../../../../design-system";
 import { DatePicker } from "../../../../design-system/DatePicker";
 import { PageHeader } from "../../../components/PageHeader";
 import { useGetSlots } from "../../../hooks/slot/useGetSlots";
@@ -19,7 +19,7 @@ const SlotsGrid = styled.div`
 export const Availability = () => {
     const [showAvailability, setShowAvailability] = useState(false);
     const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-    const { slots } = useGetSlots(selectedDate);
+    const { slots, isLoading } = useGetSlots(selectedDate);
 
     const handleDateChange = (date: Date | null) => {
         setSelectedDate(date);
@@ -54,7 +54,11 @@ export const Availability = () => {
                     inlineSize="md"
                     inline
                 />
-
+                {isLoading && (
+                    <Typography variant="paragraph-md">
+                        Fetching your availability for this day...
+                    </Typography>
+                )}
                 {slots.length > 0 && (
                     <SlotsGrid>
                         {slots.map((slot) => (
@@ -69,6 +73,11 @@ export const Availability = () => {
                             </Button>
                         ))}
                     </SlotsGrid>
+                )}
+                {slots.length === 0 && !isLoading && (
+                    <Typography variant="paragraph-md">
+                        You have not entered your availability for this day yet!
+                    </Typography>
                 )}
             </Flex>
 

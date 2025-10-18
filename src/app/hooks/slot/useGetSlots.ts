@@ -14,21 +14,26 @@ export const useGetSlots = (selectedDate?: Date | null) => {
     } = useSlotStore();
 
     useEffect(() => {
+        setSlots([], selectedDate);
         setIsLoading(true);
         setError(null);
 
-        slotService
-            .getAll(selectedDate)
-            .then((response) => {
-                setSlots(response.data.slots, selectedDate);
-            })
-            .catch((err) => {
-                setError(err.message);
-                toast.error(err.message);
-            })
-            .finally(() => {
-                setIsLoading(false);
-            });
+        const timeoutId = setTimeout(() => {
+            slotService
+                .getAll(selectedDate)
+                .then((response) => {
+                    setSlots(response.data.slots, selectedDate);
+                })
+                .catch((err) => {
+                    setError(err.message);
+                    toast.error(err.message);
+                })
+                .finally(() => {
+                    setIsLoading(false);
+                });
+        }, 1000);
+
+        return () => clearTimeout(timeoutId);
     }, [selectedDate, setSlots, setIsLoading, setError]);
 
     return {
