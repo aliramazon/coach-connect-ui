@@ -34,9 +34,9 @@ const validateSlotForm = (form: CreateSlotForm) => {
 };
 
 export const useCreateSlot = () => {
-    const { addSlot } = useSlotStore();
+    const { addSlot, currentDate } = useSlotStore();
     const [form, setForm] = useState<CreateSlotForm>({
-        date: { value: null, error: "" },
+        date: { value: currentDate, error: "" },
         startTime: { value: null, error: "" },
         endTime: { value: null, error: "" },
     });
@@ -113,7 +113,7 @@ export const useCreateSlot = () => {
             .then((response) => {
                 addSlot(response.data.slot);
                 setForm({
-                    date: { value: null, error: "" },
+                    date: { value: currentDate, error: "" },
                     startTime: { value: null, error: "" },
                     endTime: { value: null, error: "" },
                 });
