@@ -11,6 +11,7 @@ interface CenteredModalActionButton {
     onClick: () => void;
     color?: ButtonColor;
     disabled?: boolean;
+    loading?: boolean;
 }
 
 export interface CenteredModalProps {
@@ -88,7 +89,7 @@ const CenteredModal = ({
                     shape="rounded"
                     onClick={primaryActionButton.onClick}
                     disabled={primaryActionButton.disabled}
-                    loading={primaryActionButton.disabled}
+                    loading={primaryActionButton.loading}
                 >
                     {primaryActionButton.text}
                 </Button>
