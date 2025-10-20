@@ -25,12 +25,12 @@
 }
 
 .modal-overlay--center .modal {
-    min-width: 37rem;
+    width: 50rem;
     padding: var(--space-24);
     border-radius: var(--border-radius-16);
 }
 
 .modal-overlay--right .modal {
     border-radius: 0;
-    width: 40rem;
+    width: 50rem;
 }
