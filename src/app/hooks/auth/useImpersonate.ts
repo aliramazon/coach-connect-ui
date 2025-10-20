@@ -63,21 +63,23 @@ export const useImpersonate = ({
     const stopImpersonation = async () => {
         setIsStoppingImpersonation(true);
 
-        userService
-            .stopImpersonation()
-            .then((response) => {
-                clearImpersonatedUser();
-                navigate(`/${UserRole.ADMIN.toLowerCase()}`);
+        setTimeout(() => {
+            userService
+                .stopImpersonation()
+                .then((response) => {
+                    clearImpersonatedUser();
+                    navigate(`/${UserRole.ADMIN.toLowerCase()}`);
 
-                toast.success(response.message);
-                onSuccessStop?.();
-            })
-            .catch((error) => {
-                toast.error(error.message);
-            })
-            .finally(() => {
-                setIsStoppingImpersonation(false);
-            });
+                    toast.success(response.message);
+                    onSuccessStop?.();
+                })
+                .catch((error) => {
+                    toast.error(error.message);
+                })
+                .finally(() => {
+                    setIsStoppingImpersonation(false);
+                });
+        }, 1000);
     };
 
     return {

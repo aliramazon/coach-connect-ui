@@ -24,6 +24,7 @@ export const StopLoginAsModal = ({ show, onClose }: LoginAsModalProps) => {
                 text: "Confirm",
                 onClick: stopImpersonation,
                 disabled: isStoppingImpersonation,
+                loading: isStoppingImpersonation,
             }}
         />
     );

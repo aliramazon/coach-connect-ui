@@ -50,6 +50,7 @@ export const LoginAsModal = ({ show, onClose }: LoginAsModalProps) => {
                 text: "Login",
                 onClick: impersonate,
                 disabled: isImpersonating,
+                loading: isImpersonating,
             }}
         >
             <Inputs>

@@ -6,7 +6,10 @@ import { Button, Flex, Typography } from "../../../../design-system";
 import { DatePicker } from "../../../../design-system/DatePicker";
 import { PageHeader } from "../../../components/PageHeader";
 import { useGetSlots } from "../../../hooks/slot/useGetSlots";
+import { SlotStatus, type Slot } from "../../../types/slot";
+import { formatTimeRange } from "../../../utils/time-formatters";
 import { AddAvailabilityModal } from "./AddAvailabilityModal";
+import { DeleteSlotModal } from "./DeleteSlotModal";
 
 const SlotsGrid = styled.div`
     display: grid;
@@ -18,6 +21,8 @@ const SlotsGrid = styled.div`
 
 export const Availability = () => {
     const [showAvailability, setShowAvailability] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [selectedSlot, setSelectedSlot] = useState<Slot | null>(null);
     const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
     const { slots, isLoading } = useGetSlots(selectedDate);
 
@@ -25,16 +30,9 @@ export const Availability = () => {
         setSelectedDate(date);
     };
 
-    const formatTimeRange = (start: string, end: string) => {
-        const startTime = new Date(start).toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit",
-        });
-        const endTime = new Date(end).toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit",
-        });
-        return `${startTime} - ${endTime}`;
+    const handleSlotClick = (slot: Slot) => {
+        setSelectedSlot(slot);
+        setShowDeleteModal(true);
     };
 
     return (
@@ -68,6 +66,8 @@ export const Availability = () => {
                                 size="lg"
                                 shape="rounded"
                                 color="primary"
+                                disabled={slot.status === SlotStatus.UNAVILABLE}
+                                onClick={() => handleSlotClick(slot)}
                             >
                                 {formatTimeRange(slot.startTime, slot.endTime)}
                             </Button>
@@ -85,6 +85,17 @@ export const Availability = () => {
                 <AddAvailabilityModal
                     show={showAvailability}
                     onClose={() => setShowAvailability(false)}
+                />
+            )}
+
+            {showDeleteModal && (
+                <DeleteSlotModal
+                    show={showDeleteModal}
+                    onClose={() => {
+                        setShowDeleteModal(false);
+                        setSelectedSlot(null);
+                    }}
+                    slot={selectedSlot}
                 />
             )}
         </>

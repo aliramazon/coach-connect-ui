@@ -31,6 +31,7 @@ export const AddAvailabilityModal: React.FC<AddAvailabilityModalProps> = ({
                 text: "Save Availability",
                 onClick: createSlot,
                 disabled: isSubmitting,
+                loading: isSubmitting,
             }}
         >
             <Flex $flexDirection="column" $rowGap="1.6rem">
