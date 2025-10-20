@@ -9,6 +9,7 @@ export interface SlotStore {
     error: string | null;
     setSlots: (slots: Slot[], date?: Date | null) => void;
     addSlot: (slot: Slot) => void;
+    removeSlot: (slotId: string) => void;
     setIsLoading: (loading: boolean) => void;
     setError: (error: string | null) => void;
     clearSlots: () => void;
@@ -36,6 +37,11 @@ export const useSlotStore = create<SlotStore>((set, get) => ({
                 }));
             }
         }
+    },
+    removeSlot: (slotId) => {
+        set((state) => ({
+            slots: state.slots.filter((slot) => slot.id !== slotId),
+        }));
     },
     setIsLoading: (loading) => set({ isLoading: loading }),
     setError: (error) => set({ error }),
