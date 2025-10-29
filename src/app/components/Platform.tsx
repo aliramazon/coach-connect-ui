@@ -17,10 +17,10 @@ import {
 import { useLogout } from "../hooks/auth/useLogout";
 import { useUserStore } from "../store/useUserStore";
 import { UserRole } from "../types/roles";
+import { ImpersonationModal } from "./ImpersonationModal";
 import { AppLayout, AppPage } from "./Layout";
-import { LoginAsModal } from "./LoginAsModal";
 import { SideBarUser } from "./SidebarUser";
-import { StopLoginAsModal } from "./StopLoginAsModal";
+import { StopImpersonationModal } from "./StopImpersonationModal";
 
 const roleLinks: Record<string, SideBarLinksGroup[]> = {
     admin: [
@@ -76,11 +76,10 @@ const roleLinks: Record<string, SideBarLinksGroup[]> = {
 export const Platform: React.FC<{ role: UserRole }> = ({ role }) => {
     const { user, impersonatedUser, isImpersonating } = useUserStore();
     const { logout } = useLogout();
-    const [isLoginAsModalOpen, setIsLoginAsModalOpen] = useState(false);
-    const [
-        isStopLoginAsConfirmationModalOpen,
-        setIsStopLoginAsConfirmationModalOpen,
-    ] = useState(false);
+    const [isImpersonationModalOpen, setIsImpersonationModalOpen] =
+        useState(false);
+    const [isStopImpersonationModalOpen, setIsStopImpersonationModalOpen] =
+        useState(false);
 
     const effectiveUser = impersonatedUser || user;
 
@@ -95,9 +94,9 @@ export const Platform: React.FC<{ role: UserRole }> = ({ role }) => {
                 title: "Settings",
                 links: [
                     {
-                        linkText: "Login As",
+                        linkText: "Impersonate as",
                         icon: UserCog,
-                        onClick: () => setIsLoginAsModalOpen(true),
+                        onClick: () => setIsImpersonationModalOpen(true),
                     },
                 ],
             },
@@ -106,9 +105,9 @@ export const Platform: React.FC<{ role: UserRole }> = ({ role }) => {
 
     if (isImpersonating) {
         links[1].links.push({
-            linkText: "Stop Login As",
+            linkText: "Stop impersonation",
             icon: UserX,
-            onClick: () => setIsStopLoginAsConfirmationModalOpen(true),
+            onClick: () => setIsStopImpersonationModalOpen(true),
         });
     }
 
@@ -130,17 +129,17 @@ export const Platform: React.FC<{ role: UserRole }> = ({ role }) => {
                 </AppPage>
             </AppLayout>
             {canImpersonate && (
-                <LoginAsModal
-                    show={isLoginAsModalOpen}
+                <ImpersonationModal
+                    show={isImpersonationModalOpen}
                     onClose={() => {
-                        setIsLoginAsModalOpen(false);
+                        setIsImpersonationModalOpen(false);
                     }}
                 />
             )}
             {canImpersonate && (
-                <StopLoginAsModal
-                    show={isStopLoginAsConfirmationModalOpen}
-                    onClose={() => setIsStopLoginAsConfirmationModalOpen(false)}
+                <StopImpersonationModal
+                    show={isStopImpersonationModalOpen}
+                    onClose={() => setIsImpersonationModalOpen(false)}
                 />
             )}
             <Toaster />

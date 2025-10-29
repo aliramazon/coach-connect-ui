@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
-import { CenteredModal, Select } from "../../../design-system";
-import { useImpersonate } from "../../hooks/auth/useImpersonate";
-import { useGetUsers } from "../../hooks/user/useGetUsers";
-import { UserRole } from "../../types/roles";
+import { CenteredModal, Select } from "../../design-system";
+import { useImpersonate } from "../hooks/auth/useImpersonate";
+import { useGetUsers } from "../hooks/user/useGetUsers";
+import { UserRole } from "../types/roles";
 
-type LoginAsModalProps = {
+type Props = {
     show: boolean;
     onClose: () => void;
 };
@@ -14,10 +14,9 @@ const Inputs = styled.div`
     display: flex;
     flex-direction: column;
     gap: var(--space-16);
-    margin-bottom: var(--space-24);
 `;
 
-export const LoginAsModal = ({ show, onClose }: LoginAsModalProps) => {
+export const ImpersonationModal = ({ show, onClose }: Props) => {
     const [role, setRole] = useState<UserRole>();
     const [selectedUserId, setSelectedUserId] = useState<string | undefined>();
     const { users } = useGetUsers({ enabled: show });
@@ -45,12 +44,13 @@ export const LoginAsModal = ({ show, onClose }: LoginAsModalProps) => {
             show={show}
             showCloseIcon={true}
             onClose={onClose}
-            title="Login As User"
+            title="Impersonate a user"
             subtitle="Impersonate a user by selecting their role and account"
             primaryActionButton={{
                 text: "Login",
                 onClick: impersonate,
                 disabled: isImpersonating,
+                loading: isImpersonating,
             }}
         >
             <Inputs>

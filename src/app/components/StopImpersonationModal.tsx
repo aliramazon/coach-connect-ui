@@ -2,12 +2,12 @@ import { CenteredModal } from "../../design-system";
 import { useImpersonate } from "../hooks/auth/useImpersonate";
 import { useUserStore } from "../store/useUserStore";
 
-type LoginAsModalProps = {
+type Props = {
     show: boolean;
     onClose: () => void;
 };
 
-export const StopLoginAsModal = ({ show, onClose }: LoginAsModalProps) => {
+export const StopImpersonationModal = ({ show, onClose }: Props) => {
     const { isStoppingImpersonation, stopImpersonation } = useImpersonate({
         onSuccessStop: onClose,
     });
@@ -18,8 +18,8 @@ export const StopLoginAsModal = ({ show, onClose }: LoginAsModalProps) => {
             show={show}
             showCloseIcon={true}
             onClose={onClose}
-            title="Stop Login As"
-            subtitle={`You are stopping logging as ${impersonatedUser?.firstName} ${impersonatedUser?.lastName} that has role of ${impersonatedUser?.role}`}
+            title="Stop impersonation"
+            subtitle={`You are stopping impersonating as ${impersonatedUser?.firstName} ${impersonatedUser?.lastName} that has role of ${impersonatedUser?.role}`}
             primaryActionButton={{
                 text: "Confirm",
                 onClick: stopImpersonation,
