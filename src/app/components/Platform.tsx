@@ -139,7 +139,7 @@ export const Platform: React.FC<{ role: UserRole }> = ({ role }) => {
             {canImpersonate && (
                 <StopImpersonationModal
                     show={isStopImpersonationModalOpen}
-                    onClose={() => setIsImpersonationModalOpen(false)}
+                    onClose={() => setIsStopImpersonationModalOpen(false)}
                 />
             )}
             <Toaster />

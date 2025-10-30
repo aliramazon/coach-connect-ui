@@ -10,9 +10,6 @@ export interface Slot {
     startTime: string;
     endTime: string;
     status: SlotStatus;
-    createdAt: string;
-    updatedAt?: Date;
-    coachId: string;
 }
 
 export interface CreateSlotRequest {
