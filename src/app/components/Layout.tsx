@@ -2,16 +2,25 @@ import styled from "@emotion/styled";
 
 const AppLayout = styled.main`
     display: flex;
+    height: 100vh;
 `;
 
 const AppPage = styled.section`
-    /* height: 100vh; */
     flex: 1;
     background-color: var(--jaguar-12);
-    padding: var(--space-32);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
 `;
 
-export const Scrollable = styled.div`
+const PageBody = styled.div`
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-32);
+    padding-left: var(--space-32);
+    padding-right: var(--space-32);
+`;
+
+const Scrollable = styled.div`
     overflow-y: auto;
 
     &::-webkit-scrollbar {
@@ -30,4 +39,4 @@ export const Scrollable = styled.div`
     }
 `;
 
-export { AppLayout, AppPage };
+export { AppLayout, AppPage, PageBody, Scrollable };

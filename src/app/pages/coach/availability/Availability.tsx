@@ -4,6 +4,7 @@ import { useState } from "react";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { Button, Flex, Typography } from "../../../../design-system";
 import { DatePicker } from "../../../../design-system/DatePicker";
+import { PageBody } from "../../../components/Layout";
 import { PageHeader } from "../../../components/PageHeader";
 import { useGetSlots } from "../../../hooks/slot/useGetSlots";
 import { SlotStatus, type Slot } from "../../../types/slot";
@@ -43,43 +44,50 @@ export const Availability = () => {
                 actionButtonIcon={PlusIcon}
                 actionButtonOnClick={() => setShowAvailability(true)}
             />
-
-            <Flex $gap="var(--space-32)">
-                <DatePicker
-                    selected={selectedDate}
-                    onChange={handleDateChange}
-                    shape="rounded"
-                    inlineSize="md"
-                    inline
-                />
-                {isLoading && (
-                    <Typography variant="paragraph-md">
-                        Fetching your availability for this day...
-                    </Typography>
-                )}
-                {slots.length > 0 && (
-                    <SlotsGrid>
-                        {slots.map((slot) => (
-                            <Button
-                                key={slot.id}
-                                variant="outlined"
-                                size="lg"
-                                shape="rounded"
-                                color="primary"
-                                disabled={slot.status === SlotStatus.UNAVILABLE}
-                                onClick={() => handleSlotClick(slot)}
-                            >
-                                {formatTimeRange(slot.startTime, slot.endTime)}
-                            </Button>
-                        ))}
-                    </SlotsGrid>
-                )}
-                {slots.length === 0 && !isLoading && (
-                    <Typography variant="paragraph-md">
-                        You have not entered your availability for this day yet!
-                    </Typography>
-                )}
-            </Flex>
+            <PageBody>
+                <Flex $gap="var(--space-32)">
+                    <DatePicker
+                        selected={selectedDate}
+                        onChange={handleDateChange}
+                        shape="rounded"
+                        inlineSize="md"
+                        inline
+                    />
+                    {isLoading && (
+                        <Typography variant="paragraph-md">
+                            Fetching your availability for this day...
+                        </Typography>
+                    )}
+                    {slots.length > 0 && (
+                        <SlotsGrid>
+                            {slots.map((slot) => (
+                                <Button
+                                    key={slot.id}
+                                    variant="outlined"
+                                    size="lg"
+                                    shape="rounded"
+                                    color="primary"
+                                    disabled={
+                                        slot.status === SlotStatus.UNAVILABLE
+                                    }
+                                    onClick={() => handleSlotClick(slot)}
+                                >
+                                    {formatTimeRange(
+                                        slot.startTime,
+                                        slot.endTime
+                                    )}
+                                </Button>
+                            ))}
+                        </SlotsGrid>
+                    )}
+                    {slots.length === 0 && !isLoading && (
+                        <Typography variant="paragraph-md">
+                            You have not entered your availability for this day
+                            yet!
+                        </Typography>
+                    )}
+                </Flex>
+            </PageBody>
 
             {showAvailability && (
                 <AddAvailabilityModal

@@ -12,8 +12,12 @@ const PageHeaderBase = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: var(--space-32);
-    height: 4rem;
+    height: 8rem;
+    flex: 0 0 8rem;
+    position: sticky;
+    top: 0;
+    background-color: var(--white);
+    padding: 0 var(--space-32);
 `;
 
 const PageHeader: React.FC<PageHeaderProps> = ({
