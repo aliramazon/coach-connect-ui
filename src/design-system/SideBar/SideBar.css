@@ -6,11 +6,14 @@
     gap: var(--space-32);
     z-index: 1;
     box-shadow: var(--shadow-m);
+    position: sticky;
+    top: 0;
 }
 
 .side-bar__logo-wrapper {
     padding: var(--space-32) var(--space-16) 0 var(--space-16);
 }
+
 .side-bar__link-group-title {
     color: var(--jaguar-500);
     padding-left: var(--space-16);
