@@ -16,7 +16,9 @@ export const useCoachesSlots = (date: Date) => {
     } = useCoachesSlotsStore();
 
     useEffect(() => {
-        // Only fetch if date changed or if we don't have data
+        if (!date) {
+            return;
+        }
         const shouldFetch =
             !currentDate ||
             !isSameDate(currentDate, date) ||

@@ -2,15 +2,15 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import {
     Avatar,
+    Badge,
     BaseCard,
-    Button,
+    DatePicker,
     Flex,
     Typography,
 } from "../../../design-system";
 import { PageBody } from "../../components/Layout";
 import { PageHeader } from "../../components/PageHeader";
 import { useCoachesSlots } from "../../hooks/coaches-slots/useCoachesSlots";
-import { SlotStatus } from "../../types/slot";
 import { formatTimeRange } from "../../utils/time-formatters";
 
 const CoachCard = styled(BaseCard)`
@@ -18,6 +18,8 @@ const CoachCard = styled(BaseCard)`
     display: flex;
     flex-direction: column;
     gap: var(--space-16);
+    width: calc((100% - var(--space-24)) / 2);
+    flex-grow: 0;
 `;
 
 const CoachHeader = styled(Flex)`
@@ -29,8 +31,13 @@ const EmptyState = styled(Typography)`
     color: var(--gray-500);
 `;
 
+const DatePickerWrapper = styled.div`
+    margin-bottom: var(--space-32);
+    width: 30rem;
+`;
+
 export const Coaches = () => {
-    const [selectedDate] = useState<Date>(new Date());
+    const [selectedDate, setSelectedDate] = useState<Date>(new Date());
     const { coaches, isLoading, error } = useCoachesSlots(selectedDate);
 
     const getCoachFullName = (firstName: string, lastName: string) => {
@@ -41,6 +48,19 @@ export const Coaches = () => {
         <>
             <PageHeader pageTitle="Coaches" />
             <PageBody>
+                <DatePickerWrapper>
+                    <DatePicker
+                        inputSize="lg"
+                        shape="rounded"
+                        label="Select Date"
+                        id="coach-date-picker"
+                        placeholderText="Select a date to view availability"
+                        selected={selectedDate}
+                        onChange={(date) => setSelectedDate(date as Date)}
+                        dateFormat="MMMM d, yyyy"
+                    />
+                </DatePickerWrapper>
+
                 <Flex $flexDirection="column" $gap="var(--space-24)">
                     {isLoading && (
                         <Typography variant="paragraph-md">
@@ -56,9 +76,10 @@ export const Coaches = () => {
 
                     {!isLoading && !error && (
                         <Flex
-                            $flexDirection="column"
+                            $flexDirection="row"
+                            $flexWrap="wrap"
                             $gap="var(--space-24)"
-                            $width="100%"
+                            $alignItems="stretch"
                         >
                             {coaches.length > 0 ? (
                                 coaches.map((coach) => (
@@ -101,22 +122,16 @@ export const Coaches = () => {
                                                 >
                                                     {coach.coachSlots.map(
                                                         (slot) => (
-                                                            <Button
+                                                            <Badge
                                                                 key={slot.id}
-                                                                variant="outlined"
-                                                                size="sm"
-                                                                shape="rounded"
-                                                                color="secondary"
-                                                                disabled={
-                                                                    slot.status ===
-                                                                    SlotStatus.UNAVILABLE
-                                                                }
-                                                            >
-                                                                {formatTimeRange(
+                                                                label={formatTimeRange(
                                                                     slot.startTime,
                                                                     slot.endTime
                                                                 )}
-                                                            </Button>
+                                                                color="gray"
+                                                                variant="outlined"
+                                                                shape="rounded"
+                                                            />
                                                         )
                                                     )}
                                                 </Flex>
