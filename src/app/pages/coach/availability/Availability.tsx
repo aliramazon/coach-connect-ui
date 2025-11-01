@@ -64,7 +64,7 @@ export const Availability = () => {
                                 <Button
                                     key={slot.id}
                                     variant="outlined"
-                                    size="lg"
+                                    size="md"
                                     shape="rounded"
                                     color="primary"
                                     disabled={

@@ -4,6 +4,7 @@ import {
     Avatar,
     BaseCard,
     Button,
+    DatePicker,
     Flex,
     Typography,
 } from "../../../design-system";
@@ -18,6 +19,8 @@ const CoachCard = styled(BaseCard)`
     display: flex;
     flex-direction: column;
     gap: var(--space-16);
+    width: calc((100% - var(--space-24)) / 2);
+    flex-grow: 0;
 `;
 
 const CoachHeader = styled(Flex)`
@@ -29,8 +32,13 @@ const EmptyState = styled(Typography)`
     color: var(--gray-500);
 `;
 
+const DatePickerWrapper = styled.div`
+    margin-bottom: var(--space-32);
+    width: 30rem;
+`;
+
 export const Coaches = () => {
-    const [selectedDate] = useState<Date>(new Date());
+    const [selectedDate, setSelectedDate] = useState<Date>(new Date());
     const { coaches, isLoading, error } = useCoachesSlots(selectedDate);
 
     const getCoachFullName = (firstName: string, lastName: string) => {
@@ -41,6 +49,19 @@ export const Coaches = () => {
         <>
             <PageHeader pageTitle="Coaches" />
             <PageBody>
+                <DatePickerWrapper>
+                    <DatePicker
+                        inputSize="md"
+                        shape="rounded"
+                        label="Select Date"
+                        id="coach-date-picker"
+                        placeholderText="Select a date to view availability"
+                        selected={selectedDate}
+                        onChange={(date) => setSelectedDate(date as Date)}
+                        dateFormat="MMMM d, yyyy"
+                    />
+                </DatePickerWrapper>
+
                 <Flex $flexDirection="column" $gap="var(--space-24)">
                     {isLoading && (
                         <Typography variant="paragraph-md">
@@ -56,9 +77,10 @@ export const Coaches = () => {
 
                     {!isLoading && !error && (
                         <Flex
-                            $flexDirection="column"
+                            $flexDirection="row"
+                            $flexWrap="wrap"
                             $gap="var(--space-24)"
-                            $width="100%"
+                            $alignItems="stretch"
                         >
                             {coaches.length > 0 ? (
                                 coaches.map((coach) => (
@@ -104,7 +126,7 @@ export const Coaches = () => {
                                                             <Button
                                                                 key={slot.id}
                                                                 variant="outlined"
-                                                                size="sm"
+                                                                size="md"
                                                                 shape="rounded"
                                                                 color="secondary"
                                                                 disabled={
