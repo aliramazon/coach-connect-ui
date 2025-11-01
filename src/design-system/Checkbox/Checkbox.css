@@ -35,7 +35,7 @@
 }
 
 .checkbox__custom.checkbox__custom--circle {
-    border-radius: 0.8rem;
+    border-radius: 50%;
 }
 
 /* Label */
