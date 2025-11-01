@@ -1,0 +1,82 @@
+/*Visually Removes default radio  */
+.radio__hidden-input {
+    appearance: none;
+    opacity: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+/* Custom Radio */
+.radio__custom {
+    position: relative;
+    height: 2rem;
+    width: 2rem;
+    border: 0.15rem solid var(--jaguar-400);
+    background-color: var(--white);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.radio__custom--checked {
+    border-color: var(--violet-500);
+    background-color: var(--white);
+}
+
+.radio__custom--checked::after {
+    content: "";
+    position: absolute;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 50%;
+    background-color: var(--violet-500);
+}
+
+.radio__custom.radio__custom--rounded {
+    border-radius: 0.5rem;
+}
+
+.radio__custom.radio__custom--rounded.radio__custom--checked::after {
+    border-radius: 0.5rem;
+}
+
+.radio__custom.radio__custom--circle {
+    border-radius: 50%;
+}
+
+/* Label */
+.radio__label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-16);
+    cursor: pointer;
+    height: 4rem;
+}
+
+.radio__label.radio__label--end .radio__custom {
+    order: 1;
+}
+
+/* Disabled State */
+.radio__custom--disabled {
+    border-color: var(--jaguar-200);
+}
+
+.radio__custom--checked.radio__custom--disabled {
+    border-color: var(--violet-200);
+}
+
+.radio__custom--checked.radio__custom--disabled::after {
+    background-color: var(--violet-200);
+}
+
+/* Hover and Focus state */
+
+.radio__hidden-input:hover:not(:focus) + .radio__custom {
+    border-color: var(--violet-500);
+}
+
+.radio__hidden-input:focus + .radio__custom {
+    border-color: var(--violet-500);
+}

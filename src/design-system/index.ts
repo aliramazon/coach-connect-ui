@@ -15,6 +15,7 @@ export * from "./Label";
 export * from "./Logo";
 export * from "./Menu";
 export * from "./Progress";
+export * from "./Radio";
 export * from "./Select";
 export * from "./SideBar";
 export * from "./Switch";
