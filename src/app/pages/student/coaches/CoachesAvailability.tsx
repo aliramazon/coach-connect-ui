@@ -86,8 +86,8 @@ export const CoachesAvailability = ({
                                         <Button
                                             key={slot.id}
                                             variant="outlined"
-                                            size="md"
-                                            shape="rounded"
+                                            size="sm"
+                                            shape="circle"
                                             color="secondary"
                                             disabled={
                                                 slot.status ===
