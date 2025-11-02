@@ -17,6 +17,7 @@
 
 .modal__subtitle {
     margin-bottom: var(--space-24);
+    white-space: pre-line;
 }
 
 .modal__header {
