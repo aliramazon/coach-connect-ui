@@ -4,7 +4,10 @@ import { DatePicker, Flex, Typography } from "../../../../design-system";
 import { PageBody } from "../../../components/Layout";
 import { PageHeader } from "../../../components/PageHeader";
 import { useCoachesSlots } from "../../../hooks/coaches-slots/useCoachesSlots";
+import type { Slot } from "../../../types/slot";
+import { formatTimeRange } from "../../../utils/time-formatters";
 import { CoachesAvailability } from "./CoachesAvailability";
+import { CreateBookingModal } from "./CreateBookingModal";
 
 const DatePickerWrapper = styled.div`
     margin-bottom: var(--space-32);
@@ -12,8 +15,21 @@ const DatePickerWrapper = styled.div`
 `;
 
 export const CoachesAvailabilityContainer = () => {
-    const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+    // Set today's date (without time) for both minDate and initial selectedDate
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const [selectedDate, setSelectedDate] = useState<Date>(today);
+    const [selectedSlot, setSelectedSlot] = useState<Slot | null>(null);
     const { coaches, isLoading, error } = useCoachesSlots(selectedDate);
+
+    const handleSlotClick = (slot: Slot) => {
+        setSelectedSlot(slot);
+    };
+
+    const handleCloseModal = () => {
+        setSelectedSlot(null);
+    };
 
     return (
         <>
@@ -29,6 +45,7 @@ export const CoachesAvailabilityContainer = () => {
                         selected={selectedDate}
                         onChange={(date) => setSelectedDate(date as Date)}
                         dateFormat="MMMM d, yyyy"
+                        minDate={today}
                     />
                 </DatePickerWrapper>
 
@@ -46,10 +63,25 @@ export const CoachesAvailabilityContainer = () => {
                     )}
 
                     {!isLoading && !error && (
-                        <CoachesAvailability coaches={coaches} />
+                        <CoachesAvailability
+                            coaches={coaches}
+                            onSlotClick={handleSlotClick}
+                        />
                     )}
                 </Flex>
             </PageBody>
+
+            {selectedSlot && (
+                <CreateBookingModal
+                    show={!!selectedSlot}
+                    onClose={handleCloseModal}
+                    slotId={selectedSlot.id}
+                    slotTimeRange={formatTimeRange(
+                        selectedSlot.startTime,
+                        selectedSlot.endTime
+                    )}
+                />
+            )}
         </>
     );
 };

@@ -10,6 +10,7 @@ export interface Slot {
     startTime: string;
     endTime: string;
     status: SlotStatus;
+    isPast?: boolean;
 }
 
 export interface CreateSlotRequest {

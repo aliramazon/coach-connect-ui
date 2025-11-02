@@ -11,7 +11,7 @@ import { Bookings as CoachBookings } from "../app/pages/coach/Bookings";
 import { CoachPlatform } from "../app/pages/coach/CoachPlatform";
 
 import { Bookings as StudentBookings } from "../app/pages/student/Bookings";
-import { Coaches as StudentCoaches } from "../app/pages/student/Coaches";
+import { CoachesAvailabilityContainer as StudentCoaches } from "../app/pages/student/coaches/CoachesAvailabilityContainer";
 import { StudentPlatform } from "../app/pages/student/StudentPlatform";
 
 import { AdminPlatform } from "../app/pages/admin";

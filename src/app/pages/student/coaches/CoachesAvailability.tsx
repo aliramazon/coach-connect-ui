@@ -7,6 +7,7 @@ import {
     Typography,
 } from "../../../../design-system";
 import type { CoachWithSlots } from "../../../services/coaches-slots/get-all";
+import type { Slot } from "../../../types/slot";
 import { SlotStatus } from "../../../types/slot";
 import { formatTimeRange } from "../../../utils/time-formatters";
 
@@ -30,9 +31,13 @@ const EmptyState = styled(Typography)`
 
 interface CoachesAvailabilityProps {
     coaches: CoachWithSlots[];
+    onSlotClick: (slot: Slot) => void;
 }
 
-export const CoachesAvailability = ({ coaches }: CoachesAvailabilityProps) => {
+export const CoachesAvailability = ({
+    coaches,
+    onSlotClick,
+}: CoachesAvailabilityProps) => {
     const getCoachFullName = (firstName: string, lastName: string) => {
         return `${firstName} ${lastName}`;
     };
@@ -86,8 +91,10 @@ export const CoachesAvailability = ({ coaches }: CoachesAvailabilityProps) => {
                                             color="secondary"
                                             disabled={
                                                 slot.status ===
-                                                SlotStatus.UNAVILABLE
+                                                    SlotStatus.UNAVILABLE ||
+                                                slot.isPast === true
                                             }
+                                            onClick={() => onSlotClick(slot)}
                                         >
                                             {formatTimeRange(
                                                 slot.startTime,
