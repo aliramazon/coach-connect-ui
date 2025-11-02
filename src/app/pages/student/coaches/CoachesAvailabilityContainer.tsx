@@ -4,6 +4,7 @@ import { DatePicker, Flex, Typography } from "../../../../design-system";
 import { PageBody } from "../../../components/Layout";
 import { PageHeader } from "../../../components/PageHeader";
 import { useCoachesSlots } from "../../../hooks/coaches-slots/useCoachesSlots";
+import type { CoachWithSlots } from "../../../services/coaches-slots/get-all";
 import type { Slot } from "../../../types/slot";
 import { formatTimeRange } from "../../../utils/time-formatters";
 import { CoachesAvailability } from "./CoachesAvailability";
@@ -21,14 +22,19 @@ export const CoachesAvailabilityContainer = () => {
 
     const [selectedDate, setSelectedDate] = useState<Date>(today);
     const [selectedSlot, setSelectedSlot] = useState<Slot | null>(null);
+    const [selectedCoach, setSelectedCoach] = useState<CoachWithSlots | null>(
+        null
+    );
     const { coaches, isLoading, error } = useCoachesSlots(selectedDate);
 
-    const handleSlotClick = (slot: Slot) => {
+    const handleSlotClick = (slot: Slot, coach: CoachWithSlots) => {
         setSelectedSlot(slot);
+        setSelectedCoach(coach);
     };
 
     const handleCloseModal = () => {
         setSelectedSlot(null);
+        setSelectedCoach(null);
     };
 
     return (
@@ -71,7 +77,7 @@ export const CoachesAvailabilityContainer = () => {
                 </Flex>
             </PageBody>
 
-            {selectedSlot && (
+            {selectedSlot && selectedCoach && (
                 <CreateBookingModal
                     show={!!selectedSlot}
                     onClose={handleCloseModal}
@@ -80,6 +86,8 @@ export const CoachesAvailabilityContainer = () => {
                         selectedSlot.startTime,
                         selectedSlot.endTime
                     )}
+                    coachFirstName={selectedCoach.firstName}
+                    coachLastName={selectedCoach.lastName}
                 />
             )}
         </>

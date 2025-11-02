@@ -31,7 +31,7 @@ const EmptyState = styled(Typography)`
 
 interface CoachesAvailabilityProps {
     coaches: CoachWithSlots[];
-    onSlotClick: (slot: Slot) => void;
+    onSlotClick: (slot: Slot, coach: CoachWithSlots) => void;
 }
 
 export const CoachesAvailability = ({
@@ -94,7 +94,9 @@ export const CoachesAvailability = ({
                                                     SlotStatus.UNAVILABLE ||
                                                 slot.isPast === true
                                             }
-                                            onClick={() => onSlotClick(slot)}
+                                            onClick={() =>
+                                                onSlotClick(slot, coach)
+                                            }
                                         >
                                             {formatTimeRange(
                                                 slot.startTime,

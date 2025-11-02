@@ -8,6 +8,8 @@ type CreateBookingModalProps = {
     onClose: () => void;
     slotId: string;
     slotTimeRange: string;
+    coachFirstName: string;
+    coachLastName: string;
 };
 
 export const CreateBookingModal: React.FC<CreateBookingModalProps> = ({
@@ -15,7 +17,12 @@ export const CreateBookingModal: React.FC<CreateBookingModalProps> = ({
     onClose,
     slotId,
     slotTimeRange,
+    coachFirstName,
+    coachLastName,
 }) => {
+    const getCoachFullName = () => {
+        return `${coachFirstName} ${coachLastName}`;
+    };
     const [selectedBookingType, setSelectedBookingType] = useState<BookingType>(
         BookingType.VIDEO_CALL
     );
@@ -42,8 +49,8 @@ export const CreateBookingModal: React.FC<CreateBookingModalProps> = ({
             show={show}
             showCloseIcon
             onClose={handleClose}
-            title="Create Booking"
-            subtitle={`Select the meeting type for ${slotTimeRange}`}
+            title="Book a session "
+            subtitle={`Select session type with ${getCoachFullName()} at\n${slotTimeRange}`}
             primaryActionButton={{
                 text: "Book",
                 onClick: handleBook,
@@ -56,7 +63,7 @@ export const CreateBookingModal: React.FC<CreateBookingModalProps> = ({
             }}
         >
             <Flex $flexDirection="column" $rowGap="1.6rem">
-                <Flex $flexDirection="column" $gap="var(--space-8)">
+                <Flex $gap="var(--space-16)">
                     <Radio
                         id="booking-type-video"
                         name="booking-type"
