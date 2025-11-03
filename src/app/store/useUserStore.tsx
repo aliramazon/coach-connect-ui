@@ -13,9 +13,10 @@ export interface UserStore {
     setCsrfToken: (token: string) => void;
     setIsProfileLoading: (value: boolean) => void;
     logout: () => void;
+    getEffectiveUser: () => User | null;
 }
 
-export const useUserStore = create<UserStore>((set) => ({
+export const useUserStore = create<UserStore>((set, get) => ({
     user: null,
     impersonatedUser: null,
     csrfToken: null,
@@ -38,4 +39,9 @@ export const useUserStore = create<UserStore>((set) => ({
             isImpersonating: false,
             isProfileLoading: false,
         }),
+
+    getEffectiveUser: () => {
+        const { impersonatedUser, user } = get();
+        return impersonatedUser || user;
+    },
 }));

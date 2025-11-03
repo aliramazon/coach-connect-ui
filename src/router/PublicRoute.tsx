@@ -13,8 +13,8 @@ export const PublicRoute: React.FC<PublicRouteProps> = ({
     children,
     redirectIfAuthenticated = true,
 }) => {
-    const { user, impersonatedUser } = useUserStore();
-    const effectiveUser = impersonatedUser || user;
+    const { getEffectiveUser } = useUserStore();
+    const effectiveUser = getEffectiveUser();
 
     if (redirectIfAuthenticated && effectiveUser) {
         const dashboardMap = {

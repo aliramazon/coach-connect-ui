@@ -74,14 +74,13 @@ const roleLinks: Record<string, SideBarLinksGroup[]> = {
 };
 
 export const Platform: React.FC<{ role: UserRole }> = ({ role }) => {
-    const { user, impersonatedUser, isImpersonating } = useUserStore();
+    const { getEffectiveUser, isImpersonating } = useUserStore();
+    const effectiveUser = getEffectiveUser();
     const { logout } = useLogout();
     const [isImpersonationModalOpen, setIsImpersonationModalOpen] =
         useState(false);
     const [isStopImpersonationModalOpen, setIsStopImpersonationModalOpen] =
         useState(false);
-
-    const effectiveUser = impersonatedUser || user;
 
     let links: SideBarLinksGroup[] = roleLinks[role.toLowerCase()];
 

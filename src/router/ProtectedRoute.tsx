@@ -16,9 +16,8 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
     allowedRoles,
     redirectTo = "/login",
 }) => {
-    const { user, impersonatedUser, isProfileLoading } = useUserStore();
-
-    const effectiveUser = impersonatedUser || user;
+    const { getEffectiveUser, isProfileLoading } = useUserStore();
+    const effectiveUser = getEffectiveUser();
     if (isProfileLoading) return <LoadingScreen />;
 
     if (!effectiveUser) {
