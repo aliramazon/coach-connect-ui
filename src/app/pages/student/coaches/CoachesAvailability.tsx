@@ -4,6 +4,7 @@ import {
     BaseCard,
     Button,
     Flex,
+    Separator,
     Typography,
 } from "../../../../design-system";
 import type { CoachWithSlots } from "../../../services/coaches-slots/get-all";
@@ -66,7 +67,11 @@ export const CoachesAvailability = ({
                                 size="lg"
                             />
                             <Flex $flexDirection="column" $gap="var(--space-2)">
-                                <Typography variant="h6" color="neutral-strong">
+                                <Typography
+                                    variant="paragraph-lg"
+                                    color="neutral-strong"
+                                    weight="bold"
+                                >
                                     {getCoachFullName(
                                         coach.firstName,
                                         coach.lastName
@@ -74,6 +79,7 @@ export const CoachesAvailability = ({
                                 </Typography>
                             </Flex>
                         </CoachHeader>
+                        <Separator color="light" />
 
                         {coach.coachSlots.length > 0 ? (
                             <>
