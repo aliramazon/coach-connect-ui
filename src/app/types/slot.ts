@@ -5,10 +5,12 @@ export const SlotStatus = {
 
 export type SlotStatus = (typeof SlotStatus)[keyof typeof SlotStatus];
 
-export interface Slot {
+export interface BaseSlot {
     id: string;
     startTime: string;
     endTime: string;
+}
+export interface Slot extends BaseSlot {
     status: SlotStatus;
     isPast?: boolean;
 }

@@ -4,7 +4,6 @@ import { httpRequest } from "../../utils/http-request";
 export interface CreateSlotResponse {
     success: boolean;
     message: string;
-
     data: { slot: Slot };
 }
 
