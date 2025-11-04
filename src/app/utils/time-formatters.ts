@@ -1,11 +1,11 @@
+import { format } from "date-fns";
+
 export const formatTimeRange = (start: string, end: string): string => {
-    const startTime = new Date(start).toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-    });
-    const endTime = new Date(end).toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-    });
+    const startTime = format(new Date(start), "h:mm a");
+    const endTime = format(new Date(end), "h:mm a");
     return `${startTime} - ${endTime}`;
+};
+
+export const formatDate = (dateString: string): string => {
+    return format(new Date(dateString), "MMMM d, yyyy");
 };
