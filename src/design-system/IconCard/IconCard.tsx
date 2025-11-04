@@ -5,6 +5,7 @@ import type { IconCardProps } from "./types";
 import "./IconCard.css";
 
 const IconCardIconSize = {
+    xs: 18,
     sm: 24,
     md: 36,
     lg: 48,

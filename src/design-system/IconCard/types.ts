@@ -14,7 +14,7 @@ export type IconCardColor =
     | "blue-light"
     | "purple-light";
 
-export type IconCardSize = "sm" | "md" | "lg";
+export type IconCardSize = "xs" | "sm" | "md" | "lg";
 export type IconCardShape = "rounded" | "circle";
 
 export interface IconCardProps {
