@@ -16,6 +16,7 @@ const IconCard: React.FC<IconCardProps> = ({
     size,
     icon: Icon,
     shape,
+    hasBorder,
     className,
 }) => {
     const sizeClassName = sizeClassNames[size];
@@ -24,8 +25,8 @@ const IconCard: React.FC<IconCardProps> = ({
 
     const classNames = trimWhiteSpaces(
         `iconCard ${sizeClassName} ${colorClassName} ${shapeClassName} ${
-            className ? className : ""
-        }`
+            hasBorder ? "iconCard-hasBorder" : ""
+        } ${className ? className : ""}`
     );
     const iconSize = IconCardIconSize[size];
 

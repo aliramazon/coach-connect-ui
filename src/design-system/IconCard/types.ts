@@ -22,5 +22,6 @@ export interface IconCardProps {
     size: IconCardSize;
     icon: LucideIcon;
     shape: IconCardShape;
+    hasBorder?: boolean;
     className?: string;
 }

@@ -115,6 +115,31 @@
     background-color: var(--dodger-blue-50);
 }
 
+/* Border Styles */
+.iconCard-greenLight.iconCard-hasBorder {
+    border: 1px solid var(--green-100);
+}
+
+.iconCard-sunglowLight.iconCard-hasBorder {
+    border: 1px solid var(--sunglow-100);
+}
+
+.iconCard-primaryLight.iconCard-hasBorder {
+    border: 1px solid var(--violet-100);
+}
+
+.iconCard-purpleLight.iconCard-hasBorder {
+    border: 1px solid var(--purple-100);
+}
+
+.iconCard-redLight.iconCard-hasBorder {
+    border: 1px solid var(--red-orange-100);
+}
+
+.iconCard-blueLight.iconCard-hasBorder {
+    border: 1px solid var(--dodger-blue-100);
+}
+
 /* .iconCard-icon Colors */
 .iconCard-green .iconCard-icon {
     stroke: var(--white);
