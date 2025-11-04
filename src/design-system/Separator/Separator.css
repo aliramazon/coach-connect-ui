@@ -1,0 +1,21 @@
+.separator {
+    flex-shrink: 0;
+}
+
+.separator-horizontal {
+    width: 100%;
+    height: 1px;
+}
+
+.separator-vertical {
+    width: 1px;
+    height: 100%;
+}
+
+.separator-gray {
+    background-color: var(--jaguar-200);
+}
+
+.separator-light {
+    background-color: var(--jaguar-100);
+}
