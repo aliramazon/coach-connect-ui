@@ -5,18 +5,21 @@ import {
     LucidePhone,
     LucideVideo,
 } from "lucide-react";
+
 import {
     Avatar,
     Badge,
+    type BadgeColors,
     BaseCard,
     Button,
     Flex,
     Separator,
     Typography,
 } from "../../../../design-system";
-import type { BadgeColors } from "../../../../design-system/Badge/types";
+import { useUserStore } from "../../../store/useUserStore";
 import type { Booking } from "../../../types/booking";
 import { BookingStatus, BookingType } from "../../../types/booking";
+import { UserRole } from "../../../types/roles";
 import { formatDate, formatTimeRange } from "../../../utils/time-formatters";
 import { IconTextItem } from "./IconTextItem";
 
@@ -58,8 +61,26 @@ const getFullName = (firstName: string, lastName: string) => {
 };
 
 export const BookingCard = ({ booking }: BookingCardProps) => {
-    const coach = booking.coach;
-    if (!coach) return null;
+    const { getEffectiveUser } = useUserStore();
+    const effectiveUser = getEffectiveUser();
+    const currentUserRole = effectiveUser?.role;
+
+    const person = booking.coach || booking.student;
+    if (!person) return null;
+
+    const phoneNumber =
+        booking.coach?.phoneNumber || booking.student?.phoneNumber;
+
+    const getPhoneCallText = () => {
+        if (currentUserRole === UserRole.STUDENT) {
+            return "A call from coach";
+        }
+        if (currentUserRole === UserRole.COACH) {
+            return "A call to student";
+        }
+        // ADMIN view - show generic text or could be customized
+        return "Phone Call";
+    };
 
     return (
         <StyledBookingCard
@@ -70,8 +91,8 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
         >
             <BookingHeader>
                 <Avatar
-                    firstName={coach.firstName}
-                    lastName={coach.lastName}
+                    firstName={person.firstName}
+                    lastName={person.lastName}
                     shape="circle"
                     size="lg"
                 />
@@ -81,9 +102,11 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
                         color="neutral-strong"
                         weight="bold"
                     >
-                        {getFullName(coach.firstName, coach.lastName)}
+                        {getFullName(person.firstName, person.lastName)}
                     </Typography>
-                    <Typography variant="subtitle-lg">{coach.email}</Typography>
+                    <Typography variant="subtitle-lg">
+                        {person.email}
+                    </Typography>
                 </Flex>
                 <Badge
                     label={booking.status}
@@ -114,7 +137,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
                 }
                 text={
                     booking.type === BookingType.PHONE_CALL
-                        ? "A call from coach"
+                        ? getPhoneCallText()
                         : "Video Call"
                 }
                 rightElement={
@@ -125,7 +148,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
                             size="sm"
                             shape="circle"
                         >
-                            {booking.coach?.phoneNumber}
+                            {phoneNumber}
                         </Button>
                     ) : (
                         <Button

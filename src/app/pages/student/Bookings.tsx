@@ -1,1 +1,1 @@
-export { BookingsContainer as Bookings } from "./bookings/BookingsContainer";
+export { BookingsContainer as Bookings } from "../common/bookings/BookingsContainer";

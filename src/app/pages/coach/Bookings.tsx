@@ -1,5 +1,1 @@
-import { PageHeader } from "../../components/PageHeader";
-
-export const Bookings = () => {
-    return <PageHeader pageTitle="Bookings" />;
-};
+export { BookingsContainer as Bookings } from "../common/bookings/BookingsContainer";

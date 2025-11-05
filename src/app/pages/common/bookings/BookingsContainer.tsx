@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { useMemo, useState } from "react";
+
 import {
     DatePicker,
     Flex,
@@ -71,7 +72,6 @@ export const BookingsContainer = () => {
                             selected={selectedDate}
                             onChange={(date) => setSelectedDate(date as Date)}
                             dateFormat="MMMM d, yyyy"
-                            minDate={today}
                         />
                     </DatePickerWrapper>
                     <FilterWrapper>

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+
 import { Flex, Typography } from "../../../../design-system";
 import type { Booking } from "../../../types/booking";
 import { BookingCard } from "./BookingCard";
