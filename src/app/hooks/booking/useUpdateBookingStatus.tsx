@@ -1,31 +1,43 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { bookingService } from "../../services/booking";
-import { useCoachesSlotsStore } from "../../store/useCoachesSlotsStore";
-import type { BookingTypeType } from "../../types/booking";
+import { useBookingsStore } from "../../store/useBookingsStore";
+import type {
+    BookingUpdatableStatusType,
+    CancelledByType,
+    NoShowPartyType,
+} from "../../types/booking";
 
-type UseCreateBookingOptions = {
+type UseUpdateBookingStatusOptions = {
     onSuccess?: () => void;
     onError?: () => void;
 };
 
-export const useCreateBooking = (options?: UseCreateBookingOptions) => {
+export const useUpdateBookingStatus = (
+    options?: UseUpdateBookingStatusOptions
+) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const { markSlotAsUnavailable } = useCoachesSlotsStore();
+    const { updateBookingStatus } = useBookingsStore();
 
-    const createBooking = (
-        slotId: string,
-        meetingType: BookingTypeType
+    const updateStatus = (
+        bookingId: string,
+        status: BookingUpdatableStatusType,
+        cancelledBy?: CancelledByType,
+        noShowParty?: NoShowPartyType
     ): void => {
         setIsSubmitting(true);
         setError(null);
 
         bookingService
-            .create(slotId, meetingType)
+            .updateStatus(bookingId, {
+                status,
+                ...(cancelledBy && { cancelledBy }),
+                ...(noShowParty && { noShowParty }),
+            })
             .then((response) => {
                 toast.success(response.message);
-                markSlotAsUnavailable(slotId);
+                updateBookingStatus(bookingId, status);
                 if (options?.onSuccess) {
                     options.onSuccess();
                 }
@@ -43,7 +55,7 @@ export const useCreateBooking = (options?: UseCreateBookingOptions) => {
     };
 
     return {
-        createBooking,
+        updateStatus,
         isSubmitting,
         error,
     };

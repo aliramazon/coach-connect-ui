@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { Booking } from "../types/booking";
+import type { Booking, BookingUpdatableStatusType } from "../types/booking";
 
 export interface BookingsStore {
     bookings: Booking[];
@@ -9,6 +9,10 @@ export interface BookingsStore {
     setIsLoading: (loading: boolean) => void;
     setError: (error: string | null) => void;
     clearBookings: () => void;
+    updateBookingStatus: (
+        bookingId: string,
+        status: BookingUpdatableStatusType
+    ) => void;
 }
 
 export const useBookingsStore = create<BookingsStore>((set) => ({
@@ -20,4 +24,11 @@ export const useBookingsStore = create<BookingsStore>((set) => ({
     setIsLoading: (loading) => set({ isLoading: loading }),
     setError: (error) => set({ error }),
     clearBookings: () => set({ bookings: [], error: null }),
+
+    updateBookingStatus: (bookingId, status) =>
+        set((state) => ({
+            bookings: state.bookings.map((booking) =>
+                booking.id === bookingId ? { ...booking, status } : booking
+            ),
+        })),
 }));

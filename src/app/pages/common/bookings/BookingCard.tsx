@@ -5,23 +5,27 @@ import {
     LucidePhone,
     LucideVideo,
 } from "lucide-react";
+import { useState } from "react";
 
 import {
     Avatar,
     Badge,
-    type BadgeColors,
     BaseCard,
     Button,
+    CenteredModal,
     Flex,
+    Menu,
     Separator,
     Typography,
 } from "../../../../design-system";
+import { useUpdateBookingStatus } from "../../../hooks/booking/useUpdateBookingStatus";
 import { useUserStore } from "../../../store/useUserStore";
 import type { Booking } from "../../../types/booking";
 import { BookingStatus, BookingType } from "../../../types/booking";
 import { UserRole } from "../../../types/roles";
 import { formatDate, formatTimeRange } from "../../../utils/time-formatters";
 import { IconTextItem } from "./IconTextItem";
+import { getFullName, getStatusColor, modalCopy, roleCopy } from "./utils";
 
 const StyledBookingCard = styled(BaseCard)`
     padding: var(--space-24);
@@ -41,46 +45,76 @@ interface BookingCardProps {
     booking: Booking;
 }
 
-const getStatusColor = (status: BookingStatus): BadgeColors => {
-    switch (status) {
-        case BookingStatus.ACTIVE:
-            return "primary";
-        case BookingStatus.COMPLETED:
-            return "green";
-        case BookingStatus.CANCELLED:
-            return "red";
-        case BookingStatus.NO_SHOW:
-            return "orange";
-        default:
-            return "gray";
-    }
-};
-
-const getFullName = (firstName: string, lastName: string) => {
-    return `${firstName} ${lastName}`;
-};
-
 export const BookingCard = ({ booking }: BookingCardProps) => {
     const { getEffectiveUser } = useUserStore();
     const effectiveUser = getEffectiveUser();
     const currentUserRole = effectiveUser?.role;
+
+    const [showConfirmModal, setShowConfirmModal] = useState(false);
+    const [selectedAction, setSelectedAction] = useState<
+        typeof BookingStatus.CANCELLED | typeof BookingStatus.NO_SHOW | null
+    >(null);
+
+    const { updateStatus, isSubmitting } = useUpdateBookingStatus({
+        onSuccess: () => {
+            setShowConfirmModal(false);
+            setSelectedAction(null);
+        },
+        onError: () => {
+            setShowConfirmModal(false);
+            setSelectedAction(null);
+        },
+    });
 
     const person = booking.coach || booking.student;
     if (!person) return null;
 
     const phoneNumber =
         booking.coach?.phoneNumber || booking.student?.phoneNumber;
+    const personName = getFullName(person.firstName, person.lastName);
+    const bookingTime = formatTimeRange(
+        booking.slot.startTime,
+        booking.slot.endTime
+    );
 
-    const getPhoneCallText = () => {
-        if (currentUserRole === UserRole.STUDENT) {
-            return "A call from coach";
+    const roleCopyForUser =
+        roleCopy[currentUserRole || UserRole.ADMIN] || roleCopy[UserRole.ADMIN];
+    const phoneCallText = roleCopyForUser.phoneCallText;
+    const personLabel = roleCopyForUser.personLabelPrefix
+        ? `${roleCopyForUser.personLabelPrefix}, ${personName}`
+        : personName;
+
+    const handleMenuSelect = (value: string) => {
+        if (
+            value === BookingStatus.CANCELLED ||
+            value === BookingStatus.NO_SHOW
+        ) {
+            setSelectedAction(value);
+            setShowConfirmModal(true);
         }
-        if (currentUserRole === UserRole.COACH) {
-            return "A call to student";
-        }
-        // ADMIN view - show generic text or could be customized
-        return "Phone Call";
     };
+
+    const handleConfirm = () => {
+        if (selectedAction) {
+            updateStatus(booking.id, selectedAction);
+        }
+    };
+
+    const handleCloseModal = () => {
+        setShowConfirmModal(false);
+        setSelectedAction(null);
+    };
+
+    const menuOptions = [
+        {
+            label: "Cancel",
+            value: BookingStatus.CANCELLED,
+        },
+        {
+            label: "Report no show",
+            value: BookingStatus.NO_SHOW,
+        },
+    ];
 
     return (
         <StyledBookingCard
@@ -108,11 +142,21 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
                         {person.email}
                     </Typography>
                 </Flex>
+
                 <Badge
                     label={booking.status}
                     color={getStatusColor(booking.status)}
                     shape="rounded"
+                    variant="contained"
                 />
+
+                {booking.status === BookingStatus.ACTIVE && (
+                    <Menu
+                        options={menuOptions}
+                        onSelect={handleMenuSelect}
+                        orientation="vertical"
+                    />
+                )}
             </BookingHeader>
             <Separator color="light" />
             <Flex $flexDirection="row" $columnGap="var(--space-24)">
@@ -137,7 +181,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
                 }
                 text={
                     booking.type === BookingType.PHONE_CALL
-                        ? getPhoneCallText()
+                        ? phoneCallText
                         : "Video Call"
                 }
                 rightElement={
@@ -164,6 +208,29 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
                     )
                 }
             />
+            {showConfirmModal && selectedAction && (
+                <CenteredModal
+                    show={showConfirmModal}
+                    showCloseIcon
+                    onClose={handleCloseModal}
+                    title={modalCopy[selectedAction].title}
+                    subtitle={modalCopy[selectedAction].subtitle(
+                        personLabel,
+                        bookingTime
+                    )}
+                    primaryActionButton={{
+                        text: modalCopy[selectedAction].buttonText,
+                        onClick: handleConfirm,
+                        disabled: isSubmitting,
+                        loading: isSubmitting,
+                        color: "danger",
+                    }}
+                    secondaryActionButton={{
+                        text: "Close",
+                        onClick: handleCloseModal,
+                    }}
+                />
+            )}
         </StyledBookingCard>
     );
 };

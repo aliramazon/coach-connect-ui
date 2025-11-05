@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { CenteredModal, Flex, Radio } from "../../../../design-system";
 import { useCreateBooking } from "../../../hooks/booking/useCreateBooking";
+import type { BookingTypeType } from "../../../types/booking";
 import { BookingType } from "../../../types/booking";
 
 type CreateBookingModalProps = {
@@ -23,9 +24,8 @@ export const CreateBookingModal: React.FC<CreateBookingModalProps> = ({
     const getCoachFullName = () => {
         return `${coachFirstName} ${coachLastName}`;
     };
-    const [selectedBookingType, setSelectedBookingType] = useState<BookingType>(
-        BookingType.VIDEO_CALL
-    );
+    const [selectedBookingType, setSelectedBookingType] =
+        useState<BookingTypeType>(BookingType.VIDEO_CALL);
     const { createBooking, isSubmitting } = useCreateBooking({
         onSuccess: () => {
             onClose();
@@ -71,7 +71,7 @@ export const CreateBookingModal: React.FC<CreateBookingModalProps> = ({
                         label="Video Call"
                         checked={selectedBookingType === BookingType.VIDEO_CALL}
                         onChange={(value) =>
-                            setSelectedBookingType(value as BookingType)
+                            setSelectedBookingType(value as BookingTypeType)
                         }
                         shape="circle"
                     />
@@ -82,7 +82,7 @@ export const CreateBookingModal: React.FC<CreateBookingModalProps> = ({
                         label="Phone Call"
                         checked={selectedBookingType === BookingType.PHONE_CALL}
                         onChange={(value) =>
-                            setSelectedBookingType(value as BookingType)
+                            setSelectedBookingType(value as BookingTypeType)
                         }
                         shape="circle"
                     />

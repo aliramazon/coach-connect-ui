@@ -6,7 +6,7 @@ export const BookingType = {
     VIDEO_CALL: "VIDEO_CALL",
 } as const;
 
-export type BookingType = (typeof BookingType)[keyof typeof BookingType];
+export type BookingTypeType = (typeof BookingType)[keyof typeof BookingType];
 
 export const BookingStatus = {
     ACTIVE: "ACTIVE",
@@ -15,14 +15,17 @@ export const BookingStatus = {
     NO_SHOW: "NO_SHOW",
 } as const;
 
-export type BookingStatus = (typeof BookingStatus)[keyof typeof BookingStatus];
+export type BookingStatusType =
+    (typeof BookingStatus)[keyof typeof BookingStatus];
+
+export type BookingUpdatableStatusType = "NO_SHOW" | "CANCELLED";
 
 export const NoShowParty = {
     STUDENT: "STUDENT",
     COACH: "COACH",
 } as const;
 
-export type NoShowParty = (typeof NoShowParty)[keyof typeof NoShowParty];
+export type NoShowPartyType = (typeof NoShowParty)[keyof typeof NoShowParty];
 
 export const CompletedBy = {
     SYSTEM: "SYSTEM",
@@ -30,17 +33,24 @@ export const CompletedBy = {
     COACH: "COACH",
 } as const;
 
-export type CompletedBy = (typeof CompletedBy)[keyof typeof CompletedBy];
+export type CompletedByType = (typeof CompletedBy)[keyof typeof CompletedBy];
+
+export const CancelledBy = {
+    STUDENT: "STUDENT",
+    COACH: "COACH",
+} as const;
+
+export type CancelledByType = (typeof CancelledBy)[keyof typeof CancelledBy];
 
 export interface CreateBookingRequest {
     slotId: string;
-    type: BookingType;
+    type: BookingTypeType;
 }
 
 export interface Booking {
     id: string;
-    status: BookingStatus;
-    type: BookingType;
+    status: BookingStatusType;
+    type: BookingTypeType;
     slot: BaseSlot;
     student?: Omit<User, "role">;
     coach?: Omit<User, "role">;

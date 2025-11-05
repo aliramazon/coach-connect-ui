@@ -10,8 +10,9 @@ import {
 import { PageBody } from "../../../components/Layout";
 import { PageHeader } from "../../../components/PageHeader";
 import { useGetBookings } from "../../../hooks/booking/useGetBookings";
-import { BookingStatus } from "../../../types/booking";
+import type { BookingStatusType } from "../../../types/booking";
 import { BookingsList } from "./BookingsList";
+import { statusOptions } from "./utils";
 
 const FiltersWrapper = styled.div`
     margin-bottom: var(--space-32);
@@ -35,7 +36,7 @@ export const BookingsContainer = () => {
 
     const [selectedDate, setSelectedDate] = useState<Date>(today);
     const [selectedStatus, setSelectedStatus] = useState<
-        BookingStatus | "ALL" | null
+        BookingStatusType | "ALL" | null
     >(null);
     const { bookings, isLoading, error } = useGetBookings(selectedDate);
 
@@ -45,17 +46,6 @@ export const BookingsContainer = () => {
         }
         return bookings.filter((booking) => booking.status === selectedStatus);
     }, [bookings, selectedStatus]);
-
-    const statusOptions = [
-        { value: "ALL", label: "All Statuses" },
-        { value: BookingStatus.ACTIVE, label: BookingStatus.ACTIVE },
-        { value: BookingStatus.COMPLETED, label: BookingStatus.COMPLETED },
-        { value: BookingStatus.CANCELLED, label: BookingStatus.CANCELLED },
-        {
-            value: BookingStatus.NO_SHOW,
-            label: BookingStatus.NO_SHOW.replace("_", " "),
-        },
-    ];
 
     return (
         <>
@@ -85,7 +75,7 @@ export const BookingsContainer = () => {
                                 setSelectedStatus(
                                     option.value === "ALL"
                                         ? null
-                                        : (option.value as BookingStatus)
+                                        : (option.value as BookingStatusType)
                                 )
                             }
                             headerPlaceholder="All Statuses"
