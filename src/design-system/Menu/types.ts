@@ -7,9 +7,12 @@ export interface MenuOption {
     color?: "primary" | "danger";
 }
 
+export type MenuOrientation = "horizontal" | "vertical";
+
 export interface MenuProps {
     options: MenuOption[];
     onSelect: (value: string) => void;
     customTrigger?: React.ReactNode;
+    orientation?: MenuOrientation;
     className?: string;
 }

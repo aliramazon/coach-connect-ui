@@ -1,4 +1,4 @@
-import { Ellipsis } from "lucide-react";
+import { Ellipsis, EllipsisVertical } from "lucide-react";
 import { useRef } from "react";
 import { useCloseWhenClickOutside } from "../hooks";
 import { trimWhiteSpaces } from "../utils";
@@ -10,7 +10,12 @@ const colorClassNames = {
     danger: "menu__option--danger",
 };
 
-const Menu: React.FC<MenuProps> = ({ options, onSelect, className }) => {
+const Menu: React.FC<MenuProps> = ({
+    options,
+    onSelect,
+    orientation = "horizontal",
+    className,
+}) => {
     const menuRef = useRef<HTMLDivElement | null>(null);
     const { show, setShow } = useCloseWhenClickOutside(menuRef);
 
@@ -27,9 +32,12 @@ const Menu: React.FC<MenuProps> = ({ options, onSelect, className }) => {
         `menu ${className ? className : ""}`
     );
 
+    const TriggerIcon =
+        orientation === "vertical" ? EllipsisVertical : Ellipsis;
+
     return (
         <div className={finalClassNames} ref={menuRef}>
-            <Ellipsis
+            <TriggerIcon
                 onClick={handleTriggerClick}
                 className="menu__default-trigger"
             />
