@@ -2,10 +2,11 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 
 import { LogOutIcon } from "lucide-react";
+import { Badge } from "../Badge";
 import { Typography } from "../Typography";
 import { type SideBarLinksProps } from "./types";
 
-const SideBarLinks: React.FC<SideBarLinksProps> = ({ links, logOut }) => {
+const SideBarLinks: React.FC<SideBarLinksProps> = ({ links, logOut, role }) => {
     return (
         <>
             {links.map((group, idx) => {
@@ -56,6 +57,14 @@ const SideBarLinks: React.FC<SideBarLinksProps> = ({ links, logOut }) => {
                 <Link to="" className="side-bar__log-out-link" onClick={logOut}>
                     Log Out
                 </Link>
+                {role && (
+                    <Badge
+                        label={role}
+                        color="primary"
+                        shape="circle"
+                        variant="contained"
+                    />
+                )}
             </div>
         </>
     );

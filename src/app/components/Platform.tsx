@@ -121,7 +121,11 @@ export const Platform: React.FC<{ role: UserRole }> = ({ role }) => {
                             email: effectiveUser?.email || "",
                         }}
                     />
-                    <SideBarLinks links={links} logOut={logout} />
+                    <SideBarLinks
+                        links={links}
+                        logOut={logout}
+                        role={effectiveUser?.role}
+                    />
                 </SideBar>
                 <AppPage>
                     <Outlet />

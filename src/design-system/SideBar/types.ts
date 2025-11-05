@@ -15,4 +15,5 @@ export type SideBarLinksGroup = {
 export type SideBarLinksProps = {
     links: SideBarLinksGroup[];
     logOut: () => void;
+    role?: string;
 };
