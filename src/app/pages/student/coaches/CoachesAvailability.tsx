@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
+import type { BadgeColors } from "../../../../design-system";
 import {
     Avatar,
+    Badge,
     BaseCard,
     Button,
     Flex,
@@ -26,6 +28,11 @@ const CoachHeader = styled(Flex)`
     gap: var(--space-16);
 `;
 
+const CoachNameContainer = styled(Flex)`
+    align-items: center;
+    gap: var(--space-8);
+`;
+
 const EmptyState = styled(Typography)`
     color: var(--gray-500);
 `;
@@ -34,6 +41,29 @@ interface CoachesAvailabilityProps {
     coaches: CoachWithSlots[];
     onSlotClick: (slot: Slot, coach: CoachWithSlots) => void;
 }
+
+const getRatingBadgeColor = (rating: number | null): BadgeColors => {
+    if (rating === null) {
+        return "gray";
+    }
+    if (rating >= 4.5) {
+        return "green";
+    }
+    if (rating >= 3.5) {
+        return "primary";
+    }
+    if (rating >= 2.5) {
+        return "orange";
+    }
+    return "red";
+};
+
+const formatRating = (rating: number | null): string => {
+    if (rating === null) {
+        return "N/A";
+    }
+    return rating.toFixed(1);
+};
 
 export const CoachesAvailability = ({
     coaches,
@@ -67,16 +97,30 @@ export const CoachesAvailability = ({
                                 size="lg"
                             />
                             <Flex $flexDirection="column" $gap="var(--space-2)">
-                                <Typography
-                                    variant="paragraph-lg"
-                                    color="neutral-strong"
-                                    weight="bold"
-                                >
-                                    {getCoachFullName(
-                                        coach.firstName,
-                                        coach.lastName
+                                <CoachNameContainer>
+                                    <Typography
+                                        variant="paragraph-lg"
+                                        color="neutral-strong"
+                                        weight="bold"
+                                    >
+                                        {getCoachFullName(
+                                            coach.firstName,
+                                            coach.lastName
+                                        )}
+                                    </Typography>
+                                    {coach.averageRating !== null && (
+                                        <Badge
+                                            label={formatRating(
+                                                coach.averageRating
+                                            )}
+                                            color={getRatingBadgeColor(
+                                                coach.averageRating
+                                            )}
+                                            shape="rounded"
+                                            variant="contained"
+                                        />
                                     )}
-                                </Typography>
+                                </CoachNameContainer>
                             </Flex>
                         </CoachHeader>
                         <Separator color="light" />

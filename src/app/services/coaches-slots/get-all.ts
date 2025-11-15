@@ -4,6 +4,7 @@ import { httpRequest } from "../../utils/http-request";
 
 export interface CoachWithSlots extends BaseUser {
     coachSlots: Slot[];
+    averageRating: number | null;
 }
 
 export interface GetAllCoachesSlotsResponse {
