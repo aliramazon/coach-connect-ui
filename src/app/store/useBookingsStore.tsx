@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import type { Booking, BookingUpdatableStatusType } from "../types/booking";
+import type { CallReview } from "../types/call-review";
 
 export interface BookingsStore {
     bookings: Booking[];
@@ -13,6 +14,7 @@ export interface BookingsStore {
         bookingId: string,
         status: BookingUpdatableStatusType
     ) => void;
+    updateBookingReview: (bookingId: string, review: CallReview) => void;
 }
 
 export const useBookingsStore = create<BookingsStore>((set) => ({
@@ -29,6 +31,13 @@ export const useBookingsStore = create<BookingsStore>((set) => ({
         set((state) => ({
             bookings: state.bookings.map((booking) =>
                 booking.id === bookingId ? { ...booking, status } : booking
+            ),
+        })),
+
+    updateBookingReview: (bookingId, review) =>
+        set((state) => ({
+            bookings: state.bookings.map((booking) =>
+                booking.id === bookingId ? { ...booking, review } : booking
             ),
         })),
 }));

@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import {
     LucideCalendarCheck,
     LucideClock,
+    LucideFileText,
     LucideListTodo,
     LucidePhone,
     LucideVideo,
@@ -25,6 +26,7 @@ import type { Booking } from "../../../types/booking";
 import { BookingStatus, BookingType } from "../../../types/booking";
 import { UserRole } from "../../../types/roles";
 import { formatDate, formatTimeRange } from "../../../utils/time-formatters";
+import { AddOrUpdateNoteModal } from "./AddOrUpdateNoteModal";
 import { IconTextItem } from "./IconTextItem";
 import { getFullName, getStatusColor, modalCopy, roleCopy } from "./utils";
 
@@ -52,6 +54,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
     const currentUserRole = effectiveUser?.role;
 
     const [showConfirmModal, setShowConfirmModal] = useState(false);
+    const [showNoteModal, setShowNoteModal] = useState(false);
     const [selectedAction, setSelectedAction] = useState<
         typeof BookingStatus.CANCELLED | typeof BookingStatus.NO_SHOW | null
     >(null);
@@ -86,7 +89,9 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
         : personName;
 
     const handleMenuSelect = (value: string) => {
-        if (
+        if (value === "add-or-update-note") {
+            setShowNoteModal(true);
+        } else if (
             value === BookingStatus.CANCELLED ||
             value === BookingStatus.NO_SHOW
         ) {
@@ -106,16 +111,60 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
         setSelectedAction(null);
     };
 
-    const menuOptions = [
-        {
-            label: "Cancel",
-            value: BookingStatus.CANCELLED,
-        },
-        {
-            label: "Report no show",
-            value: BookingStatus.NO_SHOW,
-        },
-    ];
+    const isStudent = currentUserRole === UserRole.STUDENT;
+    const isCoach = currentUserRole === UserRole.COACH;
+
+    const hasNotes =
+        booking.review &&
+        ((isStudent &&
+            "studentNotes" in booking.review &&
+            booking.review.studentNotes) ||
+            (isCoach &&
+                "coachNotes" in booking.review &&
+                booking.review.coachNotes));
+
+    let notes: string | undefined;
+    if (booking.review) {
+        if (
+            isStudent &&
+            "studentNotes" in booking.review &&
+            booking.review.studentNotes
+        ) {
+            notes = booking.review.studentNotes;
+        } else if (
+            isCoach &&
+            "coachNotes" in booking.review &&
+            booking.review.coachNotes
+        ) {
+            notes = booking.review.coachNotes;
+        }
+    }
+
+    const getMenuOptions = () => {
+        const options = [
+            {
+                label: hasNotes ? "Update Note" : "Add Note",
+                value: "add-or-update-note",
+            },
+        ];
+
+        if (booking.status === BookingStatus.ACTIVE) {
+            options.push(
+                {
+                    label: "Cancel",
+                    value: BookingStatus.CANCELLED,
+                },
+                {
+                    label: "Report no show",
+                    value: BookingStatus.NO_SHOW,
+                }
+            );
+        }
+
+        return options;
+    };
+
+    const menuOptions = getMenuOptions();
 
     return (
         <StyledBookingCard
@@ -151,13 +200,11 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
                     variant="contained"
                 />
 
-                {booking.status === BookingStatus.ACTIVE && (
-                    <Menu
-                        options={menuOptions}
-                        onSelect={handleMenuSelect}
-                        orientation="vertical"
-                    />
-                )}
+                <Menu
+                    options={menuOptions}
+                    onSelect={handleMenuSelect}
+                    orientation="vertical"
+                />
             </BookingHeader>
             <Separator color="light" />
             <Flex $flexDirection="row" $columnGap="var(--space-24)">
@@ -179,6 +226,15 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
                     <IconTextItem
                         icon={LucideListTodo}
                         text={`Agenda: ${booking.agenda}`}
+                    />
+                </>
+            )}
+            {notes && (
+                <>
+                    <Separator color="light" />
+                    <IconTextItem
+                        icon={LucideFileText}
+                        text={`Notes: ${notes}`}
                     />
                 </>
             )}
@@ -218,6 +274,14 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
                     )
                 }
             />
+
+            {showNoteModal && (
+                <AddOrUpdateNoteModal
+                    show={showNoteModal}
+                    onClose={() => setShowNoteModal(false)}
+                    booking={booking}
+                />
+            )}
 
             {showConfirmModal && selectedAction && (
                 <CenteredModal

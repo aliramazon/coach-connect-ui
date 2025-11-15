@@ -1,3 +1,4 @@
+import type { CallReview } from "./call-review";
 import type { BaseSlot } from "./slot";
 import type { User } from "./user";
 
@@ -56,4 +57,5 @@ export interface Booking {
     student?: Omit<User, "role">;
     coach?: Omit<User, "role">;
     agenda?: string;
+    review?: CallReview;
 }
