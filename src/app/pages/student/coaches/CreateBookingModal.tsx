@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CenteredModal, Flex, Radio } from "../../../../design-system";
+import { CenteredModal, Flex, Input, Radio } from "../../../../design-system";
 import { useCreateBooking } from "../../../hooks/booking/useCreateBooking";
 import type { BookingTypeType } from "../../../types/booking";
 import { BookingType } from "../../../types/booking";
@@ -26,6 +26,7 @@ export const CreateBookingModal: React.FC<CreateBookingModalProps> = ({
     };
     const [selectedBookingType, setSelectedBookingType] =
         useState<BookingTypeType>(BookingType.VIDEO_CALL);
+    const [agenda, setAgenda] = useState<string>("");
     const { createBooking, isSubmitting } = useCreateBooking({
         onSuccess: () => {
             onClose();
@@ -36,11 +37,12 @@ export const CreateBookingModal: React.FC<CreateBookingModalProps> = ({
     });
 
     const handleBook = () => {
-        createBooking(slotId, selectedBookingType);
+        createBooking(slotId, selectedBookingType, agenda);
     };
 
     const handleClose = () => {
         setSelectedBookingType(BookingType.VIDEO_CALL);
+        setAgenda("");
         onClose();
     };
 
@@ -62,7 +64,18 @@ export const CreateBookingModal: React.FC<CreateBookingModalProps> = ({
                 onClick: handleClose,
             }}
         >
-            <Flex $flexDirection="column" $rowGap="1.6rem">
+            <Flex $flexDirection="column" $rowGap="var(--space-16)">
+                <Input
+                    id="booking-agenda"
+                    type="textarea"
+                    label="Agenda (Optional)"
+                    placeholder="What would you like to discuss in this session?"
+                    value={agenda}
+                    onChange={setAgenda}
+                    shape="rounded"
+                    size="lg"
+                    clearable
+                />
                 <Flex $gap="var(--space-16)">
                     <Radio
                         id="booking-type-video"

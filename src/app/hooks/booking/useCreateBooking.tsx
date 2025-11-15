@@ -16,13 +16,14 @@ export const useCreateBooking = (options?: UseCreateBookingOptions) => {
 
     const createBooking = (
         slotId: string,
-        meetingType: BookingTypeType
+        meetingType: BookingTypeType,
+        agenda?: string
     ): void => {
         setIsSubmitting(true);
         setError(null);
 
         bookingService
-            .create(slotId, meetingType)
+            .create(slotId, meetingType, agenda)
             .then((response) => {
                 toast.success(response.message);
                 markSlotAsUnavailable(slotId);

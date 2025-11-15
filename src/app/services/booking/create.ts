@@ -1,4 +1,7 @@
-import type { BookingTypeType, CreateBookingRequest } from "../../types/booking";
+import type {
+    BookingTypeType,
+    CreateBookingRequest,
+} from "../../types/booking";
 import { httpRequest } from "../../utils/http-request";
 
 export interface CreateBookingResponse {
@@ -8,11 +11,13 @@ export interface CreateBookingResponse {
 
 export const create = (
     slotId: string,
-    type: BookingTypeType
+    type: BookingTypeType,
+    agenda?: string
 ): Promise<CreateBookingResponse> => {
     const createBookingRequest: CreateBookingRequest = {
         slotId,
         type,
+        ...(agenda && { agenda }),
     };
 
     return httpRequest<CreateBookingResponse>("/bookings", {
