@@ -21,16 +21,9 @@ import { Students as AdminStudents } from "../app/pages/admin/Students";
 
 import { Login } from "../app/pages/auth/Login";
 import { UserRole } from "../app/types/roles";
+import { Home } from "../landing-page";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { PublicRoute } from "./PublicRoute";
-
-// eslint-disable-next-line react-refresh/only-export-components
-const Home = () => (
-    <section>
-        <h1>Welcome to Coach Connect</h1>
-        <p>This is the marketing site.</p>
-    </section>
-);
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
