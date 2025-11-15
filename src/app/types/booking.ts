@@ -45,6 +45,7 @@ export type CancelledByType = (typeof CancelledBy)[keyof typeof CancelledBy];
 export interface CreateBookingRequest {
     slotId: string;
     type: BookingTypeType;
+    agenda?: string;
 }
 
 export interface Booking {
@@ -54,4 +55,5 @@ export interface Booking {
     slot: BaseSlot;
     student?: Omit<User, "role">;
     coach?: Omit<User, "role">;
+    agenda?: string;
 }

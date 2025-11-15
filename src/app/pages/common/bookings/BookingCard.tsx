@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import {
     LucideCalendarCheck,
     LucideClock,
+    LucideListTodo,
     LucidePhone,
     LucideVideo,
 } from "lucide-react";
@@ -172,6 +173,15 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
                     )}
                 />
             </Flex>
+            {booking.agenda && (
+                <>
+                    <Separator color="light" />
+                    <IconTextItem
+                        icon={LucideListTodo}
+                        text={`Agenda: ${booking.agenda}`}
+                    />
+                </>
+            )}
             <Separator color="light" />
             <IconTextItem
                 icon={
@@ -208,6 +218,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
                     )
                 }
             />
+
             {showConfirmModal && selectedAction && (
                 <CenteredModal
                     show={showConfirmModal}
