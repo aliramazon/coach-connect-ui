@@ -17,10 +17,12 @@ import {
     CenteredModal,
     Flex,
     Menu,
+    Rating,
     Separator,
     Typography,
 } from "../../../../design-system";
 import { useUpdateBookingStatus } from "../../../hooks/booking/useUpdateBookingStatus";
+import { useCreateOrUpdateCallReview } from "../../../hooks/call-review/useCreateOrUpdateCallReview";
 import { useUserStore } from "../../../store/useUserStore";
 import type { Booking } from "../../../types/booking";
 import { BookingStatus, BookingType } from "../../../types/booking";
@@ -28,7 +30,16 @@ import { UserRole } from "../../../types/roles";
 import { formatDate, formatTimeRange } from "../../../utils/time-formatters";
 import { AddOrUpdateNoteModal } from "./AddOrUpdateNoteModal";
 import { IconTextItem } from "./IconTextItem";
-import { getFullName, getStatusColor, modalCopy, roleCopy } from "./utils";
+import {
+    getBookingMenuOptions,
+    getFullName,
+    getNotesFromReview,
+    getSatisfactionScoreFromReview,
+    getStatusColor,
+    hasNotesInReview,
+    modalCopy,
+    roleCopy,
+} from "./utils";
 
 const StyledBookingCard = styled(BaseCard)`
     padding: var(--space-24);
@@ -69,6 +80,9 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
             setSelectedAction(null);
         },
     });
+
+    const { createOrUpdateCallReview: updateSatisfactionScore } =
+        useCreateOrUpdateCallReview();
 
     const person = booking.coach || booking.student;
     if (!person) return null;
@@ -111,60 +125,43 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
         setSelectedAction(null);
     };
 
+    const hasNotes = hasNotesInReview(
+        booking.review,
+        currentUserRole || UserRole.ADMIN
+    );
+
+    const notes = getNotesFromReview(
+        booking.review,
+        currentUserRole || UserRole.ADMIN
+    );
+
+    const isCompleted = booking.status === BookingStatus.COMPLETED;
+    const satisfactionScore = isCompleted
+        ? getSatisfactionScoreFromReview(
+              booking.review,
+              currentUserRole || UserRole.ADMIN
+          )
+        : undefined;
+
     const isStudent = currentUserRole === UserRole.STUDENT;
     const isCoach = currentUserRole === UserRole.COACH;
+    const canRate = isCompleted && (isStudent || isCoach);
 
-    const hasNotes =
-        booking.review &&
-        ((isStudent &&
-            "studentNotes" in booking.review &&
-            booking.review.studentNotes) ||
-            (isCoach &&
-                "coachNotes" in booking.review &&
-                booking.review.coachNotes));
-
-    let notes: string | undefined;
-    if (booking.review) {
-        if (
-            isStudent &&
-            "studentNotes" in booking.review &&
-            booking.review.studentNotes
-        ) {
-            notes = booking.review.studentNotes;
-        } else if (
-            isCoach &&
-            "coachNotes" in booking.review &&
-            booking.review.coachNotes
-        ) {
-            notes = booking.review.coachNotes;
+    const handleRatingSelect = (score: number) => {
+        if (isStudent) {
+            updateSatisfactionScore({
+                bookingId: booking.id,
+                studentSatisfactionScore: score,
+            });
+        } else if (isCoach) {
+            updateSatisfactionScore({
+                bookingId: booking.id,
+                coachSatisfactionScore: score,
+            });
         }
-    }
-
-    const getMenuOptions = () => {
-        const options = [
-            {
-                label: hasNotes ? "Update Note" : "Add Note",
-                value: "add-or-update-note",
-            },
-        ];
-
-        if (booking.status === BookingStatus.ACTIVE) {
-            options.push(
-                {
-                    label: "Cancel",
-                    value: BookingStatus.CANCELLED,
-                },
-                {
-                    label: "Report no show",
-                    value: BookingStatus.NO_SHOW,
-                }
-            );
-        }
-
-        return options;
     };
 
-    const menuOptions = getMenuOptions();
+    const menuOptions = getBookingMenuOptions(hasNotes, booking.status);
 
     return (
         <StyledBookingCard
@@ -274,6 +271,20 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
                     )
                 }
             />
+
+            {isCompleted && (
+                <>
+                    <Separator color="light" />
+                    <Flex $justifyContent="center">
+                        <Rating
+                            value={satisfactionScore}
+                            max={5}
+                            size="md"
+                            onSelect={canRate ? handleRatingSelect : undefined}
+                        />
+                    </Flex>
+                </>
+            )}
 
             {showNoteModal && (
                 <AddOrUpdateNoteModal
