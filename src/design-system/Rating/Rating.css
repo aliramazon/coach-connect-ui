@@ -1,0 +1,54 @@
+.rating {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.rating--interactive .rating__star {
+    cursor: pointer;
+}
+
+.rating__star {
+    width: 1.6rem;
+    height: 1.6rem;
+    stroke: var(--jaguar-400);
+    fill: transparent;
+    transition: all 0.2s;
+}
+
+.rating--interactive .rating__star:hover,
+.rating--interactive .rating__star--hovered {
+    stroke: var(--violet-500);
+}
+
+.rating--interactive .rating__star--hovered {
+    fill: var(--violet-500);
+}
+
+.rating__star--filled {
+    fill: var(--jaguar-400);
+}
+
+.rating__star--has-value {
+    stroke: var(--violet-500);
+}
+
+.rating__star--has-value.rating__star--filled {
+    fill: var(--violet-500);
+}
+
+/* Sizes */
+.rating--sm .rating__star {
+    width: 1.6rem;
+    height: 1.6rem;
+}
+
+.rating--md .rating__star {
+    width: 2rem;
+    height: 2rem;
+}
+
+.rating--lg .rating__star {
+    width: 2.4rem;
+    height: 2.4rem;
+}
