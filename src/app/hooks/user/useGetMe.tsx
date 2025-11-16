@@ -7,24 +7,33 @@ import { userService } from "../../services/user";
 import { useUserStore } from "../../store/useUserStore";
 import { ApiError } from "../../utils/api-error";
 
-const PUBLIC_ROUTES = ["/login", "/signup", "/forgot-password"];
+const PUBLIC_ROUTES = ["/", "/login", "/signup", "/forgot-password"];
 
 export const useGetMe = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const location = useLocation();
     const {
         setUser,
         setCsrfToken,
         setImpersonatedUser,
         logout,
         setIsProfileLoading,
+        user,
     } = useUserStore();
 
-    const location = useLocation();
-
     useEffect(() => {
+        // Only fetch if user is not already loaded
+        if (user) {
+            setIsLoading(false);
+            setIsProfileLoading(false);
+            return;
+        }
+
         setIsLoading(true);
         setError(null);
+
+        const isPublicRoute = PUBLIC_ROUTES.includes(location.pathname);
 
         userService
             .getMe()
@@ -46,10 +55,7 @@ export const useGetMe = () => {
                     if (err.errorCode === "AUTHENTICATION_ERROR") {
                         logout();
 
-                        const isPublicRoute = PUBLIC_ROUTES.includes(
-                            location.pathname
-                        );
-
+                        // Only show toast if not on a public route
                         if (!isPublicRoute) {
                             toast.error(
                                 "Session expired, please log in again."
@@ -68,7 +74,8 @@ export const useGetMe = () => {
                 setIsLoading(false);
                 setIsProfileLoading(false);
             });
-    }, []);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []); // Only run once on mount, user check is inside
 
     return {
         isLoading,

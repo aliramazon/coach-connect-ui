@@ -2,6 +2,7 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 
 import { LoadingScreen } from "../app/components/LoadingScreen";
+import { useGetMe } from "../app/hooks/user/useGetMe";
 import { useUserStore } from "../app/store/useUserStore";
 import { UserRole } from "../app/types/roles";
 
@@ -16,9 +17,13 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
     allowedRoles,
     redirectTo = "/login",
 }) => {
+    const { isLoading } = useGetMe();
     const { getEffectiveUser, isProfileLoading } = useUserStore();
     const effectiveUser = getEffectiveUser();
-    if (isProfileLoading) return <LoadingScreen />;
+
+    if (isLoading || isProfileLoading) {
+        return <LoadingScreen />;
+    }
 
     if (!effectiveUser) {
         return <Navigate to={redirectTo} replace />;
