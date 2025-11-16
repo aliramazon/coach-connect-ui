@@ -11,7 +11,6 @@ export const useLogout = () => {
     const navigate = useNavigate();
 
     const logout = () => {
-        navigate("/login");
         setIsLoggingOut(true);
         setError(null);
 
