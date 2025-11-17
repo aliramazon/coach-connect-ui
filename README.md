@@ -7,6 +7,38 @@ A modern web application for connecting students with expert coaches, enabling s
 -   **Live Application**: [https://coachconnect.space](https://coachconnect.space)
 -   **Backend Repository**: [coach-connect-api](https://github.com/aliramazon/coach-connect-api)
 
+## 🎬 Demo Instructions
+
+1. **Visit the live application**: [https://coachconnect.space](https://coachconnect.space)
+
+    - You'll see a simple landing page with feature highlights
+
+2. **Login as Admin**:
+
+    - Click on "Login" button
+    - Use the following admin credentials:
+        - **Email**: `freddie_graham@gmail.com`
+        - **Password**: `FreddieGraham`
+
+3. **Admin Dashboard**:
+
+    - Once logged in, you'll see the admin dashboard with navigation for Bookings, Coaches, and Students
+    - **Note**: The frontend for managing these entities is not yet implemented
+    - The main goal of this project is to have Coach and Student capabilities fully functional
+
+4. **Impersonation Feature** (Complex Feature):
+
+    - Both Coach and Student accounts work independently, but for demo purposes, impersonation is implemented
+    - Click on "Impersonate As" in the admin dashboard
+    - Select the role you want to impersonate (Coach or Student)
+    - Select a specific user from the list (users are organized by role)
+    - Once you impersonate, the dashboard automatically switches to that user's role-specific dashboard
+    - You can now experience the full functionality as a Coach or Student
+
+5. **Explore Features**:
+    - As a **Coach**: Manage availability slots, view bookings, add session notes, and rate students
+    - As a **Student**: Browse coaches with ratings, book sessions with optional agenda, manage bookings, add notes, and rate coaches
+
 ## 🚦 Getting Started
 
 ### Prerequisites
@@ -44,6 +76,38 @@ npm run dev
 ```
 
 The application will be available at `http://localhost:5173`
+
+## 🎬 Demo Instructions
+
+1. **Visit the live application**: [https://coachconnect.space](https://coachconnect.space)
+
+    - You'll see a simple landing page with feature highlights
+
+2. **Login as Admin**:
+
+    - Click on "Login" button
+    - Use the following admin credentials:
+        - **Email**: `freddie_graham@gmail.com`
+        - **Password**: `FreddieGraham`
+
+3. **Admin Dashboard**:
+
+    - Once logged in, you'll see the admin dashboard with navigation for Bookings, Coaches, and Students
+    - **Note**: The frontend for managing these entities is not yet implemented
+    - The main goal of this project is to have Coach and Student capabilities fully functional
+
+4. **Impersonation Feature** (Complex Feature):
+
+    - Both Coach and Student accounts work independently, but for demo purposes, impersonation is implemented
+    - Click on "Impersonate As" in the admin dashboard
+    - Select the role you want to impersonate (Coach or Student)
+    - Select a specific user from the list (users are organized by role)
+    - Once you impersonate, the dashboard automatically switches to that user's role-specific dashboard
+    - You can now experience the full functionality as a Coach or Student
+
+5. **Explore Features**:
+    - As a **Coach**: Manage availability slots, view bookings, add session notes, and rate students
+    - As a **Student**: Browse coaches with ratings, book sessions with optional agenda, manage bookings, add notes, and rate coaches
 
 ## 🚀 Features
 
